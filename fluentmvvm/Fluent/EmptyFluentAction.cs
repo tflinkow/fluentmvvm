@@ -39,8 +39,5 @@ namespace FluentMvvm.Fluent
         {
             return this;
         }
-
-        /// <inheritdoc />
-        public event PropertyChangedEventHandler PropertyChanged;
     }
 }

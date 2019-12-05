@@ -8,7 +8,7 @@ namespace FluentMvvm.Fluent
     /// <summary>Provides methods that can be used to set a property value.</summary>
     /// <seealso cref="System.ComponentModel.INotifyPropertyChanged" />
     [PublicAPI]
-    public interface IPropertySetExpression : INotifyPropertyChanged
+    public interface IPropertySetExpression
     {
         /// <summary>
         ///     Sets the value of this property to <paramref name="value" /> and raises a

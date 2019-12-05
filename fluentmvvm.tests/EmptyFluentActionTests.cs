@@ -30,7 +30,7 @@ namespace FluentMvvm.Tests
             TestViewModel viewModel = new TestViewModel { Id = 0, Name = String.Empty };
             IPropertySetExpression fluentAction = viewModel.When(false); // yields an EmptyFluentAction
 
-            EventListener<string> listener = EventListener<string>.Create(fluentAction);
+            EventListener<string> listener = EventListener<string>.Create(viewModel);
 
             // Act
             fluentAction.Set(42, nameof(viewModel.Id));
@@ -50,7 +50,7 @@ namespace FluentMvvm.Tests
             TestViewModel viewModel = new TestViewModel { Id = 0, Name = String.Empty };
             IPropertySetExpression fluentAction = viewModel.When(false); // yields an EmptyFluentAction
 
-            EventListener<string> listener = EventListener<string>.Create(fluentAction);
+            EventListener<string> listener = EventListener<string>.Create(viewModel);
 
             // Act
             fluentAction.Set(viewModel.Id, nameof(viewModel.Id));
@@ -67,7 +67,8 @@ namespace FluentMvvm.Tests
         public void AffectsCommand_DoesNothing()
         {
             // Arrange
-            EmptyFluentAction fluentAction = new EmptyFluentAction();
+            TestViewModel viewModel = new TestViewModel { Id = 0, Name = String.Empty };
+            IDependencyExpression fluentAction = viewModel.When(false) as IDependencyExpression; // yields an EmptyFluentAction
 
             ICommand[] commands = { new TestICommandNoRaiseMethod(), new TestICommand(), new TestIWpfCommand() };
 
@@ -87,9 +88,10 @@ namespace FluentMvvm.Tests
         public void AffectsProperty_DoesNotRaiseEvent()
         {
             // Arrange
-            EmptyFluentAction fluentAction = new EmptyFluentAction();
+            TestViewModel viewModel = new TestViewModel { Id = 0, Name = String.Empty };
+            IDependencyExpression fluentAction = viewModel.When(false) as IDependencyExpression; // yields an EmptyFluentAction
 
-            EventListener<string> listener = EventListener<string>.Create(fluentAction);
+            EventListener<string> listener = EventListener<string>.Create(viewModel);
 
             // Act
             fluentAction.Affects("X");

@@ -17,7 +17,7 @@ namespace FluentMvvm
     /// </summary>
     [PublicAPI]
     [NoReorder]
-    public abstract class FluentViewModelBase : IPropertySetExpression, IConditionalExpression
+    public abstract class FluentViewModelBase : IPropertySetExpression, IConditionalExpression, INotifyPropertyChanged
     {
         /// <summary>An object for use in fluent method calls.</summary>
         [NotNull]
@@ -31,7 +31,7 @@ namespace FluentMvvm
         protected FluentViewModelBase()
         {
             this.backingFieldProvider = BackingFieldProvider.Get(this.GetType());
-            this.action = new FluentAction(this.backingFieldProvider);
+            this.action = new FluentAction(this.backingFieldProvider, this.RaisePropertyChanged);
         }
 
         /// <inheritdoc />

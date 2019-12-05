@@ -158,9 +158,6 @@
         <member name="M:FluentMvvm.Fluent.EmptyFluentAction.Set(System.Object,System.String)">
             <inheritdoc />
         </member>
-        <member name="E:FluentMvvm.Fluent.EmptyFluentAction.PropertyChanged">
-            <inheritdoc />
-        </member>
         <member name="T:FluentMvvm.Fluent.FluentAction">
             <summary>Implements methods for use in fluent call chains.</summary>
             <seealso cref="T:FluentMvvm.Fluent.IPropertySetExpression" />
@@ -169,9 +166,13 @@
         <member name="F:FluentMvvm.Fluent.FluentAction.backingFieldProvider">
             <summary>The dynamically generated type containing the backing fields for the concrete view model.</summary>
         </member>
-        <member name="M:FluentMvvm.Fluent.FluentAction.#ctor(FluentMvvm.IBackingFieldProvider)">
+        <member name="F:FluentMvvm.Fluent.FluentAction.raisePropertyChanged">
+            <summary>The method raising the <see cref="E:System.ComponentModel.INotifyPropertyChanged.PropertyChanged"/> event.</summary>
+        </member>
+        <member name="M:FluentMvvm.Fluent.FluentAction.#ctor(FluentMvvm.IBackingFieldProvider,System.Action{System.String})">
             <summary>Initializes a new instance of the <see cref="T:FluentMvvm.Fluent.FluentAction" /> class.</summary>
             <param name="backingFieldProvider">The backing field provider.</param>
+            <param name="raisePropertyChanged">The method raising the <see cref="E:System.ComponentModel.INotifyPropertyChanged.PropertyChanged"/> event.</param>
         </member>
         <member name="M:FluentMvvm.Fluent.FluentAction.Affects(System.String)">
             <inheritdoc />
@@ -184,13 +185,6 @@
         </member>
         <member name="M:FluentMvvm.Fluent.FluentAction.Set(System.Object,System.String)">
             <inheritdoc />
-        </member>
-        <member name="E:FluentMvvm.Fluent.FluentAction.PropertyChanged">
-            <inheritdoc />
-        </member>
-        <member name="M:FluentMvvm.Fluent.FluentAction.RaisePropertyChanged(System.String)">
-            <summary>Notifies listeners that the property <paramref name="propertyName" /> has changed.</summary>
-            <param name="propertyName">The name of the property that has changed.</param>
         </member>
         <member name="T:FluentMvvm.Fluent.IConditionalExpression">
             <summary>Provides methods that determine whether or not the following fluent calls should execute.</summary>

@@ -18,7 +18,7 @@ namespace FluentMvvm.Tests
         public void WasUpdated_IsTrue()
         {
             // Arrange
-            FluentAction fluentAction = new FluentAction(null);
+            FluentAction fluentAction = new FluentAction(null, (s => {}));
 
             // Act & Assert
             fluentAction.WasUpdated().Should().BeTrue();
@@ -28,7 +28,8 @@ namespace FluentMvvm.Tests
         public void AffectsCommand_IWpfCommand_RaisesEvent()
         {
             // Arrange
-            FluentAction fluentAction = new FluentAction(null);
+            TestViewModel viewModel = new TestViewModel { Id = 0, Name = String.Empty };
+            IDependencyExpression fluentAction = viewModel.When(true) as IDependencyExpression; // yields a FluentAction
             TestIWpfCommand command = new TestIWpfCommand();
 
             EventListener<EventArgs> listener = EventListener<EventArgs>.Create(command);
@@ -44,7 +45,8 @@ namespace FluentMvvm.Tests
         public void AffectsCommand_ICommand_RaisesEvent()
         {
             // Arrange
-            FluentAction fluentAction = new FluentAction(null);
+            TestViewModel viewModel = new TestViewModel { Id = 0, Name = String.Empty };
+            IDependencyExpression fluentAction = viewModel.When(true) as IDependencyExpression; // yields a FluentAction
             TestICommand command = new TestICommand();
 
             EventListener<EventArgs> listener = EventListener<EventArgs>.Create(command);
@@ -60,7 +62,8 @@ namespace FluentMvvm.Tests
         public void AffectsCommand_MethodNotExisting_RaisesEvent()
         {
             // Arrange
-            FluentAction fluentAction = new FluentAction(null);
+            TestViewModel viewModel = new TestViewModel { Id = 0, Name = String.Empty };
+            IDependencyExpression fluentAction = viewModel.When(true) as IDependencyExpression; // yields a FluentAction
             TestICommandNoRaiseMethod command = new TestICommandNoRaiseMethod();
 
             // Act & Assert
@@ -71,9 +74,10 @@ namespace FluentMvvm.Tests
         public void AffectsProperty_RaisesEvent()
         {
             // Arrange
-            FluentAction fluentAction = new FluentAction(null);
+            TestViewModel viewModel = new TestViewModel { Id = 0, Name = String.Empty };
+            IDependencyExpression fluentAction = viewModel.When(true) as IDependencyExpression; // yields a FluentAction
 
-            EventListener<string> listener = EventListener<string>.Create(fluentAction);
+            EventListener<string> listener = EventListener<string>.Create(viewModel);
 
             // Act
             fluentAction.Affects("X");
@@ -90,7 +94,7 @@ namespace FluentMvvm.Tests
             TestViewModel viewModel = new TestViewModel { Id = 0, Name = String.Empty };
             IPropertySetExpression fluentAction = viewModel.When(true); // yields a FluentAction
 
-            EventListener<string> listener = EventListener<string>.Create(fluentAction);
+            EventListener<string> listener = EventListener<string>.Create(viewModel);
 
             // Act
             fluentAction.Set(42, nameof(viewModel.Id));
@@ -110,7 +114,7 @@ namespace FluentMvvm.Tests
             TestViewModel viewModel = new TestViewModel { Id = 0, Name = String.Empty };
             IPropertySetExpression fluentAction = viewModel.When(true); // yields a FluentAction
 
-            EventListener<string> listener = EventListener<string>.Create(fluentAction);
+            EventListener<string> listener = EventListener<string>.Create(viewModel);
 
             // Act
             fluentAction.Set(viewModel.Id, nameof(viewModel.Id));

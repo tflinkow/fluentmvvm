@@ -17,17 +17,23 @@ namespace FluentMvvm.Fluent
         [CanBeNull]
         private readonly IBackingFieldProvider backingFieldProvider;
 
+        /// <summary>The method raising the <see cref="INotifyPropertyChanged.PropertyChanged"/> event.</summary>
+        [NotNull]
+        private readonly Action<string> raisePropertyChanged;
+
         /// <summary>Initializes a new instance of the <see cref="FluentAction" /> class.</summary>
         /// <param name="backingFieldProvider">The backing field provider.</param>
-        public FluentAction([CanBeNull] IBackingFieldProvider backingFieldProvider)
+        /// <param name="raisePropertyChanged">The method raising the <see cref="INotifyPropertyChanged.PropertyChanged"/> event.</param>
+        public FluentAction([CanBeNull] IBackingFieldProvider backingFieldProvider, [NotNull] Action<string> raisePropertyChanged)
         {
             this.backingFieldProvider = backingFieldProvider;
+            this.raisePropertyChanged = raisePropertyChanged;
         }
 
         /// <inheritdoc />
         public IDependencyExpression Affects(string propertyName)
         {
-            this.RaisePropertyChanged(propertyName);
+            this.raisePropertyChanged(propertyName);
 
             return this;
         }
@@ -65,21 +71,11 @@ namespace FluentMvvm.Fluent
 
             if (this.backingFieldProvider.SetValueOf(propertyName, value))
             {
-                this.RaisePropertyChanged(propertyName);
+                this.raisePropertyChanged(propertyName);
                 return this;
             }
 
             return EmptyFluentAction.Default;
-        }
-
-        /// <inheritdoc />
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        /// <summary>Notifies listeners that the property <paramref name="propertyName" /> has changed.</summary>
-        /// <param name="propertyName">The name of the property that has changed.</param>
-        private void RaisePropertyChanged([NotNull] string propertyName)
-        {
-            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }
