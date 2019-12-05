@@ -24,7 +24,7 @@ public class PersonViewModel : FluentViewModelBase
 
 ## Property Declaration
 
-Instead of defining backing fields for each property, simply use `Get<T>()` for the property getter and `Set(value)` for the property setter (read more about how it works [here](https://github.com/flinkow/fluentmvvm#howitworks)).
+Instead of defining backing fields for each property, simply use `Get<T>()` for the property getter and `Set(value)` for the property setter (read more about how it works [here](https://github.com/flinkow/fluentmvvm/blob/master/howitworks.md)).
 
 ```csharp
 public string Name
@@ -114,7 +114,7 @@ this.When(<condition>)        // never or once
 
 # Performance
 
-The benchmark result below compares fluentmvvm to a naive implementation without using any `Set` methods (called "bare" in the figure) and to a more sophisticated approach (called "expression" in the figure) that provides a `Set<T>(Expression<Func<T>> propertyExpression, T oldValue, T newValue)` method (for example, Galasoft.MvvmLight does).
+The benchmark result below compares fluentmvvm to a naive implementation without using any `Set` methods (called "default" in the figure) and to a more sophisticated approach (called "expression" in the figure) that provides a `Set<T>(Expression<Func<T>> propertyExpression, T oldValue, T newValue)` method (for example, Galasoft.MvvmLight does).
 
 <p align="center">
   <img src="https://github.com/flinkow/fluentmvvm/blob/master/performance.PNG" />
