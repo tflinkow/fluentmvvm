@@ -117,7 +117,7 @@ this.When(<condition>)        // never or once
 The benchmark result below compares fluentmvvm to a naive implementation without using any `Set` methods (called "bare" in the figure) and to a more sophisticated approach (called "expression" in the figure) that provides a `Set<T>(Expression<Func<T>> propertyExpression, T oldValue, T newValue)` method (for example, Galasoft.MvvmLight does).
 
 <p align="center">
-  <img src="https://github.com/flinkow/fluentmvvm/blob/master/LICENSE/performance.png" />
+  <img src="https://github.com/flinkow/fluentmvvm/blob/master/performance.PNG" />
 </p>
 
 ```ini
