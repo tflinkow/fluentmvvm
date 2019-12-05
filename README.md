@@ -9,7 +9,7 @@
 
 - [Features](https://github.com/flinkow/fluentmvvm#features)
 - [Performance](https://github.com/flinkow/fluentmvvm#performance)
-- [Remarks](https://github.com/flinkow/fluentmvvm#remarks)
+- [Remarks](https://github.com/flinkow/fluentmvvm#remarks-2)
 - [License](https://github.com/flinkow/fluentmvvm#license)
 
 # Features
