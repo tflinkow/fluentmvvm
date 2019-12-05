@@ -8,6 +8,7 @@
 ## Contents
 
 - [Features](https://github.com/flinkow/fluentmvvm#features)
+- [Fluent API](https://github.com/flinkow/fluentmvvm#fluent-api)
 - [Performance](https://github.com/flinkow/fluentmvvm#performance)
 - [Remarks](https://github.com/flinkow/fluentmvvm#remarks-2)
 - [License](https://github.com/flinkow/fluentmvvm#license)
