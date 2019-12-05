@@ -5,12 +5,10 @@
 
 > An easy-to-use, fast ViewModelBase providing an intuitive fluent API to naturally express property setters.
 
-- [Changelog](https://github.com/flinkow/fluentmvvm#changelog)
-
 ## Contents
 
-- [Features](https://github.com/flinkow/fluentmvvm#viewmodel-definition)
-- [Performance](https://github.com/flinkow/fluentmvvm#property-declaration)
+- [Features](https://github.com/flinkow/fluentmvvm#features)
+- [Performance](https://github.com/flinkow/fluentmvvm#performance)
 - [Remarks](https://github.com/flinkow/fluentmvvm#remarks)
 - [License](https://github.com/flinkow/fluentmvvm#license)
 
