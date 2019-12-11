@@ -5,7 +5,7 @@
     <RootNamespace>FluentMvvm</RootNamespace>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <Version>0.1.1</Version>
+    <Version>0.2.0-alpha</Version>
     <Authors>Thomas Flinkow</Authors>
     <Company></Company>
     <Description>An easy-to-use, fast ViewModelBase providing an intuitive fluent API.</Description>
@@ -14,6 +14,8 @@
     <PackageProjectUrl>https://github.com/flinkow/fluentmvvm</PackageProjectUrl>
     <RepositoryUrl>https://github.com/flinkow/fluentmvvm.git</RepositoryUrl>
     <PackageTags>c#,wpf,mvvm,fluent,viewmodel</PackageTags>
+    <PackageReleaseNotes>- Added attribute to control backing field generation.
+- Removed (unintentional) limit on the number of properties a view model can have</PackageReleaseNotes>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">

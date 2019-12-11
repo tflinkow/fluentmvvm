@@ -35,6 +35,17 @@ namespace FluentMvvm.Tests
             backingFields.Length.Should().Be(5);
             backingFields.Count(x => x.Name == nameof(TestClass.Internal)).Should().Be(0);
             backingFields.Count(x => x.Name == nameof(TestClass.GetOnly)).Should().Be(0);
+            backingFields.Count(x => x.Name == nameof(TestClass.GenerationSuppressed)).Should().Be(0);
+        }
+
+        [Fact]
+        public void GeneratedType_HasNoBackingFields_WhenFieldGenerationIsSuppressed()
+        {
+            // Arrange & Act
+            IBackingFieldProvider provider = BackingFieldProvider.Get(typeof(NoGenerationTestClass));
+
+            // Assert
+            provider.Should().BeNull();
         }
 
         [Fact]

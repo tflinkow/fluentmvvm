@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
 using JetBrains.Annotations;
@@ -17,7 +18,15 @@ namespace FluentMvvm.Fluent
         /// <remarks>Intended to be used in property <c>set</c> accessors only.</remarks>
         /// <param name="value">The value to set the property to.</param>
         /// <param name="propertyName">The name of the property. Filled in by the compiler automatically.</param>
+        /// <exception cref="ArgumentException">
+        ///     no public writable instance property named <paramref name="propertyName" /> could
+        ///     be found.
+        /// </exception>
+        /// <exception cref="NullReferenceException">
+        ///     the type has no public writable instance methods at all -or- the type is
+        ///     marked with <see cref="SuppressFieldGenerationAttribute" />.
+        /// </exception>
         [NotNull]
-        IDependencyExpression Set([CanBeNull] object value, [CallerMemberName] [NotNull] string propertyName = null);
+        IDependencyExpression Set([CanBeNull] object value, [CallerMemberName] [CanBeNull] string propertyName = null);
     }
 }

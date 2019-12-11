@@ -58,6 +58,14 @@
             <param name="targetType">The type of the view model to generate the backing fields for.</param>
             <returns>The type of the class containing the backing fields</returns>
         </member>
+        <member name="M:FluentMvvm.BackingFieldProvider.GetRelevantProperties(System.Type)">
+            <summary>
+                Gets the properties to build backing fields for. Only considers public writable instance properties that do
+                not have a <see cref="T:FluentMvvm.SuppressFieldGenerationAttribute" /> applied to them.
+            </summary>
+            <param name="type">The type to build backing fields for.</param>
+            <returns>A collection of all properties to build backing fields for.</returns>
+        </member>
         <member name="M:FluentMvvm.BackingFieldProvider.BuildBackingFields(System.Collections.Generic.IReadOnlyList{System.Reflection.PropertyInfo},System.Reflection.Emit.TypeBuilder)">
             <summary>Builds the backing fields for the public writable instance properties <paramref name="properties" />.</summary>
             <param name="properties">The properties to build backing fields for.</param>
@@ -96,15 +104,16 @@
             </param>
         </member>
         <member name="T:FluentMvvm.FluentViewModelBase">
-            <inheritdoc cref="T:FluentMvvm.Fluent.IPropertySetExpression" />
-            <inheritdoc cref="T:FluentMvvm.Fluent.IConditionalExpression"/>
             <summary>
                 A base class for ViewModels implementing <see cref="T:System.ComponentModel.INotifyPropertyChanged" /> and providing a fluent API for
                 property setters.
             </summary>
-        </member>
-        <member name="F:FluentMvvm.FluentViewModelBase.action">
-            <summary>An object for use in fluent method calls.</summary>
+            <seealso cref="T:FluentMvvm.Fluent.IPropertySetExpression" />
+            <seealso cref="T:FluentMvvm.Fluent.IConditionalExpression" />
+            <seealso cref="T:FluentMvvm.Fluent.IDependencyExpression" />
+            <seealso cref="T:System.ComponentModel.INotifyPropertyChanged" />
+            <inheritdoc cref="T:FluentMvvm.Fluent.IPropertySetExpression" />
+            <inheritdoc cref="T:FluentMvvm.Fluent.IConditionalExpression" />
         </member>
         <member name="F:FluentMvvm.FluentViewModelBase.backingFieldProvider">
             <summary>The dynamically generated type containing the backing fields for the concrete view model.</summary>
@@ -123,8 +132,25 @@
             <typeparam name="T">The type of the property.</typeparam>
             <param name="propertyName">The name of the property.</param>
             <returns>The value of the property.</returns>
+            <exception cref="T:System.ArgumentException">
+                no public writable instance property named <paramref name="propertyName" /> could
+                be found.
+            </exception>
+            <exception cref="T:System.NullReferenceException">
+                the type has no public writable instance methods at all -or- the type is
+                marked with <see cref="T:FluentMvvm.SuppressFieldGenerationAttribute" />.
+            </exception>
         </member>
         <member name="M:FluentMvvm.FluentViewModelBase.Set(System.Object,System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:FluentMvvm.FluentViewModelBase.FluentMvvm#Fluent#IDependencyExpression#Affects(System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:FluentMvvm.FluentViewModelBase.FluentMvvm#Fluent#IDependencyExpression#Affects(System.Windows.Input.ICommand)">
+            <inheritdoc />
+        </member>
+        <member name="M:FluentMvvm.FluentViewModelBase.FluentMvvm#Fluent#IDependencyExpression#WasUpdated">
             <inheritdoc />
         </member>
         <member name="E:FluentMvvm.FluentViewModelBase.PropertyChanged">
@@ -139,6 +165,8 @@
         </member>
         <member name="T:FluentMvvm.Fluent.EmptyFluentAction">
             <summary>An object implementing all fluent methods as methods doing nothing.</summary>
+            <seealso cref="T:FluentMvvm.Fluent.IPropertySetExpression" />
+            <seealso cref="T:FluentMvvm.Fluent.IDependencyExpression" />
             <seealso cref="T:FluentMvvm.Fluent.IPropertySetExpression" />
             <seealso cref="T:FluentMvvm.Fluent.IDependencyExpression" />
         </member>
@@ -156,34 +184,6 @@
             <inheritdoc />
         </member>
         <member name="M:FluentMvvm.Fluent.EmptyFluentAction.Set(System.Object,System.String)">
-            <inheritdoc />
-        </member>
-        <member name="T:FluentMvvm.Fluent.FluentAction">
-            <summary>Implements methods for use in fluent call chains.</summary>
-            <seealso cref="T:FluentMvvm.Fluent.IPropertySetExpression" />
-            <seealso cref="T:FluentMvvm.Fluent.IDependencyExpression" />
-        </member>
-        <member name="F:FluentMvvm.Fluent.FluentAction.backingFieldProvider">
-            <summary>The dynamically generated type containing the backing fields for the concrete view model.</summary>
-        </member>
-        <member name="F:FluentMvvm.Fluent.FluentAction.raisePropertyChanged">
-            <summary>The method raising the <see cref="E:System.ComponentModel.INotifyPropertyChanged.PropertyChanged"/> event.</summary>
-        </member>
-        <member name="M:FluentMvvm.Fluent.FluentAction.#ctor(FluentMvvm.IBackingFieldProvider,System.Action{System.String})">
-            <summary>Initializes a new instance of the <see cref="T:FluentMvvm.Fluent.FluentAction" /> class.</summary>
-            <param name="backingFieldProvider">The backing field provider.</param>
-            <param name="raisePropertyChanged">The method raising the <see cref="E:System.ComponentModel.INotifyPropertyChanged.PropertyChanged"/> event.</param>
-        </member>
-        <member name="M:FluentMvvm.Fluent.FluentAction.Affects(System.String)">
-            <inheritdoc />
-        </member>
-        <member name="M:FluentMvvm.Fluent.FluentAction.Affects(System.Windows.Input.ICommand)">
-            <inheritdoc />
-        </member>
-        <member name="M:FluentMvvm.Fluent.FluentAction.WasUpdated">
-            <inheritdoc />
-        </member>
-        <member name="M:FluentMvvm.Fluent.FluentAction.Set(System.Object,System.String)">
             <inheritdoc />
         </member>
         <member name="T:FluentMvvm.Fluent.IConditionalExpression">
@@ -244,6 +244,14 @@
             <remarks>Intended to be used in property <c>set</c> accessors only.</remarks>
             <param name="value">The value to set the property to.</param>
             <param name="propertyName">The name of the property. Filled in by the compiler automatically.</param>
+            <exception cref="T:System.ArgumentException">
+                no public writable instance property named <paramref name="propertyName" /> could
+                be found.
+            </exception>
+            <exception cref="T:System.NullReferenceException">
+                the type has no public writable instance methods at all -or- the type is
+                marked with <see cref="T:FluentMvvm.SuppressFieldGenerationAttribute" />.
+            </exception>
         </member>
         <member name="T:FluentMvvm.IBackingFieldProvider">
             <summary>
@@ -283,6 +291,12 @@
         </member>
         <member name="M:FluentMvvm.IWpfCommand.RaiseCanExecuteChanged">
             <summary>Raises the <see cref="E:System.ComponentModel.INotifyPropertyChanged.PropertyChanged" /> event.</summary>
+        </member>
+        <member name="T:FluentMvvm.SuppressFieldGenerationAttribute">
+            <inheritdoc />
+            <summary>Indicates that no backing field shall be generated for the property or type the attribute is applied to.</summary>
+            <remarks>If applied to a type, no backing field is generated for any property of that type.</remarks>
+            <seealso cref="T:System.Attribute" />
         </member>
         <member name="T:JetBrains.Annotations.CanBeNullAttribute">
             <summary>

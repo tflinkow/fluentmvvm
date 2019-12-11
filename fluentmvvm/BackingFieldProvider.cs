@@ -76,9 +76,14 @@ namespace FluentMvvm
         [CanBeNull]
         private static Type BuildForType([NotNull] Type targetType)
         {
-            PropertyInfo[] properties = targetType.GetProperties(BindingFlags.Instance | BindingFlags.Public).Where(p => p.CanWrite).ToArray();
+            if (targetType.GetCustomAttribute<SuppressFieldGenerationAttribute>() != null)
+            {
+                return default;
+            }
 
-            if (properties.Length is 0)
+            IReadOnlyList<PropertyInfo> properties = BackingFieldProvider.GetRelevantProperties(targetType);
+
+            if (properties.Count is 0)
             {
                 return default;
             }
@@ -100,6 +105,20 @@ namespace FluentMvvm
             BackingFieldProvider.BuildSetValueOf(targetType, typeBuilder, fields);
 
             return typeBuilder.CreateTypeInfo().AsType();
+        }
+
+        /// <summary>
+        ///     Gets the properties to build backing fields for. Only considers public writable instance properties that do
+        ///     not have a <see cref="SuppressFieldGenerationAttribute" /> applied to them.
+        /// </summary>
+        /// <param name="type">The type to build backing fields for.</param>
+        /// <returns>A collection of all properties to build backing fields for.</returns>
+        [NotNull]
+        private static IReadOnlyList<PropertyInfo> GetRelevantProperties([NotNull] Type type)
+        {
+            return type.GetProperties(BindingFlags.Instance | BindingFlags.Public)
+                       .Where(p => p.CanWrite && p.GetCustomAttribute<SuppressFieldGenerationAttribute>() is null)
+                       .ToArray();
         }
 
         /// <summary>Builds the backing fields for the public writable instance properties <paramref name="properties" />.</summary>
@@ -200,10 +219,10 @@ namespace FluentMvvm
 
                 fieldFoundLabels[i] = ilGenerator.DefineLabel();
 
-                ilGenerator.Emit(OpCodes.Brtrue_S, fieldFoundLabels[i]);
+                ilGenerator.Emit(OpCodes.Brtrue, fieldFoundLabels[i]);
             }
 
-            ilGenerator.Emit(OpCodes.Br_S, fail);
+            ilGenerator.Emit(OpCodes.Br, fail);
 
             for (int i = 0; i < fieldFoundLabels.Length; i++)
             {
@@ -238,7 +257,7 @@ namespace FluentMvvm
             }
 
             ilGenerator.MarkLabel(fail);
-            ilGenerator.Emit(OpCodes.Ldstr, "Cannot find a public property named '");
+            ilGenerator.Emit(OpCodes.Ldstr, "Cannot find a public writable instance property named '");
             ilGenerator.Emit(OpCodes.Ldarg_1);
             ilGenerator.Emit(OpCodes.Ldstr, $"' on type '{targetTypeName}'");
             ilGenerator.Emit(OpCodes.Call, typeof(string).GetMethod(nameof(String.Concat), new[] { typeof(string), typeof(string), typeof(string) }));

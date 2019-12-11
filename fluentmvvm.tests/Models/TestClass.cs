@@ -11,5 +11,8 @@ namespace FluentMvvm.Tests.Models
 
         internal int Internal { get; set; }
         public int GetOnly { get; }
+
+        [SuppressFieldGeneration]
+        public int GenerationSuppressed { get; set; }
     }
 }

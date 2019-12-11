@@ -5,7 +5,7 @@ using FluentAssertions;
 using FluentMvvm.Fluent;
 using FluentMvvm.Tests.Models;
 using FluentMvvm.Tests.Util;
-
+using Microsoft.CSharp.RuntimeBinder;
 using Xunit;
 
 namespace FluentMvvm.Tests
@@ -36,6 +36,16 @@ namespace FluentMvvm.Tests
             // Act & Assert
             viewModel.Get<int>(nameof(viewModel.Id)).Should().Be(default);
             viewModel.Get<string>(nameof(viewModel.Name)).Should().Be(default);
+        }
+
+        [Fact]
+        public void Get_NoBackingFieldsProvider_Throws()
+        {
+            // Arrange
+            EmptyTestViewModel viewModel = new EmptyTestViewModel();
+
+            // Act & Assert
+            FluentActions.Invoking(() => viewModel.Get<int>("X")).Should().Throw<NullReferenceException>();
         }
 
         [Fact]
@@ -78,6 +88,16 @@ namespace FluentMvvm.Tests
         }
 
         [Fact]
+        public void Set_NoBackingFieldsProvider_Throws()
+        {
+            // Arrange
+            EmptyTestViewModel viewModel = new EmptyTestViewModel();
+
+            // Act & Assert
+            FluentActions.Invoking(() => viewModel.Set(42, "X")).Should().Throw<NullReferenceException>();
+        }
+
+        [Fact]
         public void When_False_ReturnsEmptyFluentAction()
         {
             // Arrange
@@ -89,14 +109,16 @@ namespace FluentMvvm.Tests
         }
 
         [Fact]
-        public void When_True_ReturnsFluentAction()
+        public void When_True_ReturnsSelf()
         {
             // Arrange
             TestViewModel viewModel = new TestViewModel();
 
             // Act & Assert
-            viewModel.When(true).Should().BeOfType<FluentAction>();
-            viewModel.When(() => true).Should().BeOfType<FluentAction>();
+            viewModel.When(true).Should().BeOfType<TestViewModel>();
+            viewModel.When(true).Should().BeSameAs(viewModel);
+            viewModel.When(() => true).Should().BeOfType<TestViewModel>();
+            viewModel.When(() => true).Should().BeSameAs(viewModel);
         }
 
         [Fact]
@@ -107,6 +129,79 @@ namespace FluentMvvm.Tests
 
             // Act & Assert
             FluentActions.Invoking(() => viewModel.When(null)).Should().Throw<ArgumentNullException>();
+        }
+
+        [Fact]
+        public void WasUpdated_IsTrue()
+        {
+            // Arrange
+            IDependencyExpression viewModel = new TestViewModel();
+
+            // Act & Assert
+            viewModel.WasUpdated().Should().BeTrue();
+        }
+
+        [Fact]
+        public void AffectsCommand_IWpfCommand_RaisesEvent()
+        {
+            // Arrange
+            TestViewModel viewModel = new TestViewModel { Id = 0, Name = String.Empty };
+            IDependencyExpression fluentAction = viewModel.When(true) as IDependencyExpression; // yields a FluentViewModelBase
+            TestIWpfCommand command = new TestIWpfCommand();
+
+            EventListener<EventArgs> listener = EventListener<EventArgs>.Create(command);
+
+            // Act
+            fluentAction.Affects(command);
+
+            // Assert
+            listener.Received.Count.Should().Be(1);
+        }
+
+        [Fact]
+        public void AffectsCommand_ICommand_RaisesEvent()
+        {
+            // Arrange
+            TestViewModel viewModel = new TestViewModel { Id = 0, Name = String.Empty };
+            IDependencyExpression fluentAction = viewModel.When(true) as IDependencyExpression; // yields a FluentViewModelBase
+            TestICommand command = new TestICommand();
+
+            EventListener<EventArgs> listener = EventListener<EventArgs>.Create(command);
+
+            // Act
+            fluentAction.Affects(command);
+
+            // Assert
+            listener.Received.Count.Should().Be(1);
+        }
+
+        [Fact]
+        public void AffectsCommand_MethodNotExisting_RaisesEvent()
+        {
+            // Arrange
+            TestViewModel viewModel = new TestViewModel { Id = 0, Name = String.Empty };
+            IDependencyExpression fluentAction = viewModel.When(true) as IDependencyExpression; // yields a FluentViewModelBase
+            TestICommandNoRaiseMethod command = new TestICommandNoRaiseMethod();
+
+            // Act & Assert
+            FluentActions.Invoking(() => fluentAction.Affects(command)).Should().Throw<RuntimeBinderException>();
+        }
+
+        [Fact]
+        public void AffectsProperty_RaisesEvent()
+        {
+            // Arrange
+            TestViewModel viewModel = new TestViewModel { Id = 0, Name = String.Empty };
+            IDependencyExpression fluentAction = viewModel.When(true) as IDependencyExpression; // yields a FluentViewModelBase
+
+            EventListener<string> listener = EventListener<string>.Create(viewModel);
+
+            // Act
+            fluentAction.Affects("X");
+
+            // Assert
+            listener.Received.Count.Should().Be(1);
+            listener.Received[0].Should().Be("X");
         }
     }
 }

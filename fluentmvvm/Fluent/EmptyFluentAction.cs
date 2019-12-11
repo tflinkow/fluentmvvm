@@ -1,11 +1,12 @@
-﻿using System.ComponentModel;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 
 using JetBrains.Annotations;
 
 namespace FluentMvvm.Fluent
 {
     /// <summary>An object implementing all fluent methods as methods doing nothing.</summary>
+    /// <seealso cref="FluentMvvm.Fluent.IPropertySetExpression" />
+    /// <seealso cref="FluentMvvm.Fluent.IDependencyExpression" />
     /// <seealso cref="IPropertySetExpression" />
     /// <seealso cref="IDependencyExpression" />
     internal sealed class EmptyFluentAction : IPropertySetExpression, IDependencyExpression
