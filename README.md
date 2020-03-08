@@ -25,12 +25,12 @@ public class PersonViewModel : FluentViewModelBase
 
 ## Property Declaration
 
-Instead of defining backing fields for each property, simply use `Get<T>()` for the property getter and `Set(value)` for the property setter (read more about how it works [here](https://github.com/flinkow/fluentmvvm/blob/master/howitworks.md)).
+Instead of defining backing fields for each property, simply use `Get<T>()` for the property getter and `Set(value)` for the property setter.
 
 ```csharp
 public string Name
 {
-  get => this.Get<string>();
+  get => this.Get<string>(); // or this.GetString();
   set => this.Set(value);
 }
 ```
@@ -52,14 +52,14 @@ public string FullName => $"{this.FirstName} {this.LastName}";
 
 public string FirstName
 {
-  get => this.Get<string>();
+  get => this.Get<string>();  // or this.GetString();
   set => this.Set(value)
              .Affects(nameof(this.FullName));
 }
 
 public string LastName
 {
-  get => this.Get<string>();
+  get => this.Get<string>();  // or this.GetString();
   set => this.Set(value)
              .Affects(nameof(this.FullName));
 }
@@ -73,7 +73,7 @@ public ICommand BuyThingsCommand { get; }
 
 public int Balance
 {
-  get => this.Get<int>();
+  get => this.Get<int>(); // or this.GetInt();
   set => this.Set(value)
              .Affects(this.BuyThingsCommand);
 }
@@ -122,20 +122,75 @@ The benchmark result below compares fluentmvvm to a naive implementation without
 </p>
 
 ```ini
-BenchmarkDotNet=v0.12.0, OS=Windows 10.0.17134.1130 (1803/April2018Update/Redstone4)
-Intel Core i7-4700MQ CPU 2.40GHz (Haswell), 1 CPU, 8 logical and 4 physical cores
-Frequency=2338349 Hz, Resolution=427.6522 ns, Timer=TSC
-.NET Core SDK=3.0.100
-  [Host]    : .NET Core 3.0.0 (CoreCLR 4.700.19.46205, CoreFX 4.700.19.46214), X64 RyuJIT
-  RyuJitX64 : .NET Core 3.0.0 (CoreCLR 4.700.19.46205, CoreFX 4.700.19.46214), X64 RyuJIT
-Job=RyuJitX64  Jit=RyuJit  Platform=X64  
+BenchmarkDotNet=v0.12.0, OS=Windows 10.0.18362
+Intel Core i7-9750H CPU 2.60GHz, 1 CPU, 12 logical and 6 physical cores
+.NET Core SDK=3.1.101
+  [Host]    : .NET Core 3.1.1 (CoreCLR 4.700.19.60701, CoreFX 4.700.19.60801), X64 RyuJIT
+  RyuJitX64 : .NET Core 3.1.1 (CoreCLR 4.700.19.60701, CoreFX 4.700.19.60801), X64 RyuJIT
+Job=RyuJitX64  Jit=RyuJit  Platform=X64
 ```
+
+# Performance tips
+
+## View model design
+
+View models should be marked `sealed` if no other class derives from them. This can lead to devirtualizing of the virtual method `AfterSet`, which every call to `Set` would benefit from.
+
+The order of properties in a view model has a (slight) impact on performance.
+Depending on the number of properties, it is advised to put frequently accessed properties at the very top, and less frequently used properties at the bottom.
+
+## Overloads for `Get<T>`
+Further it is recommended to reduce the use of `Get<T>` and 
+
+- use `GetBool()` instead of `Get<bool>()`
+- use `GetByte()` instead of `Get<byte>()`
+- use `GetSByte()` instead of `Get<sbyte>()`
+- use `GetChar()` instead of `Get<char>()`
+- use `GetInt16()` instead of `Get<short>()`
+- use `GetInt32()` instead of `Get<int>()`
+- use `GetInt64()` instead of `Get<long>()`
+- use `GetUInt16()` instead of `Get<ushort>()`
+- use `GetUInt32()` instead of `Get<uint>()`
+- use `GetUInt64()` instead of `Get<ulong>()`
+- use `GetDecimal()` instead of `Get<decimal>()`
+- use `GetDouble()` instead of `Get<double>()`
+- use `GetFloat()` instead of `Get<float>()`
+- use `GetString()` instead of `Get<string>()`
+- use `GetDateTime()` instead of `Get<DateTime>()`
+
+as often as possible due to better performance.
+
+## Controlling code generation
+In order for the `Get` and `Set` methods to work, a new type is generated at runtime for every view model deriving from `FluentViewModelBase`. That generated type contains a field for every public instance property with a `set` accessor.
+
+If a public instance property with a `set` accessor does not make use of `FluentViewModelBase`s `Get` and `Set` methods, it is recommended to have the `[SuppressFieldGeneration]` applied to it as shown below:
+
+```csharp
+[SuppressFieldGeneration]
+public string Name { get; set; } 
+```
+
+Trying to use `Get` or `Set` in property marked with `[SuppressFieldGeneration]` results in an `InvalidOperationException`.
+
+---
+
+If you choose to not use `Get` and `Set` in a view model, but still want to make use of the implementation of `INotifyPropertyChanged`, it is recommended to apply the attribute to the type itself.
+
+```csharp
+[SuppressFieldGeneration]
+public class PersonViewModel : FluentViewModelBase
+{
+  public string Name { get; set; }
+}
+```
+
+Trying to use `Get` or `Set` in a class marked with `[SuppressFieldGeneration]` results in an `InvalidOperationException`.
 
 # Remarks
 As code is dynamically emitted at runtime, fluentmvvm can not be used in Ahead of time (AOT) environments such as Xamarin.Android, Xamarin.iOS, Mono or .NET Native.
 
 # License
 
-(c) Thomas Flinkow 2019 · [github](https://github.com/flinkow) · [email](flinkow@thomas-flinkow.de)
+(c) Thomas Flinkow 2019, 2020 · [github](https://github.com/flinkow) · [email](flinkow@thomas-flinkow.de)
 
 Distributed under the MIT license. See [`LICENSE`](https://github.com/flinkow/fluentmvvm/blob/master/LICENSE) for more information.

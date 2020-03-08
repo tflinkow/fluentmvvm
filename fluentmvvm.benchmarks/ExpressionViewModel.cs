@@ -9,6 +9,10 @@ namespace FluentMvvm.Benchmarks
         private string setOnly;
         private string setAndNotifyOtherProperty;
         private string setAndNotifyCommand;
+        private SampleStruct sampleStruct;
+        private SampleClass sampleClass;
+        private SampleEnum sampleEnum;
+        private int integer;
 
         public string SetOnly
         {
@@ -34,6 +38,30 @@ namespace FluentMvvm.Benchmarks
                 this.Set(() => this.setAndNotifyCommand = value, this.setAndNotifyCommand, value);
                 this.MyCommand.RaiseCanExecuteChanged();
             }
+        }
+
+        public SampleStruct Struct
+        {
+            get => this.sampleStruct;
+            set => this.Set(() => this.sampleStruct = value, this.sampleStruct, value);
+        }
+
+        public SampleClass Class
+        {
+            get => this.sampleClass;
+            set => this.Set(() => this.sampleClass = value, this.sampleClass, value);
+        }
+
+        public SampleEnum Enum
+        {
+            get => this.sampleEnum;
+            set => this.Set(() => this.sampleEnum = value, this.sampleEnum, value);
+        }
+
+        public int Integer
+        {
+            get => this.integer;
+            set => this.Set(() => this.integer = value, this.integer, value);
         }
 
         public IWpfCommand MyCommand { get; } = new Command();

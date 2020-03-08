@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "fluentmvvm", "fluentmvvm\fl
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "fluentmvvm.tests", "fluentmvvm.tests\fluentmvvm.tests.csproj", "{BBC70A8D-133D-4540-BDDE-DBA26D916E36}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "fluentmvvm.benchmarks", "fluentmvvm.benchmarks\fluentmvvm.benchmarks.csproj", "{29852E72-5398-4FAD-A6C9-372E554EA474}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "fluentmvvm.benchmarks", "fluentmvvm.benchmarks\fluentmvvm.benchmarks.csproj", "{29852E72-5398-4FAD-A6C9-372E554EA474}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -3,11 +3,15 @@ using System.Runtime.CompilerServices;
 
 namespace FluentMvvm.Benchmarks
 {
-    public class DefaultViewModel : IBenchmarkViewModel
+    public sealed class DefaultViewModel : IBenchmarkViewModel
     {
         private string setOnly;
         private string setAndNotifyOtherProperty;
         private string setAndNotifyCommand;
+        private SampleStruct sampleStruct;
+        private SampleClass sampleClass;
+        private SampleEnum sampleEnum;
+        private int integer;
 
         public string SetOnly
         {
@@ -25,7 +29,8 @@ namespace FluentMvvm.Benchmarks
         public string SetAndNotifyOtherProperty
         {
             get => this.setAndNotifyOtherProperty;
-            set {
+            set
+            {
                 if (this.setAndNotifyOtherProperty != value)
                 {
                     this.setAndNotifyOtherProperty = value;
@@ -38,12 +43,65 @@ namespace FluentMvvm.Benchmarks
         public string SetAndNotifyCommand
         {
             get => this.setAndNotifyCommand;
-            set {
+            set
+            {
                 if (this.setAndNotifyCommand != value)
                 {
                     this.setAndNotifyCommand = value;
                     this.RaisePropertyChanged();
                     this.MyCommand.RaiseCanExecuteChanged();
+                }
+            }
+        }
+
+        public SampleStruct Struct
+        {
+            get => this.sampleStruct;
+            set
+            {
+                if (!this.sampleStruct.Equals(value))
+                {
+                    this.sampleStruct = value;
+                    this.RaisePropertyChanged();
+                }
+            }
+        }
+
+        public SampleClass Class
+        {
+            get => this.sampleClass;
+            set 
+            {
+                if (this.sampleClass != value)
+                {
+                    this.sampleClass = value;
+                    this.RaisePropertyChanged();
+                }
+            }
+        }
+
+        public SampleEnum Enum
+        {
+            get => this.sampleEnum;
+            set
+            {
+                if (this.sampleEnum != value)
+                {
+                    this.sampleEnum = value;
+                    this.RaisePropertyChanged();
+                }
+            }
+        }
+
+        public int Integer
+        {
+            get => this.integer;
+            set
+            {
+                if (this.integer != value)
+                {
+                    this.integer = value;
+                    this.RaisePropertyChanged();
                 }
             }
         }

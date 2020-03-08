@@ -2,10 +2,8 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
-
+using FluentMvvm.Emit;
 using FluentMvvm.Fluent;
-
-using JetBrains.Annotations;
 
 namespace FluentMvvm
 {
@@ -13,26 +11,41 @@ namespace FluentMvvm
     ///     A base class for ViewModels implementing <see cref="INotifyPropertyChanged" /> and providing a fluent API for
     ///     property setters.
     /// </summary>
+    /// <seealso cref="FluentMvvm.Fluent.IPropertyGetExpression" />
     /// <seealso cref="FluentMvvm.Fluent.IPropertySetExpression" />
     /// <seealso cref="FluentMvvm.Fluent.IConditionalExpression" />
     /// <seealso cref="FluentMvvm.Fluent.IDependencyExpression" />
     /// <seealso cref="System.ComponentModel.INotifyPropertyChanged" />
-    /// <inheritdoc cref="IPropertySetExpression" />
+    /// <seealso cref="IPropertyGetExpression" />
+    /// <seealso cref="IPropertySetExpression" />
+    /// <seealso cref="IConditionalExpression" />
+    /// <seealso cref="IDependencyExpression" />
+    /// <seealso cref="INotifyPropertyChanged" />
+    /// <inheritdoc cref="IPropertyGetExpression" />
+    /// <inheritdoc cref="IPropertyGetExpression" />
     /// <inheritdoc cref="IConditionalExpression" />
-    [PublicAPI]
-    [NoReorder]
-    public abstract class FluentViewModelBase : IPropertySetExpression, IConditionalExpression, IDependencyExpression, INotifyPropertyChanged
+    /// <inheritdoc cref="IDependencyExpression" />
+    public abstract partial class FluentViewModelBase : IPropertyGetExpression, IPropertySetExpression, IConditionalExpression, IDependencyExpression, INotifyPropertyChanged
     {
         /// <summary>The dynamically generated type containing the backing fields for the concrete view model.</summary>
-        [CanBeNull]
-        private readonly IBackingFieldProvider backingFieldProvider;
+        private readonly IBackingFieldProvider backingFields;
 
-        private bool hasBackingFieldProvider;
-
-        /// <summary>Initializes a new instance of the <see cref="FluentViewModelBase" /> class.</summary>
+        /// <summary>
+        ///     Initializes a new instance of the <see cref="FluentViewModelBase" /> class.
+        /// </summary>
         protected FluentViewModelBase()
         {
-            this.backingFieldProvider = BackingFieldProvider.Get(this.GetType());
+            this.backingFields = BackingFieldProvider.Get(this.GetType());
+        }
+
+        /// <summary>
+        ///     Initializes a new instance of the <see cref="FluentViewModelBase" /> class with a (possibly stubbed) instance of an
+        ///     <see cref="IBackingFieldProvider" />.
+        /// </summary>
+        /// <param name="backingFieldProvider">The backing field provider.</param>
+        internal FluentViewModelBase(IBackingFieldProvider backingFieldProvider)
+        {
+            this.backingFields = backingFieldProvider;
         }
 
         /// <inheritdoc />
@@ -50,36 +63,6 @@ namespace FluentMvvm
             }
 
             return this.When(condition());
-        }
-
-        /// <summary>Gets the value of the specified property.</summary>
-        /// <typeparam name="T">The type of the property.</typeparam>
-        /// <param name="propertyName">The name of the property.</param>
-        /// <returns>The value of the property.</returns>
-        /// <exception cref="ArgumentException">
-        ///     no public writable instance property named <paramref name="propertyName" /> could
-        ///     be found.
-        /// </exception>
-        /// <exception cref="NullReferenceException">
-        ///     the type has no public writable instance methods at all -or- the type is
-        ///     marked with <see cref="SuppressFieldGenerationAttribute" />.
-        /// </exception>
-        [CanBeNull]
-        public T Get<T>([CallerMemberName] [CanBeNull] string propertyName = null)
-        {
-            return (T) this.backingFieldProvider.GetValueOf(propertyName);
-        }
-
-        /// <inheritdoc />
-        public IDependencyExpression Set([CanBeNull] object value, [CallerMemberName] string propertyName = null)
-        {
-            if (this.backingFieldProvider.SetValueOf(propertyName, value))
-            {
-                this.RaisePropertyChanged(propertyName);
-                return this;
-            }
-
-            return EmptyFluentAction.Default;
         }
 
         /// <inheritdoc />
@@ -109,21 +92,34 @@ namespace FluentMvvm
         }
 
         /// <inheritdoc />
-        [ContractAnnotation("=> true")]
         bool IDependencyExpression.WasUpdated()
         {
             return true;
         }
 
         /// <inheritdoc />
-        public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler? PropertyChanged;
 
-        /// <summary>Notifies listeners that the property <paramref name="propertyName" /> has changed.</summary>
+        /// <summary>
+        ///     Provides a way to run custom code immediately after the field was set and the
+        ///     <see cref="INotifyPropertyChanged.PropertyChanged" /> event was raised.
+        /// </summary>
+        /// <remarks>
+        ///     This method will only be called if the value passed to <see cref="Set{T}" /> or its overloads is different from the
+        ///     current field value.
+        /// </remarks>
+        protected virtual void AfterSet()
+        {
+        }
+
+        /// <summary>
+        ///     Notifies listeners that the property <paramref name="propertyName" /> has changed.
+        /// </summary>
         /// <param name="propertyName">
         ///     The name of the property that has changed. You should not provide the name yourself and rely
         ///     on the compiler inserting the name automatically for you.
         /// </param>
-        protected void RaisePropertyChanged([CallerMemberName] [NotNull] string propertyName = null)
+        protected void RaisePropertyChanged([CallerMemberName] string propertyName = "")
         {
             this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }

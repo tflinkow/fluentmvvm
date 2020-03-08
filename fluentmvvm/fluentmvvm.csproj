@@ -3,19 +3,23 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>FluentMvvm</RootNamespace>
+	<LangVersion>8.0</LangVersion>
+    <Nullable>enable</Nullable>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <Version>0.2.0-alpha</Version>
+    <Version>0.3.0-alpha</Version>
+	<RunCodeAnalysis>false</RunCodeAnalysis>
     <Authors>Thomas Flinkow</Authors>
     <Company></Company>
     <Description>An easy-to-use, fast ViewModelBase providing an intuitive fluent API.</Description>
-    <Copyright>(c) Thomas Flinkow 2019</Copyright>
+    <Copyright>(c) Thomas Flinkow 2019,2020</Copyright>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageProjectUrl>https://github.com/flinkow/fluentmvvm</PackageProjectUrl>
     <RepositoryUrl>https://github.com/flinkow/fluentmvvm.git</RepositoryUrl>
     <PackageTags>c#,wpf,mvvm,fluent,viewmodel</PackageTags>
-    <PackageReleaseNotes>- Added attribute to control backing field generation.
-- Removed (unintentional) limit on the number of properties a view model can have</PackageReleaseNotes>
+    <PackageReleaseNotes>- Added overloads for Get and Set to further increase performance
+- Added a AfterSet method to customize
+- Added support for the DefaultValueAttribute to specify a property's default value</PackageReleaseNotes>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
@@ -31,6 +35,9 @@
     <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
       <_Parameter1>$(AssemblyName).dynamic</_Parameter1>
     </AssemblyAttribute>
+    <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
+      <_Parameter1>DynamicProxyGenAssembly2</_Parameter1>
+    </AssemblyAttribute>
   </ItemGroup>
 
   <ItemGroup>
@@ -39,6 +46,14 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
+    <PackageReference Include="Microsoft.DotNet.Analyzers.Compatibility" Version="0.2.12-alpha">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Nullable" Version="1.2.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="System.Dynamic.Runtime" Version="4.3.0" />
     <PackageReference Include="System.Reflection.Emit" Version="4.7.0" />
   </ItemGroup>
@@ -48,10 +63,6 @@
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Jetbrains\" />
   </ItemGroup>
 
 </Project>
