@@ -102,7 +102,7 @@ namespace FluentMvvm.Emit
         /// <returns>The name of the type to generate.</returns>
         private static string GetTypeName(Type forTargetType)
         {
-            return $"{BackingFieldProvider.AssemblyNamespace}.<{forTargetType.Name}>BackingFields";
+            return $"{BackingFieldProvider.AssemblyNamespace}.<{forTargetType.FullName}>BackingFields";
         }
 
         /// <summary>

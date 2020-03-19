@@ -73,6 +73,18 @@ namespace FluentMvvm.Tests
                          .WithMessage("Backing field generation is suppressed for type '*'.");
         }
 
+        [Fact]
+        public void GeneratingType_WithDifferentGenericParameters_DoesNotThrow()
+        {
+            // Arrange
+            BackingFieldProvider.Get(typeof(TestViewModelGeneric<int>));
+
+            // Act & Assert
+            FluentActions.Invoking(() => BackingFieldProvider.Get(typeof(TestViewModelGeneric<string>)))
+                         .Should()
+                         .NotThrow();
+        }
+
         [Theory]
         [InlineData(default(bool))]
         [InlineData(default(byte))]
