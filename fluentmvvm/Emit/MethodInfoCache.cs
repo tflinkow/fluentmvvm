@@ -196,6 +196,11 @@ namespace FluentMvvm.Emit
         public static readonly MethodInfo ObjectEquals1 = typeof(object).GetMethod(nameof(Object.Equals), new[] { typeof(object) });
 
         /// <summary>
+        ///     The <see cref="Object.Equals(object)" /> overload taking 2 parameters.
+        /// </summary>
+        public static readonly MethodInfo ObjectEquals2 = typeof(object).GetMethod(nameof(Object.Equals), new[] { typeof(object), typeof(object) });
+
+        /// <summary>
         ///     The <see cref="Type.GetTypeFromHandle" /> method.
         /// </summary>
         public static readonly MethodInfo GetTypeFromHandle = typeof(Type).GetMethod(nameof(Type.GetTypeFromHandle));

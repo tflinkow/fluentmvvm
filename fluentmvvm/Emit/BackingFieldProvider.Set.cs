@@ -214,7 +214,14 @@ namespace FluentMvvm.Emit
 
             Label valuesNotEqual = ilGenerator.DefineLabel();
 
-            if (fieldType.IsEnum || fieldType.IsPrimitive || fieldType.IsClass && fieldType != typeof(string))
+            if (fieldType.IsInterface)
+            {
+                ilGenerator.Emit(OpCodes.Ldfld, field);
+                ilGenerator.Emit(OpCodes.Ldloc, local);
+                ilGenerator.Emit(OpCodes.Call, MethodInfoCache.ObjectEquals2);
+                ilGenerator.Emit(OpCodes.Brfalse, valuesNotEqual);
+            }
+            else if (fieldType.IsEnum || fieldType.IsPrimitive || fieldType.IsClass && fieldType != typeof(string))
             {
                 // enumerations, primitive types (int, bool, float, ...) and classes apart from string
                 ilGenerator.Emit(OpCodes.Ldfld, field);

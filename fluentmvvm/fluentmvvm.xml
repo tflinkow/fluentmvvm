@@ -815,6 +815,11 @@
                 The <see cref="M:System.Object.Equals(System.Object)" /> overload taking 1 parameter.
             </summary>
         </member>
+        <member name="F:FluentMvvm.Emit.MethodInfoCache.ObjectEquals2">
+            <summary>
+                The <see cref="M:System.Object.Equals(System.Object)" /> overload taking 2 parameters.
+            </summary>
+        </member>
         <member name="F:FluentMvvm.Emit.MethodInfoCache.GetTypeFromHandle">
             <summary>
                 The <see cref="M:System.Type.GetTypeFromHandle(System.RuntimeTypeHandle)" /> method.

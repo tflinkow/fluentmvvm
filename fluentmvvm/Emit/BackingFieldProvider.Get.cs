@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Reflection.Emit;
+
 using FluentMvvm.Fluent;
 
 namespace FluentMvvm.Emit
@@ -103,6 +104,7 @@ namespace FluentMvvm.Emit
                 return;
             }
 
+            LocalBuilder? genericLocal = genericType is null ? default : ilGenerator.DeclareLocal(genericType);
             Label propertyNotFoundLabel = ilGenerator.DefineLabel();
             Label[] fieldLabels = fields.Select(x => ilGenerator.DefineLabel()).ToArray();
 
@@ -121,32 +123,29 @@ namespace FluentMvvm.Emit
 
                 if (genericType != null)
                 {
-                    // TODO: null ref exception for strings (and possibly all other nullable types?)
-                    //if (fields[i].FieldType == typeof(string))
-                    //{
-                    //    // If the generic type is not string, we need to explicitly throw an exception.
-                    //    // Performance is not a concern here, because for performance reasons there is an
-                    //    // explicit GetString(string name) overload.
-                    //    ilGenerator.Emit(OpCodes.Isinst, genericType);
-                    //    var genericTypeIsStringLabel = ilGenerator.DefineLabel();
-
-                    //    ilGenerator.Emit(OpCodes.Brtrue, genericTypeIsStringLabel);
-
-                    //    ilGenerator.Emit(OpCodes.Ldstr, "Cannot cast string value to '{0}'.");
-                    //    ilGenerator.Emit(OpCodes.Ldtoken, genericType);
-                    //    ilGenerator.Emit(OpCodes.Call, MethodInfoCache.GetTypeFromHandle);
-                    //    ilGenerator.Emit(OpCodes.Call, MethodInfoCache.StringFormat2);
-                    //    ilGenerator.Emit(OpCodes.Newobj, ConstructorInfoCache.InvalidCastException);
-                    //    ilGenerator.Emit(OpCodes.Throw);
-
-                    //    ilGenerator.MarkLabel(genericTypeIsStringLabel);
-                    //    ilGenerator.Emit(OpCodes.Ldarg_0);
-                    //    ilGenerator.Emit(OpCodes.Ldfld, fields[i]);
-                    //}
-
                     if (fields[i].FieldType.IsValueType)
                     {
                         ilGenerator.Emit(OpCodes.Box, fields[i].FieldType);
+                    }
+                    else
+                    {
+                        // For reference types we need to return default(T) in case the field value is default(<RefType>)
+                        var notNullLabel = ilGenerator.DefineLabel();
+                        ilGenerator.Emit(OpCodes.Brtrue, notNullLabel);
+
+                        if (genericLocal is null)
+                        {
+                            throw new InternalException($"{nameof(genericLocal)} should not be null when a generic type is supplied. Generic type is '{genericType.Name}', and the field named '{fields[i].Name}' is of type '{fields[i].FieldType.Name}'.");
+                        }
+
+                        ilGenerator.Emit(OpCodes.Ldloca, genericLocal);
+                        ilGenerator.Emit(OpCodes.Initobj, genericType);
+                        ilGenerator.Emit(OpCodes.Ldloc, genericLocal);
+                        ilGenerator.Emit(OpCodes.Ret);
+
+                        ilGenerator.MarkLabel(notNullLabel);
+                        ilGenerator.Emit(OpCodes.Ldarg_0);
+                        ilGenerator.Emit(OpCodes.Ldfld, fields[i]);
                     }
 
                     ilGenerator.Emit(OpCodes.Unbox_Any, genericType);
