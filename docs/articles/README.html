@@ -1,0 +1,228 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>fluentmvvm </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="fluentmvvm ">
+    <meta name="generator" content="docfx 2.56.6.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+
+<p><a href="https://www.nuget.org/packages/fluentmvvm/"><img src="https://img.shields.io/nuget/v/fluentmvvm" alt="NuGet Version"></a>
+<a href="https://github.com/flinkow/fluentmvvm/blob/master/LICENSE"><img src="https://img.shields.io/github/license/flinkow/fluentmvvm" alt="License"></a></p>
+<h1 id="fluentmvvm">fluentmvvm</h1>
+<blockquote>
+<p>An easy-to-use, fast ViewModelBase providing an intuitive fluent API to express property setters naturally.</p>
+</blockquote>
+<h2 id="contents">Contents</h2>
+<ul>
+<li><a href="https://github.com/flinkow/fluentmvvm#features">Features</a></li>
+<li><a href="https://github.com/flinkow/fluentmvvm#fluent-api">Fluent API</a></li>
+<li><a href="https://github.com/flinkow/fluentmvvm#performance">Performance</a></li>
+<li><a href="https://github.com/flinkow/fluentmvvm#license">License</a></li>
+</ul>
+<h2 id="further-reading">Further reading</h2>
+<ul>
+<li><a href="TODO">How it works: Creating backing fields at runtime</a></li>
+<li><a href="TODO">How it works: Improving performance for long-lived view models</a></li>
+</ul>
+<h1 id="features">Features</h1>
+<p>To make use of fluentmvvm's features, the first step is to download the <a href="https://www.nuget.org/packages/fluentmvvm/">NuGet package</a>.</p>
+<p>Then simply let your view models inherit from <code>FluentViewModelBase</code>.</p>
+<pre><code class="lang-csharp">public class PersonViewModel : FluentViewModelBase
+</code></pre>
+<h3 id="using-only-the-raisepropertychanged-method">Using only the <code>RaisePropertyChanged</code> method</h3>
+<p>If you do not want to use the <code>Get</code> and <code>Set</code> methods, set the base constructor parameter <code>createBackingFields</code> to <code>false</code>.</p>
+<h3 id="improving-the-performance-for-long-lived-view-models">Improving the performance for long-lived view models</h3>
+<p>Suppose some of your view models exist for the whole duration of your application. In that case, you can consider passing <code>true</code> to the <code>isLongLived</code> parameter of the FluentViewModelBase constructor, which may yield improved performance for all Get and Set calls.</p>
+<p>See <a href="TODO">How it works: Creating backing fields at runtime</a> for more detail and behind-the-scenes information.</p>
+<h2 id="property-declaration">Property Declaration</h2>
+<p>Instead of defining backing fields for each property, simply use <code>Get&lt;T&gt;()</code> for the property getter and <code>Set(value)</code> for the property setter.</p>
+<pre><code class="lang-csharp">public string Name
+{
+    get =&gt; this.GetString();
+    set =&gt; this.Set(value);
+}
+</code></pre>
+<p><code>Set</code> raises a <code>PropertyChanged</code> event only if the new value is different from the old value.</p>
+<p>There are overloads such as <code>GetBoolean</code>, <code>GetInt32</code>, etc. for all primitive types as well as <code>GetDecimal</code>, <code>GetDateTime</code>, and <code>GetString</code>. The <code>Get&lt;T&gt;</code> method can be used for all other value and reference types (structs, enums, classes).</p>
+<h3 id="remarks">Remarks</h3>
+<p>Note that this mechanism only works for public instance properties with a <code>set</code> accessor.</p>
+<h2 id="dependencies-between-properties">Dependencies between properties</h2>
+<p>For cases where a (computed) property's value depends on other properties' values, <code>Affects</code> can be used after <code>Set</code>.</p>
+<p>It would raise a <code>PropertyChanged</code> event for the specified property if the new value was different from the old one.</p>
+<pre><code class="lang-csharp">public string FullName =&gt; $&quot;{this.FirstName} {this.LastName}&quot;;
+
+public string FirstName
+{
+    get =&gt; this.GetString();
+    set =&gt; this.Set(value)
+               .Affects(nameof(this.FullName));
+}
+
+public string LastName
+{
+    get =&gt; this.GetString();
+    set =&gt; this.Set(value)
+               .Affects(nameof(this.FullName));
+}
+</code></pre>
+<h2 id="dependencies-between-properties-and-commands">Dependencies between properties and commands</h2>
+<p>For cases when a commands <code>CanExecute</code> is based on some property's value, <code>Affects</code> can be used with the command to raise the <code>CanExecuteChanged</code> event for.</p>
+<pre><code class="lang-csharp">public ICommand BuyThingsCommand { get; }
+
+public int Balance
+{
+    get =&gt; this.GetInt32();
+    set =&gt; this.Set(value)
+             .Affects(this.BuyThingsCommand);
+}
+</code></pre>
+<h3 id="remarks-1">Remarks</h3>
+<p><code>Affects</code> accepts a parameter of type <code>ICommand</code>. However, if the command does not contain a</p>
+<pre><code class="lang-csharp">public void RaiseCanExecuteChanged()
+</code></pre>
+<p>method, an exception is thrown. You can also derive from the interface <code>IWpfCommand</code> provided by <code>fluentmvvm</code> to make sure that the method mentioned above exists on your command implementations.</p>
+<h2 id="fluent-api">Fluent API</h2>
+<p><code>FluentViewModelBase</code> provides a fluent API that can be used in property setters.</p>
+<pre><code class="lang-csharp">this.When(&lt;condition&gt;)        // never or once
+    .Set(value)               // exactly once
+    .Affects(&lt;property name&gt;) // never, once or many times
+    .Affects(&lt;command&gt;)       // never, once or many times
+    .WasUpdated();            // never or once
+</code></pre>
+<h3 id="overview">Overview</h3>
+<ul>
+<li><p>If the condition passed to <code>When</code> evaluates to <code>false</code>, the calls to <code>Set</code> and <code>Affects</code> do not execute anything.</p>
+</li>
+<li><p><code>Set</code> checks whether the new value differs from the current value of the property. If it does differ, it sets the value to the property and raises a <code>PropertyChanged</code> event. If it does not, nothing happens, and all following <code>Affects</code> calls do not execute either.</p>
+</li>
+<li><p>When expressing a dependency between one property and another, <code>Affects</code> can be used with the name of the property to raise a <code>PropertyChanged</code> event for. The event is raised only if the new value of the property differed from the old value.</p>
+</li>
+<li><p>If your command implementations derive from <code>IWpfCommand</code>, dependencies between properties and commands can also be expressed using <code>Affects</code>. That way, when the new value of the property differs from the old value, a <code>CanExecuteChanged</code> event is raised for the command.</p>
+</li>
+<li><p><code>WasUpdated</code> returns a <code>bool</code> value indicating whether the property value was updated (and thus whether a <code>PropertyChanged</code> event was raised for the property).</p>
+</li>
+</ul>
+<h1 id="performance">Performance</h1>
+<p>The benchmark result below compares fluentmvvm to a naive implementation without using any <code>Set</code> methods (called &quot;default&quot; in the figure) and to a more sophisticated approach (called &quot;expression&quot; in the figure) that provides a <code>Set&lt;T&gt;(Expression&lt;Func&lt;T&gt;&gt; propertyExpression, T oldValue, T newValue)</code> method (for example, Galasoft.MvvmLight does).</p>
+<p align="center">
+  <img src="https://github.com/flinkow/fluentmvvm/blob/master/performance.PNG">
+</p>
+<pre><code class="lang-ini">BenchmarkDotNet=v0.12.1, OS=Windows 10.0.19041.685 (2004/?/20H1)
+Intel Core i7-9750H CPU 2.60GHz, 1 CPU, 12 logical and 6 physical cores
+.NET Core SDK=5.0.101
+  [Host]     : .NET Core 3.1.10 (CoreCLR 4.700.20.51601, CoreFX 4.700.20.51901), X64 RyuJIT
+RunStrategy=Throughput
+</code></pre>
+<h2 id="increasing-performance-for-long-lived-view-models">Increasing performance for long-lived view models</h2>
+<p>Suppose some of your view models exist for the whole duration of your application. In that case, you can consider passing <code>true</code> to the <code>isLongLived</code> parameter of the <code>FluentViewModelBase</code> constructor which may yield improved performance for all <code>Get</code> and <code>Set</code> calls.</p>
+<pre><code class="lang-csharp">public class MainViewModel : FluentViewModelBase
+{
+    public MainViewModel : base(isLongLived : true) { }  
+}
+</code></pre>
+<p>See <a href="TODO">this</a> for a more in-depth explanation.</p>
+<h1 id="license">License</h1>
+<p>(c) Thomas Flinkow 2019 - 2021 · <a href="https://github.com/flinkow">GitHub</a> · <a href="flinkow@thomas-flinkow.de">email</a></p>
+<p>Distributed under the MIT license. See <a href="https://github.com/flinkow/fluentmvvm/blob/master/LICENSE"><code>LICENSE</code></a> for more information.</p>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/flinkow/fluentmvvm/blob/master/docfx_project/articles/README.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,657 @@
+### YamlMime:XRefMap
+sorted: true
+references:
+- uid: FluentMvvm
+  name: FluentMvvm
+  href: api/FluentMvvm.html
+  commentId: N:FluentMvvm
+  fullName: FluentMvvm
+  nameWithType: FluentMvvm
+- uid: FluentMvvm.FluentViewModelBase
+  name: FluentViewModelBase
+  href: api/FluentMvvm.FluentViewModelBase.html
+  commentId: T:FluentMvvm.FluentViewModelBase
+  fullName: FluentMvvm.FluentViewModelBase
+  nameWithType: FluentViewModelBase
+- uid: FluentMvvm.FluentViewModelBase.#ctor(System.Boolean)
+  name: FluentViewModelBase(Boolean)
+  href: api/FluentMvvm.FluentViewModelBase.html#FluentMvvm_FluentViewModelBase__ctor_System_Boolean_
+  commentId: M:FluentMvvm.FluentViewModelBase.#ctor(System.Boolean)
+  fullName: FluentMvvm.FluentViewModelBase.FluentViewModelBase(System.Boolean)
+  nameWithType: FluentViewModelBase.FluentViewModelBase(Boolean)
+- uid: FluentMvvm.FluentViewModelBase.#ctor*
+  name: FluentViewModelBase
+  href: api/FluentMvvm.FluentViewModelBase.html#FluentMvvm_FluentViewModelBase__ctor_
+  commentId: Overload:FluentMvvm.FluentViewModelBase.#ctor
+  isSpec: "True"
+  fullName: FluentMvvm.FluentViewModelBase.FluentViewModelBase
+  nameWithType: FluentViewModelBase.FluentViewModelBase
+- uid: FluentMvvm.FluentViewModelBase.FluentMvvm#IDependencyExpression#Affects(FluentMvvm.IWpfCommand)
+  name: IDependencyExpression.Affects(IWpfCommand)
+  href: api/FluentMvvm.FluentViewModelBase.html#FluentMvvm_FluentViewModelBase_FluentMvvm_IDependencyExpression_Affects_FluentMvvm_IWpfCommand_
+  commentId: M:FluentMvvm.FluentViewModelBase.FluentMvvm#IDependencyExpression#Affects(FluentMvvm.IWpfCommand)
+  name.vb: FluentMvvm.IDependencyExpression.Affects(IWpfCommand)
+  fullName: FluentMvvm.FluentViewModelBase.FluentMvvm.IDependencyExpression.Affects(FluentMvvm.IWpfCommand)
+  nameWithType: FluentViewModelBase.IDependencyExpression.Affects(IWpfCommand)
+  nameWithType.vb: FluentViewModelBase.FluentMvvm.IDependencyExpression.Affects(IWpfCommand)
+- uid: FluentMvvm.FluentViewModelBase.FluentMvvm#IDependencyExpression#Affects(ICommand)
+  name: IDependencyExpression.Affects(ICommand)
+  href: api/FluentMvvm.FluentViewModelBase.html#FluentMvvm_FluentViewModelBase_FluentMvvm_IDependencyExpression_Affects_ICommand_
+  commentId: M:FluentMvvm.FluentViewModelBase.FluentMvvm#IDependencyExpression#Affects(ICommand)
+  name.vb: FluentMvvm.IDependencyExpression.Affects(ICommand)
+  fullName: FluentMvvm.FluentViewModelBase.FluentMvvm.IDependencyExpression.Affects(ICommand)
+  nameWithType: FluentViewModelBase.IDependencyExpression.Affects(ICommand)
+  nameWithType.vb: FluentViewModelBase.FluentMvvm.IDependencyExpression.Affects(ICommand)
+- uid: FluentMvvm.FluentViewModelBase.FluentMvvm#IDependencyExpression#Affects(System.String)
+  name: IDependencyExpression.Affects(String)
+  href: api/FluentMvvm.FluentViewModelBase.html#FluentMvvm_FluentViewModelBase_FluentMvvm_IDependencyExpression_Affects_System_String_
+  commentId: M:FluentMvvm.FluentViewModelBase.FluentMvvm#IDependencyExpression#Affects(System.String)
+  name.vb: FluentMvvm.IDependencyExpression.Affects(String)
+  fullName: FluentMvvm.FluentViewModelBase.FluentMvvm.IDependencyExpression.Affects(System.String)
+  nameWithType: FluentViewModelBase.IDependencyExpression.Affects(String)
+  nameWithType.vb: FluentViewModelBase.FluentMvvm.IDependencyExpression.Affects(String)
+- uid: FluentMvvm.FluentViewModelBase.FluentMvvm#IDependencyExpression#Affects*
+  name: IDependencyExpression.Affects
+  href: api/FluentMvvm.FluentViewModelBase.html#FluentMvvm_FluentViewModelBase_FluentMvvm_IDependencyExpression_Affects_
+  commentId: Overload:FluentMvvm.FluentViewModelBase.FluentMvvm#IDependencyExpression#Affects
+  isSpec: "True"
+  name.vb: FluentMvvm.IDependencyExpression.Affects
+  fullName: FluentMvvm.FluentViewModelBase.FluentMvvm.IDependencyExpression.Affects
+  nameWithType: FluentViewModelBase.IDependencyExpression.Affects
+  nameWithType.vb: FluentViewModelBase.FluentMvvm.IDependencyExpression.Affects
+- uid: FluentMvvm.FluentViewModelBase.FluentMvvm#IDependencyExpression#WasUpdated
+  name: IDependencyExpression.WasUpdated()
+  href: api/FluentMvvm.FluentViewModelBase.html#FluentMvvm_FluentViewModelBase_FluentMvvm_IDependencyExpression_WasUpdated
+  commentId: M:FluentMvvm.FluentViewModelBase.FluentMvvm#IDependencyExpression#WasUpdated
+  name.vb: FluentMvvm.IDependencyExpression.WasUpdated()
+  fullName: FluentMvvm.FluentViewModelBase.FluentMvvm.IDependencyExpression.WasUpdated()
+  nameWithType: FluentViewModelBase.IDependencyExpression.WasUpdated()
+  nameWithType.vb: FluentViewModelBase.FluentMvvm.IDependencyExpression.WasUpdated()
+- uid: FluentMvvm.FluentViewModelBase.FluentMvvm#IDependencyExpression#WasUpdated*
+  name: IDependencyExpression.WasUpdated
+  href: api/FluentMvvm.FluentViewModelBase.html#FluentMvvm_FluentViewModelBase_FluentMvvm_IDependencyExpression_WasUpdated_
+  commentId: Overload:FluentMvvm.FluentViewModelBase.FluentMvvm#IDependencyExpression#WasUpdated
+  isSpec: "True"
+  name.vb: FluentMvvm.IDependencyExpression.WasUpdated
+  fullName: FluentMvvm.FluentViewModelBase.FluentMvvm.IDependencyExpression.WasUpdated
+  nameWithType: FluentViewModelBase.IDependencyExpression.WasUpdated
+  nameWithType.vb: FluentViewModelBase.FluentMvvm.IDependencyExpression.WasUpdated
+- uid: FluentMvvm.FluentViewModelBase.Get*
+  name: Get
+  href: api/FluentMvvm.FluentViewModelBase.html#FluentMvvm_FluentViewModelBase_Get_
+  commentId: Overload:FluentMvvm.FluentViewModelBase.Get
+  isSpec: "True"
+  fullName: FluentMvvm.FluentViewModelBase.Get
+  nameWithType: FluentViewModelBase.Get
+- uid: FluentMvvm.FluentViewModelBase.Get``1(System.String)
+  name: Get<T>(String)
+  href: api/FluentMvvm.FluentViewModelBase.html#FluentMvvm_FluentViewModelBase_Get__1_System_String_
+  commentId: M:FluentMvvm.FluentViewModelBase.Get``1(System.String)
+  name.vb: Get(Of T)(String)
+  fullName: FluentMvvm.FluentViewModelBase.Get<T>(System.String)
+  fullName.vb: FluentMvvm.FluentViewModelBase.Get(Of T)(System.String)
+  nameWithType: FluentViewModelBase.Get<T>(String)
+  nameWithType.vb: FluentViewModelBase.Get(Of T)(String)
+- uid: FluentMvvm.FluentViewModelBase.GetBoolean(System.String)
+  name: GetBoolean(String)
+  href: api/FluentMvvm.FluentViewModelBase.html#FluentMvvm_FluentViewModelBase_GetBoolean_System_String_
+  commentId: M:FluentMvvm.FluentViewModelBase.GetBoolean(System.String)
+  fullName: FluentMvvm.FluentViewModelBase.GetBoolean(System.String)
+  nameWithType: FluentViewModelBase.GetBoolean(String)
+- uid: FluentMvvm.FluentViewModelBase.GetBoolean*
+  name: GetBoolean
+  href: api/FluentMvvm.FluentViewModelBase.html#FluentMvvm_FluentViewModelBase_GetBoolean_
+  commentId: Overload:FluentMvvm.FluentViewModelBase.GetBoolean
+  isSpec: "True"
+  fullName: FluentMvvm.FluentViewModelBase.GetBoolean
+  nameWithType: FluentViewModelBase.GetBoolean
+- uid: FluentMvvm.FluentViewModelBase.GetByte(System.String)
+  name: GetByte(String)
+  href: api/FluentMvvm.FluentViewModelBase.html#FluentMvvm_FluentViewModelBase_GetByte_System_String_
+  commentId: M:FluentMvvm.FluentViewModelBase.GetByte(System.String)
+  fullName: FluentMvvm.FluentViewModelBase.GetByte(System.String)
+  nameWithType: FluentViewModelBase.GetByte(String)
+- uid: FluentMvvm.FluentViewModelBase.GetByte*
+  name: GetByte
+  href: api/FluentMvvm.FluentViewModelBase.html#FluentMvvm_FluentViewModelBase_GetByte_
+  commentId: Overload:FluentMvvm.FluentViewModelBase.GetByte
+  isSpec: "True"
+  fullName: FluentMvvm.FluentViewModelBase.GetByte
+  nameWithType: FluentViewModelBase.GetByte
+- uid: FluentMvvm.FluentViewModelBase.GetChar(System.String)
+  name: GetChar(String)
+  href: api/FluentMvvm.FluentViewModelBase.html#FluentMvvm_FluentViewModelBase_GetChar_System_String_
+  commentId: M:FluentMvvm.FluentViewModelBase.GetChar(System.String)
+  fullName: FluentMvvm.FluentViewModelBase.GetChar(System.String)
+  nameWithType: FluentViewModelBase.GetChar(String)
+- uid: FluentMvvm.FluentViewModelBase.GetChar*
+  name: GetChar
+  href: api/FluentMvvm.FluentViewModelBase.html#FluentMvvm_FluentViewModelBase_GetChar_
+  commentId: Overload:FluentMvvm.FluentViewModelBase.GetChar
+  isSpec: "True"
+  fullName: FluentMvvm.FluentViewModelBase.GetChar
+  nameWithType: FluentViewModelBase.GetChar
+- uid: FluentMvvm.FluentViewModelBase.GetDateTime(System.String)
+  name: GetDateTime(String)
+  href: api/FluentMvvm.FluentViewModelBase.html#FluentMvvm_FluentViewModelBase_GetDateTime_System_String_
+  commentId: M:FluentMvvm.FluentViewModelBase.GetDateTime(System.String)
+  fullName: FluentMvvm.FluentViewModelBase.GetDateTime(System.String)
+  nameWithType: FluentViewModelBase.GetDateTime(String)
+- uid: FluentMvvm.FluentViewModelBase.GetDateTime*
+  name: GetDateTime
+  href: api/FluentMvvm.FluentViewModelBase.html#FluentMvvm_FluentViewModelBase_GetDateTime_
+  commentId: Overload:FluentMvvm.FluentViewModelBase.GetDateTime
+  isSpec: "True"
+  fullName: FluentMvvm.FluentViewModelBase.GetDateTime
+  nameWithType: FluentViewModelBase.GetDateTime
+- uid: FluentMvvm.FluentViewModelBase.GetDecimal(System.String)
+  name: GetDecimal(String)
+  href: api/FluentMvvm.FluentViewModelBase.html#FluentMvvm_FluentViewModelBase_GetDecimal_System_String_
+  commentId: M:FluentMvvm.FluentViewModelBase.GetDecimal(System.String)
+  fullName: FluentMvvm.FluentViewModelBase.GetDecimal(System.String)
+  nameWithType: FluentViewModelBase.GetDecimal(String)
+- uid: FluentMvvm.FluentViewModelBase.GetDecimal*
+  name: GetDecimal
+  href: api/FluentMvvm.FluentViewModelBase.html#FluentMvvm_FluentViewModelBase_GetDecimal_
+  commentId: Overload:FluentMvvm.FluentViewModelBase.GetDecimal
+  isSpec: "True"
+  fullName: FluentMvvm.FluentViewModelBase.GetDecimal
+  nameWithType: FluentViewModelBase.GetDecimal
+- uid: FluentMvvm.FluentViewModelBase.GetDouble(System.String)
+  name: GetDouble(String)
+  href: api/FluentMvvm.FluentViewModelBase.html#FluentMvvm_FluentViewModelBase_GetDouble_System_String_
+  commentId: M:FluentMvvm.FluentViewModelBase.GetDouble(System.String)
+  fullName: FluentMvvm.FluentViewModelBase.GetDouble(System.String)
+  nameWithType: FluentViewModelBase.GetDouble(String)
+- uid: FluentMvvm.FluentViewModelBase.GetDouble*
+  name: GetDouble
+  href: api/FluentMvvm.FluentViewModelBase.html#FluentMvvm_FluentViewModelBase_GetDouble_
+  commentId: Overload:FluentMvvm.FluentViewModelBase.GetDouble
+  isSpec: "True"
+  fullName: FluentMvvm.FluentViewModelBase.GetDouble
+  nameWithType: FluentViewModelBase.GetDouble
+- uid: FluentMvvm.FluentViewModelBase.GetInt16(System.String)
+  name: GetInt16(String)
+  href: api/FluentMvvm.FluentViewModelBase.html#FluentMvvm_FluentViewModelBase_GetInt16_System_String_
+  commentId: M:FluentMvvm.FluentViewModelBase.GetInt16(System.String)
+  fullName: FluentMvvm.FluentViewModelBase.GetInt16(System.String)
+  nameWithType: FluentViewModelBase.GetInt16(String)
+- uid: FluentMvvm.FluentViewModelBase.GetInt16*
+  name: GetInt16
+  href: api/FluentMvvm.FluentViewModelBase.html#FluentMvvm_FluentViewModelBase_GetInt16_
+  commentId: Overload:FluentMvvm.FluentViewModelBase.GetInt16
+  isSpec: "True"
+  fullName: FluentMvvm.FluentViewModelBase.GetInt16
+  nameWithType: FluentViewModelBase.GetInt16
+- uid: FluentMvvm.FluentViewModelBase.GetInt32(System.String)
+  name: GetInt32(String)
+  href: api/FluentMvvm.FluentViewModelBase.html#FluentMvvm_FluentViewModelBase_GetInt32_System_String_
+  commentId: M:FluentMvvm.FluentViewModelBase.GetInt32(System.String)
+  fullName: FluentMvvm.FluentViewModelBase.GetInt32(System.String)
+  nameWithType: FluentViewModelBase.GetInt32(String)
+- uid: FluentMvvm.FluentViewModelBase.GetInt32*
+  name: GetInt32
+  href: api/FluentMvvm.FluentViewModelBase.html#FluentMvvm_FluentViewModelBase_GetInt32_
+  commentId: Overload:FluentMvvm.FluentViewModelBase.GetInt32
+  isSpec: "True"
+  fullName: FluentMvvm.FluentViewModelBase.GetInt32
+  nameWithType: FluentViewModelBase.GetInt32
+- uid: FluentMvvm.FluentViewModelBase.GetInt64(System.String)
+  name: GetInt64(String)
+  href: api/FluentMvvm.FluentViewModelBase.html#FluentMvvm_FluentViewModelBase_GetInt64_System_String_
+  commentId: M:FluentMvvm.FluentViewModelBase.GetInt64(System.String)
+  fullName: FluentMvvm.FluentViewModelBase.GetInt64(System.String)
+  nameWithType: FluentViewModelBase.GetInt64(String)
+- uid: FluentMvvm.FluentViewModelBase.GetInt64*
+  name: GetInt64
+  href: api/FluentMvvm.FluentViewModelBase.html#FluentMvvm_FluentViewModelBase_GetInt64_
+  commentId: Overload:FluentMvvm.FluentViewModelBase.GetInt64
+  isSpec: "True"
+  fullName: FluentMvvm.FluentViewModelBase.GetInt64
+  nameWithType: FluentViewModelBase.GetInt64
+- uid: FluentMvvm.FluentViewModelBase.GetSByte(System.String)
+  name: GetSByte(String)
+  href: api/FluentMvvm.FluentViewModelBase.html#FluentMvvm_FluentViewModelBase_GetSByte_System_String_
+  commentId: M:FluentMvvm.FluentViewModelBase.GetSByte(System.String)
+  fullName: FluentMvvm.FluentViewModelBase.GetSByte(System.String)
+  nameWithType: FluentViewModelBase.GetSByte(String)
+- uid: FluentMvvm.FluentViewModelBase.GetSByte*
+  name: GetSByte
+  href: api/FluentMvvm.FluentViewModelBase.html#FluentMvvm_FluentViewModelBase_GetSByte_
+  commentId: Overload:FluentMvvm.FluentViewModelBase.GetSByte
+  isSpec: "True"
+  fullName: FluentMvvm.FluentViewModelBase.GetSByte
+  nameWithType: FluentViewModelBase.GetSByte
+- uid: FluentMvvm.FluentViewModelBase.GetSingle(System.String)
+  name: GetSingle(String)
+  href: api/FluentMvvm.FluentViewModelBase.html#FluentMvvm_FluentViewModelBase_GetSingle_System_String_
+  commentId: M:FluentMvvm.FluentViewModelBase.GetSingle(System.String)
+  fullName: FluentMvvm.FluentViewModelBase.GetSingle(System.String)
+  nameWithType: FluentViewModelBase.GetSingle(String)
+- uid: FluentMvvm.FluentViewModelBase.GetSingle*
+  name: GetSingle
+  href: api/FluentMvvm.FluentViewModelBase.html#FluentMvvm_FluentViewModelBase_GetSingle_
+  commentId: Overload:FluentMvvm.FluentViewModelBase.GetSingle
+  isSpec: "True"
+  fullName: FluentMvvm.FluentViewModelBase.GetSingle
+  nameWithType: FluentViewModelBase.GetSingle
+- uid: FluentMvvm.FluentViewModelBase.GetString(System.String)
+  name: GetString(String)
+  href: api/FluentMvvm.FluentViewModelBase.html#FluentMvvm_FluentViewModelBase_GetString_System_String_
+  commentId: M:FluentMvvm.FluentViewModelBase.GetString(System.String)
+  fullName: FluentMvvm.FluentViewModelBase.GetString(System.String)
+  nameWithType: FluentViewModelBase.GetString(String)
+- uid: FluentMvvm.FluentViewModelBase.GetString*
+  name: GetString
+  href: api/FluentMvvm.FluentViewModelBase.html#FluentMvvm_FluentViewModelBase_GetString_
+  commentId: Overload:FluentMvvm.FluentViewModelBase.GetString
+  isSpec: "True"
+  fullName: FluentMvvm.FluentViewModelBase.GetString
+  nameWithType: FluentViewModelBase.GetString
+- uid: FluentMvvm.FluentViewModelBase.GetUInt16(System.String)
+  name: GetUInt16(String)
+  href: api/FluentMvvm.FluentViewModelBase.html#FluentMvvm_FluentViewModelBase_GetUInt16_System_String_
+  commentId: M:FluentMvvm.FluentViewModelBase.GetUInt16(System.String)
+  fullName: FluentMvvm.FluentViewModelBase.GetUInt16(System.String)
+  nameWithType: FluentViewModelBase.GetUInt16(String)
+- uid: FluentMvvm.FluentViewModelBase.GetUInt16*
+  name: GetUInt16
+  href: api/FluentMvvm.FluentViewModelBase.html#FluentMvvm_FluentViewModelBase_GetUInt16_
+  commentId: Overload:FluentMvvm.FluentViewModelBase.GetUInt16
+  isSpec: "True"
+  fullName: FluentMvvm.FluentViewModelBase.GetUInt16
+  nameWithType: FluentViewModelBase.GetUInt16
+- uid: FluentMvvm.FluentViewModelBase.GetUInt32(System.String)
+  name: GetUInt32(String)
+  href: api/FluentMvvm.FluentViewModelBase.html#FluentMvvm_FluentViewModelBase_GetUInt32_System_String_
+  commentId: M:FluentMvvm.FluentViewModelBase.GetUInt32(System.String)
+  fullName: FluentMvvm.FluentViewModelBase.GetUInt32(System.String)
+  nameWithType: FluentViewModelBase.GetUInt32(String)
+- uid: FluentMvvm.FluentViewModelBase.GetUInt32*
+  name: GetUInt32
+  href: api/FluentMvvm.FluentViewModelBase.html#FluentMvvm_FluentViewModelBase_GetUInt32_
+  commentId: Overload:FluentMvvm.FluentViewModelBase.GetUInt32
+  isSpec: "True"
+  fullName: FluentMvvm.FluentViewModelBase.GetUInt32
+  nameWithType: FluentViewModelBase.GetUInt32
+- uid: FluentMvvm.FluentViewModelBase.GetUInt64(System.String)
+  name: GetUInt64(String)
+  href: api/FluentMvvm.FluentViewModelBase.html#FluentMvvm_FluentViewModelBase_GetUInt64_System_String_
+  commentId: M:FluentMvvm.FluentViewModelBase.GetUInt64(System.String)
+  fullName: FluentMvvm.FluentViewModelBase.GetUInt64(System.String)
+  nameWithType: FluentViewModelBase.GetUInt64(String)
+- uid: FluentMvvm.FluentViewModelBase.GetUInt64*
+  name: GetUInt64
+  href: api/FluentMvvm.FluentViewModelBase.html#FluentMvvm_FluentViewModelBase_GetUInt64_
+  commentId: Overload:FluentMvvm.FluentViewModelBase.GetUInt64
+  isSpec: "True"
+  fullName: FluentMvvm.FluentViewModelBase.GetUInt64
+  nameWithType: FluentViewModelBase.GetUInt64
+- uid: FluentMvvm.FluentViewModelBase.PropertyChanged
+  name: PropertyChanged
+  href: api/FluentMvvm.FluentViewModelBase.html#FluentMvvm_FluentViewModelBase_PropertyChanged
+  commentId: E:FluentMvvm.FluentViewModelBase.PropertyChanged
+  fullName: FluentMvvm.FluentViewModelBase.PropertyChanged
+  nameWithType: FluentViewModelBase.PropertyChanged
+- uid: FluentMvvm.FluentViewModelBase.RaisePropertyChanged(System.String)
+  name: RaisePropertyChanged(String)
+  href: api/FluentMvvm.FluentViewModelBase.html#FluentMvvm_FluentViewModelBase_RaisePropertyChanged_System_String_
+  commentId: M:FluentMvvm.FluentViewModelBase.RaisePropertyChanged(System.String)
+  fullName: FluentMvvm.FluentViewModelBase.RaisePropertyChanged(System.String)
+  nameWithType: FluentViewModelBase.RaisePropertyChanged(String)
+- uid: FluentMvvm.FluentViewModelBase.RaisePropertyChanged*
+  name: RaisePropertyChanged
+  href: api/FluentMvvm.FluentViewModelBase.html#FluentMvvm_FluentViewModelBase_RaisePropertyChanged_
+  commentId: Overload:FluentMvvm.FluentViewModelBase.RaisePropertyChanged
+  isSpec: "True"
+  fullName: FluentMvvm.FluentViewModelBase.RaisePropertyChanged
+  nameWithType: FluentViewModelBase.RaisePropertyChanged
+- uid: FluentMvvm.FluentViewModelBase.Set(Boolean,System.String)
+  name: Set(Boolean, String)
+  href: api/FluentMvvm.FluentViewModelBase.html#FluentMvvm_FluentViewModelBase_Set_Boolean_System_String_
+  commentId: M:FluentMvvm.FluentViewModelBase.Set(Boolean,System.String)
+  fullName: FluentMvvm.FluentViewModelBase.Set(Boolean, System.String)
+  nameWithType: FluentViewModelBase.Set(Boolean, String)
+- uid: FluentMvvm.FluentViewModelBase.Set(Byte,System.String)
+  name: Set(Byte, String)
+  href: api/FluentMvvm.FluentViewModelBase.html#FluentMvvm_FluentViewModelBase_Set_Byte_System_String_
+  commentId: M:FluentMvvm.FluentViewModelBase.Set(Byte,System.String)
+  fullName: FluentMvvm.FluentViewModelBase.Set(Byte, System.String)
+  nameWithType: FluentViewModelBase.Set(Byte, String)
+- uid: FluentMvvm.FluentViewModelBase.Set(Char,System.String)
+  name: Set(Char, String)
+  href: api/FluentMvvm.FluentViewModelBase.html#FluentMvvm_FluentViewModelBase_Set_Char_System_String_
+  commentId: M:FluentMvvm.FluentViewModelBase.Set(Char,System.String)
+  fullName: FluentMvvm.FluentViewModelBase.Set(Char, System.String)
+  nameWithType: FluentViewModelBase.Set(Char, String)
+- uid: FluentMvvm.FluentViewModelBase.Set(DateTime,System.String)
+  name: Set(DateTime, String)
+  href: api/FluentMvvm.FluentViewModelBase.html#FluentMvvm_FluentViewModelBase_Set_DateTime_System_String_
+  commentId: M:FluentMvvm.FluentViewModelBase.Set(DateTime,System.String)
+  fullName: FluentMvvm.FluentViewModelBase.Set(DateTime, System.String)
+  nameWithType: FluentViewModelBase.Set(DateTime, String)
+- uid: FluentMvvm.FluentViewModelBase.Set(Decimal,System.String)
+  name: Set(Decimal, String)
+  href: api/FluentMvvm.FluentViewModelBase.html#FluentMvvm_FluentViewModelBase_Set_Decimal_System_String_
+  commentId: M:FluentMvvm.FluentViewModelBase.Set(Decimal,System.String)
+  fullName: FluentMvvm.FluentViewModelBase.Set(Decimal, System.String)
+  nameWithType: FluentViewModelBase.Set(Decimal, String)
+- uid: FluentMvvm.FluentViewModelBase.Set(Double,System.String)
+  name: Set(Double, String)
+  href: api/FluentMvvm.FluentViewModelBase.html#FluentMvvm_FluentViewModelBase_Set_Double_System_String_
+  commentId: M:FluentMvvm.FluentViewModelBase.Set(Double,System.String)
+  fullName: FluentMvvm.FluentViewModelBase.Set(Double, System.String)
+  nameWithType: FluentViewModelBase.Set(Double, String)
+- uid: FluentMvvm.FluentViewModelBase.Set(Int16,System.String)
+  name: Set(Int16, String)
+  href: api/FluentMvvm.FluentViewModelBase.html#FluentMvvm_FluentViewModelBase_Set_Int16_System_String_
+  commentId: M:FluentMvvm.FluentViewModelBase.Set(Int16,System.String)
+  fullName: FluentMvvm.FluentViewModelBase.Set(Int16, System.String)
+  nameWithType: FluentViewModelBase.Set(Int16, String)
+- uid: FluentMvvm.FluentViewModelBase.Set(Int32,System.String)
+  name: Set(Int32, String)
+  href: api/FluentMvvm.FluentViewModelBase.html#FluentMvvm_FluentViewModelBase_Set_Int32_System_String_
+  commentId: M:FluentMvvm.FluentViewModelBase.Set(Int32,System.String)
+  fullName: FluentMvvm.FluentViewModelBase.Set(Int32, System.String)
+  nameWithType: FluentViewModelBase.Set(Int32, String)
+- uid: FluentMvvm.FluentViewModelBase.Set(Int64,System.String)
+  name: Set(Int64, String)
+  href: api/FluentMvvm.FluentViewModelBase.html#FluentMvvm_FluentViewModelBase_Set_Int64_System_String_
+  commentId: M:FluentMvvm.FluentViewModelBase.Set(Int64,System.String)
+  fullName: FluentMvvm.FluentViewModelBase.Set(Int64, System.String)
+  nameWithType: FluentViewModelBase.Set(Int64, String)
+- uid: FluentMvvm.FluentViewModelBase.Set(SByte,System.String)
+  name: Set(SByte, String)
+  href: api/FluentMvvm.FluentViewModelBase.html#FluentMvvm_FluentViewModelBase_Set_SByte_System_String_
+  commentId: M:FluentMvvm.FluentViewModelBase.Set(SByte,System.String)
+  fullName: FluentMvvm.FluentViewModelBase.Set(SByte, System.String)
+  nameWithType: FluentViewModelBase.Set(SByte, String)
+- uid: FluentMvvm.FluentViewModelBase.Set(Single,System.String)
+  name: Set(Single, String)
+  href: api/FluentMvvm.FluentViewModelBase.html#FluentMvvm_FluentViewModelBase_Set_Single_System_String_
+  commentId: M:FluentMvvm.FluentViewModelBase.Set(Single,System.String)
+  fullName: FluentMvvm.FluentViewModelBase.Set(Single, System.String)
+  nameWithType: FluentViewModelBase.Set(Single, String)
+- uid: FluentMvvm.FluentViewModelBase.Set(String,System.String)
+  name: Set(String, String)
+  href: api/FluentMvvm.FluentViewModelBase.html#FluentMvvm_FluentViewModelBase_Set_String_System_String_
+  commentId: M:FluentMvvm.FluentViewModelBase.Set(String,System.String)
+  fullName: FluentMvvm.FluentViewModelBase.Set(String, System.String)
+  nameWithType: FluentViewModelBase.Set(String, String)
+- uid: FluentMvvm.FluentViewModelBase.Set(UInt16,System.String)
+  name: Set(UInt16, String)
+  href: api/FluentMvvm.FluentViewModelBase.html#FluentMvvm_FluentViewModelBase_Set_UInt16_System_String_
+  commentId: M:FluentMvvm.FluentViewModelBase.Set(UInt16,System.String)
+  fullName: FluentMvvm.FluentViewModelBase.Set(UInt16, System.String)
+  nameWithType: FluentViewModelBase.Set(UInt16, String)
+- uid: FluentMvvm.FluentViewModelBase.Set(UInt32,System.String)
+  name: Set(UInt32, String)
+  href: api/FluentMvvm.FluentViewModelBase.html#FluentMvvm_FluentViewModelBase_Set_UInt32_System_String_
+  commentId: M:FluentMvvm.FluentViewModelBase.Set(UInt32,System.String)
+  fullName: FluentMvvm.FluentViewModelBase.Set(UInt32, System.String)
+  nameWithType: FluentViewModelBase.Set(UInt32, String)
+- uid: FluentMvvm.FluentViewModelBase.Set(UInt64,System.String)
+  name: Set(UInt64, String)
+  href: api/FluentMvvm.FluentViewModelBase.html#FluentMvvm_FluentViewModelBase_Set_UInt64_System_String_
+  commentId: M:FluentMvvm.FluentViewModelBase.Set(UInt64,System.String)
+  fullName: FluentMvvm.FluentViewModelBase.Set(UInt64, System.String)
+  nameWithType: FluentViewModelBase.Set(UInt64, String)
+- uid: FluentMvvm.FluentViewModelBase.Set*
+  name: Set
+  href: api/FluentMvvm.FluentViewModelBase.html#FluentMvvm_FluentViewModelBase_Set_
+  commentId: Overload:FluentMvvm.FluentViewModelBase.Set
+  isSpec: "True"
+  fullName: FluentMvvm.FluentViewModelBase.Set
+  nameWithType: FluentViewModelBase.Set
+- uid: FluentMvvm.FluentViewModelBase.Set``1(``0,``0@,System.String)
+  name: Set<T>(T, ref T, String)
+  href: api/FluentMvvm.FluentViewModelBase.html#FluentMvvm_FluentViewModelBase_Set__1___0___0__System_String_
+  commentId: M:FluentMvvm.FluentViewModelBase.Set``1(``0,``0@,System.String)
+  name.vb: Set(Of T)(T, ByRef T, String)
+  fullName: FluentMvvm.FluentViewModelBase.Set<T>(T, ref T, System.String)
+  fullName.vb: FluentMvvm.FluentViewModelBase.Set(Of T)(T, ByRef T, System.String)
+  nameWithType: FluentViewModelBase.Set<T>(T, ref T, String)
+  nameWithType.vb: FluentViewModelBase.Set(Of T)(T, ByRef T, String)
+- uid: FluentMvvm.FluentViewModelBase.Set``1(``0,System.String)
+  name: Set<T>(T, String)
+  href: api/FluentMvvm.FluentViewModelBase.html#FluentMvvm_FluentViewModelBase_Set__1___0_System_String_
+  commentId: M:FluentMvvm.FluentViewModelBase.Set``1(``0,System.String)
+  name.vb: Set(Of T)(T, String)
+  fullName: FluentMvvm.FluentViewModelBase.Set<T>(T, System.String)
+  fullName.vb: FluentMvvm.FluentViewModelBase.Set(Of T)(T, System.String)
+  nameWithType: FluentViewModelBase.Set<T>(T, String)
+  nameWithType.vb: FluentViewModelBase.Set(Of T)(T, String)
+- uid: FluentMvvm.FluentViewModelBase.When(Func{System.Boolean})
+  name: When(Func<Boolean>)
+  href: api/FluentMvvm.FluentViewModelBase.html#FluentMvvm_FluentViewModelBase_When_Func_System_Boolean__
+  commentId: M:FluentMvvm.FluentViewModelBase.When(Func{System.Boolean})
+  name.vb: When(Func(Of Boolean))
+  fullName: FluentMvvm.FluentViewModelBase.When(Func<System.Boolean>)
+  fullName.vb: FluentMvvm.FluentViewModelBase.When(Func(Of System.Boolean))
+  nameWithType: FluentViewModelBase.When(Func<Boolean>)
+  nameWithType.vb: FluentViewModelBase.When(Func(Of Boolean))
+- uid: FluentMvvm.FluentViewModelBase.When(System.Boolean)
+  name: When(Boolean)
+  href: api/FluentMvvm.FluentViewModelBase.html#FluentMvvm_FluentViewModelBase_When_System_Boolean_
+  commentId: M:FluentMvvm.FluentViewModelBase.When(System.Boolean)
+  fullName: FluentMvvm.FluentViewModelBase.When(System.Boolean)
+  nameWithType: FluentViewModelBase.When(Boolean)
+- uid: FluentMvvm.FluentViewModelBase.When*
+  name: When
+  href: api/FluentMvvm.FluentViewModelBase.html#FluentMvvm_FluentViewModelBase_When_
+  commentId: Overload:FluentMvvm.FluentViewModelBase.When
+  isSpec: "True"
+  fullName: FluentMvvm.FluentViewModelBase.When
+  nameWithType: FluentViewModelBase.When
+- uid: FluentMvvm.IConditionalExpression
+  name: IConditionalExpression
+  href: api/FluentMvvm.IConditionalExpression.html
+  commentId: T:FluentMvvm.IConditionalExpression
+  fullName: FluentMvvm.IConditionalExpression
+  nameWithType: IConditionalExpression
+- uid: FluentMvvm.IConditionalExpression.When(Func{System.Boolean})
+  name: When(Func<Boolean>)
+  href: api/FluentMvvm.IConditionalExpression.html#FluentMvvm_IConditionalExpression_When_Func_System_Boolean__
+  commentId: M:FluentMvvm.IConditionalExpression.When(Func{System.Boolean})
+  name.vb: When(Func(Of Boolean))
+  fullName: FluentMvvm.IConditionalExpression.When(Func<System.Boolean>)
+  fullName.vb: FluentMvvm.IConditionalExpression.When(Func(Of System.Boolean))
+  nameWithType: IConditionalExpression.When(Func<Boolean>)
+  nameWithType.vb: IConditionalExpression.When(Func(Of Boolean))
+- uid: FluentMvvm.IConditionalExpression.When(System.Boolean)
+  name: When(Boolean)
+  href: api/FluentMvvm.IConditionalExpression.html#FluentMvvm_IConditionalExpression_When_System_Boolean_
+  commentId: M:FluentMvvm.IConditionalExpression.When(System.Boolean)
+  fullName: FluentMvvm.IConditionalExpression.When(System.Boolean)
+  nameWithType: IConditionalExpression.When(Boolean)
+- uid: FluentMvvm.IConditionalExpression.When*
+  name: When
+  href: api/FluentMvvm.IConditionalExpression.html#FluentMvvm_IConditionalExpression_When_
+  commentId: Overload:FluentMvvm.IConditionalExpression.When
+  isSpec: "True"
+  fullName: FluentMvvm.IConditionalExpression.When
+  nameWithType: IConditionalExpression.When
+- uid: FluentMvvm.IDependencyExpression
+  name: IDependencyExpression
+  href: api/FluentMvvm.IDependencyExpression.html
+  commentId: T:FluentMvvm.IDependencyExpression
+  fullName: FluentMvvm.IDependencyExpression
+  nameWithType: IDependencyExpression
+- uid: FluentMvvm.IDependencyExpression.Affects(FluentMvvm.IWpfCommand)
+  name: Affects(IWpfCommand)
+  href: api/FluentMvvm.IDependencyExpression.html#FluentMvvm_IDependencyExpression_Affects_FluentMvvm_IWpfCommand_
+  commentId: M:FluentMvvm.IDependencyExpression.Affects(FluentMvvm.IWpfCommand)
+  fullName: FluentMvvm.IDependencyExpression.Affects(FluentMvvm.IWpfCommand)
+  nameWithType: IDependencyExpression.Affects(IWpfCommand)
+- uid: FluentMvvm.IDependencyExpression.Affects(ICommand)
+  name: Affects(ICommand)
+  href: api/FluentMvvm.IDependencyExpression.html#FluentMvvm_IDependencyExpression_Affects_ICommand_
+  commentId: M:FluentMvvm.IDependencyExpression.Affects(ICommand)
+  fullName: FluentMvvm.IDependencyExpression.Affects(ICommand)
+  nameWithType: IDependencyExpression.Affects(ICommand)
+- uid: FluentMvvm.IDependencyExpression.Affects(System.String)
+  name: Affects(String)
+  href: api/FluentMvvm.IDependencyExpression.html#FluentMvvm_IDependencyExpression_Affects_System_String_
+  commentId: M:FluentMvvm.IDependencyExpression.Affects(System.String)
+  fullName: FluentMvvm.IDependencyExpression.Affects(System.String)
+  nameWithType: IDependencyExpression.Affects(String)
+- uid: FluentMvvm.IDependencyExpression.Affects*
+  name: Affects
+  href: api/FluentMvvm.IDependencyExpression.html#FluentMvvm_IDependencyExpression_Affects_
+  commentId: Overload:FluentMvvm.IDependencyExpression.Affects
+  isSpec: "True"
+  fullName: FluentMvvm.IDependencyExpression.Affects
+  nameWithType: IDependencyExpression.Affects
+- uid: FluentMvvm.IDependencyExpression.WasUpdated
+  name: WasUpdated()
+  href: api/FluentMvvm.IDependencyExpression.html#FluentMvvm_IDependencyExpression_WasUpdated
+  commentId: M:FluentMvvm.IDependencyExpression.WasUpdated
+  fullName: FluentMvvm.IDependencyExpression.WasUpdated()
+  nameWithType: IDependencyExpression.WasUpdated()
+- uid: FluentMvvm.IDependencyExpression.WasUpdated*
+  name: WasUpdated
+  href: api/FluentMvvm.IDependencyExpression.html#FluentMvvm_IDependencyExpression_WasUpdated_
+  commentId: Overload:FluentMvvm.IDependencyExpression.WasUpdated
+  isSpec: "True"
+  fullName: FluentMvvm.IDependencyExpression.WasUpdated
+  nameWithType: IDependencyExpression.WasUpdated
+- uid: FluentMvvm.IPropertySetExpression
+  name: IPropertySetExpression
+  href: api/FluentMvvm.IPropertySetExpression.html
+  commentId: T:FluentMvvm.IPropertySetExpression
+  fullName: FluentMvvm.IPropertySetExpression
+  nameWithType: IPropertySetExpression
+- uid: FluentMvvm.IPropertySetExpression.Set(Boolean,System.String)
+  name: Set(Boolean, String)
+  href: api/FluentMvvm.IPropertySetExpression.html#FluentMvvm_IPropertySetExpression_Set_Boolean_System_String_
+  commentId: M:FluentMvvm.IPropertySetExpression.Set(Boolean,System.String)
+  fullName: FluentMvvm.IPropertySetExpression.Set(Boolean, System.String)
+  nameWithType: IPropertySetExpression.Set(Boolean, String)
+- uid: FluentMvvm.IPropertySetExpression.Set(Byte,System.String)
+  name: Set(Byte, String)
+  href: api/FluentMvvm.IPropertySetExpression.html#FluentMvvm_IPropertySetExpression_Set_Byte_System_String_
+  commentId: M:FluentMvvm.IPropertySetExpression.Set(Byte,System.String)
+  fullName: FluentMvvm.IPropertySetExpression.Set(Byte, System.String)
+  nameWithType: IPropertySetExpression.Set(Byte, String)
+- uid: FluentMvvm.IPropertySetExpression.Set(Char,System.String)
+  name: Set(Char, String)
+  href: api/FluentMvvm.IPropertySetExpression.html#FluentMvvm_IPropertySetExpression_Set_Char_System_String_
+  commentId: M:FluentMvvm.IPropertySetExpression.Set(Char,System.String)
+  fullName: FluentMvvm.IPropertySetExpression.Set(Char, System.String)
+  nameWithType: IPropertySetExpression.Set(Char, String)
+- uid: FluentMvvm.IPropertySetExpression.Set(DateTime,System.String)
+  name: Set(DateTime, String)
+  href: api/FluentMvvm.IPropertySetExpression.html#FluentMvvm_IPropertySetExpression_Set_DateTime_System_String_
+  commentId: M:FluentMvvm.IPropertySetExpression.Set(DateTime,System.String)
+  fullName: FluentMvvm.IPropertySetExpression.Set(DateTime, System.String)
+  nameWithType: IPropertySetExpression.Set(DateTime, String)
+- uid: FluentMvvm.IPropertySetExpression.Set(Decimal,System.String)
+  name: Set(Decimal, String)
+  href: api/FluentMvvm.IPropertySetExpression.html#FluentMvvm_IPropertySetExpression_Set_Decimal_System_String_
+  commentId: M:FluentMvvm.IPropertySetExpression.Set(Decimal,System.String)
+  fullName: FluentMvvm.IPropertySetExpression.Set(Decimal, System.String)
+  nameWithType: IPropertySetExpression.Set(Decimal, String)
+- uid: FluentMvvm.IPropertySetExpression.Set(Double,System.String)
+  name: Set(Double, String)
+  href: api/FluentMvvm.IPropertySetExpression.html#FluentMvvm_IPropertySetExpression_Set_Double_System_String_
+  commentId: M:FluentMvvm.IPropertySetExpression.Set(Double,System.String)
+  fullName: FluentMvvm.IPropertySetExpression.Set(Double, System.String)
+  nameWithType: IPropertySetExpression.Set(Double, String)
+- uid: FluentMvvm.IPropertySetExpression.Set(Int16,System.String)
+  name: Set(Int16, String)
+  href: api/FluentMvvm.IPropertySetExpression.html#FluentMvvm_IPropertySetExpression_Set_Int16_System_String_
+  commentId: M:FluentMvvm.IPropertySetExpression.Set(Int16,System.String)
+  fullName: FluentMvvm.IPropertySetExpression.Set(Int16, System.String)
+  nameWithType: IPropertySetExpression.Set(Int16, String)
+- uid: FluentMvvm.IPropertySetExpression.Set(Int32,System.String)
+  name: Set(Int32, String)
+  href: api/FluentMvvm.IPropertySetExpression.html#FluentMvvm_IPropertySetExpression_Set_Int32_System_String_
+  commentId: M:FluentMvvm.IPropertySetExpression.Set(Int32,System.String)
+  fullName: FluentMvvm.IPropertySetExpression.Set(Int32, System.String)
+  nameWithType: IPropertySetExpression.Set(Int32, String)
+- uid: FluentMvvm.IPropertySetExpression.Set(Int64,System.String)
+  name: Set(Int64, String)
+  href: api/FluentMvvm.IPropertySetExpression.html#FluentMvvm_IPropertySetExpression_Set_Int64_System_String_
+  commentId: M:FluentMvvm.IPropertySetExpression.Set(Int64,System.String)
+  fullName: FluentMvvm.IPropertySetExpression.Set(Int64, System.String)
+  nameWithType: IPropertySetExpression.Set(Int64, String)
+- uid: FluentMvvm.IPropertySetExpression.Set(SByte,System.String)
+  name: Set(SByte, String)
+  href: api/FluentMvvm.IPropertySetExpression.html#FluentMvvm_IPropertySetExpression_Set_SByte_System_String_
+  commentId: M:FluentMvvm.IPropertySetExpression.Set(SByte,System.String)
+  fullName: FluentMvvm.IPropertySetExpression.Set(SByte, System.String)
+  nameWithType: IPropertySetExpression.Set(SByte, String)
+- uid: FluentMvvm.IPropertySetExpression.Set(Single,System.String)
+  name: Set(Single, String)
+  href: api/FluentMvvm.IPropertySetExpression.html#FluentMvvm_IPropertySetExpression_Set_Single_System_String_
+  commentId: M:FluentMvvm.IPropertySetExpression.Set(Single,System.String)
+  fullName: FluentMvvm.IPropertySetExpression.Set(Single, System.String)
+  nameWithType: IPropertySetExpression.Set(Single, String)
+- uid: FluentMvvm.IPropertySetExpression.Set(String,System.String)
+  name: Set(String, String)
+  href: api/FluentMvvm.IPropertySetExpression.html#FluentMvvm_IPropertySetExpression_Set_String_System_String_
+  commentId: M:FluentMvvm.IPropertySetExpression.Set(String,System.String)
+  fullName: FluentMvvm.IPropertySetExpression.Set(String, System.String)
+  nameWithType: IPropertySetExpression.Set(String, String)
+- uid: FluentMvvm.IPropertySetExpression.Set(UInt16,System.String)
+  name: Set(UInt16, String)
+  href: api/FluentMvvm.IPropertySetExpression.html#FluentMvvm_IPropertySetExpression_Set_UInt16_System_String_
+  commentId: M:FluentMvvm.IPropertySetExpression.Set(UInt16,System.String)
+  fullName: FluentMvvm.IPropertySetExpression.Set(UInt16, System.String)
+  nameWithType: IPropertySetExpression.Set(UInt16, String)
+- uid: FluentMvvm.IPropertySetExpression.Set(UInt32,System.String)
+  name: Set(UInt32, String)
+  href: api/FluentMvvm.IPropertySetExpression.html#FluentMvvm_IPropertySetExpression_Set_UInt32_System_String_
+  commentId: M:FluentMvvm.IPropertySetExpression.Set(UInt32,System.String)
+  fullName: FluentMvvm.IPropertySetExpression.Set(UInt32, System.String)
+  nameWithType: IPropertySetExpression.Set(UInt32, String)
+- uid: FluentMvvm.IPropertySetExpression.Set(UInt64,System.String)
+  name: Set(UInt64, String)
+  href: api/FluentMvvm.IPropertySetExpression.html#FluentMvvm_IPropertySetExpression_Set_UInt64_System_String_
+  commentId: M:FluentMvvm.IPropertySetExpression.Set(UInt64,System.String)
+  fullName: FluentMvvm.IPropertySetExpression.Set(UInt64, System.String)
+  nameWithType: IPropertySetExpression.Set(UInt64, String)
+- uid: FluentMvvm.IPropertySetExpression.Set*
+  name: Set
+  href: api/FluentMvvm.IPropertySetExpression.html#FluentMvvm_IPropertySetExpression_Set_
+  commentId: Overload:FluentMvvm.IPropertySetExpression.Set
+  isSpec: "True"
+  fullName: FluentMvvm.IPropertySetExpression.Set
+  nameWithType: IPropertySetExpression.Set
+- uid: FluentMvvm.IPropertySetExpression.Set``1(``0,``0@,System.String)
+  name: Set<T>(T, ref T, String)
+  href: api/FluentMvvm.IPropertySetExpression.html#FluentMvvm_IPropertySetExpression_Set__1___0___0__System_String_
+  commentId: M:FluentMvvm.IPropertySetExpression.Set``1(``0,``0@,System.String)
+  name.vb: Set(Of T)(T, ByRef T, String)
+  fullName: FluentMvvm.IPropertySetExpression.Set<T>(T, ref T, System.String)
+  fullName.vb: FluentMvvm.IPropertySetExpression.Set(Of T)(T, ByRef T, System.String)
+  nameWithType: IPropertySetExpression.Set<T>(T, ref T, String)
+  nameWithType.vb: IPropertySetExpression.Set(Of T)(T, ByRef T, String)
+- uid: FluentMvvm.IPropertySetExpression.Set``1(``0,System.String)
+  name: Set<T>(T, String)
+  href: api/FluentMvvm.IPropertySetExpression.html#FluentMvvm_IPropertySetExpression_Set__1___0_System_String_
+  commentId: M:FluentMvvm.IPropertySetExpression.Set``1(``0,System.String)
+  name.vb: Set(Of T)(T, String)
+  fullName: FluentMvvm.IPropertySetExpression.Set<T>(T, System.String)
+  fullName.vb: FluentMvvm.IPropertySetExpression.Set(Of T)(T, System.String)
+  nameWithType: IPropertySetExpression.Set<T>(T, String)
+  nameWithType.vb: IPropertySetExpression.Set(Of T)(T, String)
+- uid: FluentMvvm.IWpfCommand
+  name: IWpfCommand
+  href: api/FluentMvvm.IWpfCommand.html
+  commentId: T:FluentMvvm.IWpfCommand
+  fullName: FluentMvvm.IWpfCommand
+  nameWithType: IWpfCommand
+- uid: FluentMvvm.IWpfCommand.RaiseCanExecuteChanged
+  name: RaiseCanExecuteChanged()
+  href: api/FluentMvvm.IWpfCommand.html#FluentMvvm_IWpfCommand_RaiseCanExecuteChanged
+  commentId: M:FluentMvvm.IWpfCommand.RaiseCanExecuteChanged
+  fullName: FluentMvvm.IWpfCommand.RaiseCanExecuteChanged()
+  nameWithType: IWpfCommand.RaiseCanExecuteChanged()
+- uid: FluentMvvm.IWpfCommand.RaiseCanExecuteChanged*
+  name: RaiseCanExecuteChanged
+  href: api/FluentMvvm.IWpfCommand.html#FluentMvvm_IWpfCommand_RaiseCanExecuteChanged_
+  commentId: Overload:FluentMvvm.IWpfCommand.RaiseCanExecuteChanged
+  isSpec: "True"
+  fullName: FluentMvvm.IWpfCommand.RaiseCanExecuteChanged
+  nameWithType: IWpfCommand.RaiseCanExecuteChanged

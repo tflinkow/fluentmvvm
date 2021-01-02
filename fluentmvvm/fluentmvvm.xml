@@ -4,889 +4,741 @@
         <name>fluentmvvm</name>
     </assembly>
     <members>
-        <member name="T:FluentMvvm.Emit.BackingFieldInfo">
-            <summary>
-                A class containing all relevant information for creating the backing field for a property.
-            </summary>
-        </member>
-        <member name="M:FluentMvvm.Emit.BackingFieldInfo.#ctor(System.Reflection.PropertyInfo)">
-            <summary>
-                Initializes a new instance of the <see cref="T:FluentMvvm.Emit.BackingFieldInfo" /> class.
-            </summary>
-            <param name="property">The property to build a backing field for.</param>
-        </member>
-        <member name="P:FluentMvvm.Emit.BackingFieldInfo.Property">
-            <summary>
-                Gets the property to build a backing field for.
-            </summary>
-            <value>
-                The property to build a backing field for.
-            </value>
-        </member>
-        <member name="P:FluentMvvm.Emit.BackingFieldInfo.Field">
-            <summary>
-                Gets or sets the generated backing field.
-            </summary>
-            <value>
-                The generated backing field.
-            </value>
-        </member>
-        <member name="P:FluentMvvm.Emit.BackingFieldInfo.HasOverriddenDefaultValue">
-            <summary>
-                Gets a value indicating whether the property has overridden default value, that is, whether a
-                <see cref="T:System.ComponentModel.DefaultValueAttribute" /> is applied to it.
-            </summary>
-            <value>
-                <c>true</c> if this instance has overridden default value; otherwise, <c>false</c>.
-            </value>
-        </member>
-        <member name="P:FluentMvvm.Emit.BackingFieldInfo.DefaultValue">
-            <summary>
-                Gets the default value.
-            </summary>
-            <value>
-                The default value.
-            </value>
-        </member>
-        <member name="T:FluentMvvm.Emit.BackingFieldProvider">
-            <summary>
-                Builds a class containing the backing fields for a view model's public writable instance properties.
-            </summary>
-        </member>
-        <member name="F:FluentMvvm.Emit.BackingFieldProvider.AssemblyNamespace">
-            <summary>
-                The namespace of the generated types.
-            </summary>
-        </member>
-        <member name="F:FluentMvvm.Emit.BackingFieldProvider.GeneratedTypeAttributes">
-            <summary>
-                The <see cref="T:System.Reflection.TypeAttributes" /> if the generated types.
-            </summary>
-        </member>
-        <member name="F:FluentMvvm.Emit.BackingFieldProvider.GeneratedMethodAttributes">
-            <summary>
-                The <see cref="T:System.Reflection.MethodAttributes" /> used when emitting methods implementing
-                <see cref="T:FluentMvvm.Fluent.IPropertyGetExpression" /> and <see cref="T:FluentMvvm.Fluent.IPropertySetExpression" />.
-            </summary>
-        </member>
-        <member name="F:FluentMvvm.Emit.BackingFieldProvider.assemblyName">
-            <summary>
-                The name of the generated assembly.
-            </summary>
-        </member>
-        <member name="F:FluentMvvm.Emit.BackingFieldProvider.assemblyBuilderLazy">
-            <summary>
-                The lazily instantiated <see cref="T:System.Reflection.Emit.AssemblyBuilder" /> used to build dynamic assemblies.
-            </summary>
-        </member>
-        <member name="F:FluentMvvm.Emit.BackingFieldProvider.moduleBuilderLazy">
-            <summary>
-                The lazily instantiated <see cref="T:System.Reflection.Emit.ModuleBuilder" /> used to build modules in dynamic
-                assemblies.
-            </summary>
-        </member>
-        <member name="F:FluentMvvm.Emit.BackingFieldProvider.fieldGenerationSuppressed">
-            <summary>
-                Indicates whether backing field generation is suppressed for the type itself.
-            </summary>
-        </member>
-        <member name="F:FluentMvvm.Emit.BackingFieldProvider.cache">
-            <summary>
-                A cache for generated types to avoid defining new types for the same target type.
-            </summary>
-        </member>
-        <member name="P:FluentMvvm.Emit.BackingFieldProvider.AssemblyBuilder">
-            <summary>
-                The dynamic assembly builder.
-            </summary>
-            <value>
-                The assembly builder.
-            </value>
-        </member>
-        <member name="P:FluentMvvm.Emit.BackingFieldProvider.ModuleBuilder">
-            <summary>
-                The module builder of the dynamic assembly.
-            </summary>
-            <value>
-                The module builder.
-            </value>
-        </member>
-        <member name="M:FluentMvvm.Emit.BackingFieldProvider.Get(System.Type)">
-            <summary>
-                Gets the class containing the backing fields of <paramref name="targetType" />'s public writable instance
-                properties.
-            </summary>
-            <param name="targetType">The type of the view model to generate the backing fields for.</param>
-            <returns>
-                A class containing backing fields for all public writable instance properties of
-                <paramref name="targetType" />.
-            </returns>
-            <remarks>
-                The backing fields are named exactly as their properties.
-            </remarks>
-        </member>
-        <member name="M:FluentMvvm.Emit.BackingFieldProvider.GetTypeName(System.Type)">
-            <summary>
-                Gets the name of the type to generate.
-            </summary>
-            <param name="forTargetType">The type of the view model.</param>
-            <returns>The name of the type to generate.</returns>
-        </member>
-        <member name="M:FluentMvvm.Emit.BackingFieldProvider.BuildForType(System.Type)">
-            <summary>
-                Builds the class containing the backing fields of <paramref name="targetType" />'s public writable instance
-                properties.
-            </summary>
-            <param name="targetType">The type of the view model to generate the backing fields for.</param>
-            <returns>
-                The type of the class containing the backing fields
-            </returns>
-            <exception cref="T:FluentMvvm.InternalException">The generated type for is null.</exception>
-        </member>
-        <member name="M:FluentMvvm.Emit.BackingFieldProvider.BuildConstructor(System.Collections.Generic.IEnumerable{FluentMvvm.Emit.BackingFieldInfo},System.Reflection.Emit.ConstructorBuilder)">
-            <summary>
-                Builds a constructor initializing all fields that have an overridden default value.
-            </summary>
-            <param name="fields">The generated fields.</param>
-            <param name="constructorBuilder">The constructor builder.</param>
-        </member>
-        <member name="M:FluentMvvm.Emit.BackingFieldProvider.GetRelevantProperties(System.Reflection.IReflect)">
-            <summary>
-                Gets the properties to build backing fields for. Only considers public writable instance properties that do
-                not have a <see cref="T:FluentMvvm.SuppressFieldGenerationAttribute" /> applied to them.
-            </summary>
-            <param name="type">The type to build backing fields for.</param>
-            <returns>
-                A collection of all properties to build backing fields for.
-            </returns>
-        </member>
-        <member name="M:FluentMvvm.Emit.BackingFieldProvider.BuildBackingFields(System.Collections.Generic.IEnumerable{FluentMvvm.Emit.BackingFieldInfo},System.Reflection.Emit.TypeBuilder)">
-            <summary>
-                Builds the backing fields for the public writable instance properties <paramref name="properties" />.
-            </summary>
-            <param name="properties">The properties to build backing fields for.</param>
-            <param name="typeBuilder">The type builder.</param>
-            <returns>
-                The generated backing fields.
-            </returns>
-        </member>
-        <member name="M:FluentMvvm.Emit.BackingFieldProvider.EmitNoPropertyOfType(System.Reflection.Emit.ILGenerator,System.Type,System.Type)">
-            <summary>
-                Emits exception throwing code for when <paramref name="targetType" /> does not have any public writable
-                instance properties of type <paramref name="propertyType" />.
-            </summary>
-            <param name="ilGenerator">The <see cref="T:System.Reflection.Emit.ILGenerator" />.</param>
-            <param name="propertyType">The type of the property.</param>
-            <param name="targetType">The type to build backing fields for.</param>
-        </member>
-        <member name="M:FluentMvvm.Emit.BackingFieldProvider.EmitThrowFieldGenerationSuppressed(System.Reflection.Emit.ILGenerator,System.Type)">
-            <summary>
-                Emits exception throwing code for when <paramref name="targetType" /> is marked with
-                <see cref="T:FluentMvvm.SuppressFieldGenerationAttribute" />.
-            </summary>
-            <param name="ilGenerator">The <see cref="T:System.Reflection.Emit.ILGenerator" />.</param>
-            <param name="targetType">The type to build backing fields for.</param>
-        </member>
-        <member name="M:FluentMvvm.Emit.BackingFieldProvider.EmitThrowPropertyNotFound(System.Reflection.Emit.ILGenerator,System.Type,System.Type,System.Boolean)">
-            <summary>
-                Emits exception throwing code for when no property of the specified name and type exists.
-            </summary>
-            <param name="ilGenerator">The <see cref="T:System.Reflection.Emit.ILGenerator" />.</param>
-            <param name="propertyType">The type of the property.</param>
-            <param name="targetType">The type to build backing fields for.</param>
-            <param name="forGetMethod">
-                Indicates whether the exception throwing code is contained in a
-                <see cref="T:FluentMvvm.Fluent.IPropertyGetExpression" /> method or in a <see cref="T:FluentMvvm.Fluent.IPropertySetExpression" /> method.
+        <member name="M:FluentMvvm.Debug.Assert(System.Boolean)">
+            <summary>Checks for a condition; if the condition is <c>false</c>, displays a message box that shows the call stack.</summary>
+            <param name="condition">
+                The conditional expression to evaluate. If the condition is <c>true</c>, a failure message is
+                not sent and the message box is not displayed.
             </param>
         </member>
-        <member name="M:FluentMvvm.Emit.BackingFieldProvider.BuildGetMethods(System.Type,System.Reflection.Emit.TypeBuilder,System.Collections.Generic.IReadOnlyList{System.Reflection.FieldInfo})">
+        <member name="M:FluentMvvm.Debug.Assert(System.Boolean,System.String)">
             <summary>
-                Builds the <see cref="M:FluentMvvm.Fluent.IPropertyGetExpression.Get``1(System.String)" /> method and its overloads.
+                Checks for a condition; if the condition is <c>false</c>, outputs a specified message and displays a message
+                box that shows the call stack.
             </summary>
-            <param name="targetType">The type of the view model to generate the backing fields for.</param>
-            <param name="typeBuilder">The <see cref="T:System.Reflection.Emit.TypeBuilder" />.</param>
-            <param name="fields">The generated backing fields.</param>
-        </member>
-        <member name="M:FluentMvvm.Emit.BackingFieldProvider.BuildGetOverload(System.Reflection.Emit.TypeBuilder,System.Reflection.MethodInfo,System.Type,System.Collections.Generic.IEnumerable{System.Reflection.FieldInfo})">
-            <summary>
-                Builds a non-generic <c>Get</c> method that only takes those fields from <paramref name="allFields" /> into account
-                that are of type <paramref name="targetType" />.
-            </summary>
-            <param name="typeBuilder">The <see cref="T:System.Reflection.Emit.TypeBuilder" />.</param>
-            <param name="methodInfo">The <see cref="T:System.Reflection.MethodInfo" /> specifying which overload to build.</param>
-            <param name="targetType">The type of the view model to generate the backing fields for.</param>
-            <param name="allFields">All generated backing fields.</param>
-        </member>
-        <member name="M:FluentMvvm.Emit.BackingFieldProvider.BuildGenericGet(System.Reflection.Emit.TypeBuilder,System.Reflection.MethodInfo,System.Type,System.Collections.Generic.IReadOnlyList{System.Reflection.FieldInfo})">
-            <summary>
-                Builds the generic <see cref="M:FluentMvvm.Fluent.IPropertyGetExpression.Get``1(System.String)" /> method that takes all backing fields into account.
-            </summary>
-            <param name="typeBuilder">The <see cref="T:System.Reflection.Emit.TypeBuilder" />.</param>
-            <param name="methodInfo">The <see cref="T:System.Reflection.MethodInfo" /> specifying which overload to build.</param>
-            <param name="targetType">The type of the view model to generate the backing fields for.</param>
-            <param name="allFields">All generated backing fields.</param>
-        </member>
-        <member name="M:FluentMvvm.Emit.BackingFieldProvider.EmitGetMethodBody(System.Reflection.MethodInfo,System.Type,System.Reflection.Emit.MethodBuilder,System.Collections.Generic.IReadOnlyList{System.Reflection.FieldInfo},System.Type)">
-            <summary>
-                Emit the method body of the <see cref="M:FluentMvvm.Fluent.IPropertyGetExpression.Get``1(System.String)" /> method or its overloads. The method body
-                consists of one big if-clause with branches for every
-                field in <paramref name="fields" />. In the if-branches the field value is returned.
-            </summary>
-            <param name="methodInfo">The <see cref="T:System.Reflection.MethodInfo" /> specifying which overload to build.</param>
-            <param name="targetType">The type of the view model to generate the backing fields for.</param>
-            <param name="methodBuilder">The <see cref="T:System.Reflection.Emit.MethodBuilder" />.</param>
-            <param name="fields">All generated backing fields of the specific type to build the Set overload for.</param>
-            <param name="genericType">
-                The generic type definition in case the <see cref="M:FluentMvvm.Fluent.IPropertyGetExpression.Get``1(System.String)" /> is
-                generated, or <c>null</c> for the non-generic overloads.
+            <param name="condition">
+                The conditional expression to evaluate. If the condition is <c>true</c>, the specified message
+                is not sent and the message box is not displayed.
             </param>
+            <param name="message">The message to send to the <see cref="P:System.Diagnostics.Trace.Listeners"></see> collection.</param>
         </member>
-        <member name="M:FluentMvvm.Emit.BackingFieldProvider.BuildSetMethods(System.Type,System.Reflection.Emit.TypeBuilder,System.Collections.Generic.IReadOnlyList{System.Reflection.FieldInfo})">
+        <member name="T:FluentMvvm.EmptyFluentAction">
             <summary>
-                Builds the <see cref="M:FluentMvvm.Fluent.IPropertySetExpression.Set``1(``0,System.String)" /> method and its overloads.
+                An object implementing all fluent methods as methods doing nothing.
             </summary>
-            <param name="targetType">The type of the view model to generate the backing fields for.</param>
-            <param name="typeBuilder">The <see cref="T:System.Reflection.Emit.TypeBuilder" />.</param>
-            <param name="fields">The generated backing fields.</param>
+            <seealso cref="T:FluentMvvm.IPropertySetExpression" />
+            <seealso cref="T:FluentMvvm.IDependencyExpression" />
+            <seealso cref="T:FluentMvvm.IPropertySetExpression" />
+            <seealso cref="T:FluentMvvm.IDependencyExpression" />
         </member>
-        <member name="M:FluentMvvm.Emit.BackingFieldProvider.BuildSetOverload(System.Reflection.Emit.TypeBuilder,System.Reflection.MethodInfo,System.Type,System.Collections.Generic.IEnumerable{System.Reflection.FieldInfo})">
+        <member name="P:FluentMvvm.EmptyFluentAction.Default">
             <summary>
-                Builds a non-generic <c>Set</c> method that only takes those fields from <paramref name="allFields" /> into account
-                that are of type <paramref name="targetType" />.
+                Gets a singleton <see cref="T:FluentMvvm.EmptyFluentAction" />.
             </summary>
-            <param name="typeBuilder">The <see cref="T:System.Reflection.Emit.TypeBuilder" />.</param>
-            <param name="methodInfo">The <see cref="T:System.Reflection.MethodInfo" /> specifying which overload to build.</param>
-            <param name="targetType">The type of the view model to generate the backing fields for.</param>
-            <param name="allFields">All generated backing fields.</param>
+            <value>
+                A singleton instance of an <see cref="T:FluentMvvm.EmptyFluentAction" />.
+            </value>
         </member>
-        <member name="M:FluentMvvm.Emit.BackingFieldProvider.BuildGenericSet(System.Reflection.Emit.TypeBuilder,System.Reflection.MethodInfo,System.Type,System.Collections.Generic.IReadOnlyList{System.Reflection.FieldInfo})">
-            <summary>
-                Builds the generic <see cref="M:FluentMvvm.Fluent.IPropertySetExpression.Set``1(``0,System.String)" /> method that takes all backing fields into account.
-            </summary>
-            <param name="typeBuilder">The <see cref="T:System.Reflection.Emit.TypeBuilder" />.</param>
-            <param name="methodInfo">The <see cref="T:System.Reflection.MethodInfo" /> specifying which overload to build.</param>
-            <param name="targetType">The type of the view model to generate the backing fields for.</param>
-            <param name="allFields">All generated backing fields.</param>
-        </member>
-        <member name="M:FluentMvvm.Emit.BackingFieldProvider.EmitSetMethodBody(System.Reflection.MethodInfo,System.Type,System.Reflection.Emit.MethodBuilder,System.Collections.Generic.IReadOnlyList{System.Reflection.FieldInfo},System.Type)">
-            <summary>
-                Emits the method body of the <see cref="M:FluentMvvm.Fluent.IPropertySetExpression.Set``1(``0,System.String)" /> method or its overloads. The method body
-                consists
-                of one big if-clause with branches for each field in <paramref name="fields" />. In the if-branches the old
-                value is compared to the new one, and if they differ, the new
-                value is stored in the field and <c>true</c> is returned; otherwise, <c>false</c>.
-            </summary>
-            <param name="methodInfo">The <see cref="T:System.Reflection.MethodInfo" /> specifying which overload to build.</param>
-            <param name="targetType">The type of the view model to generate the backing fields for.</param>
-            <param name="methodBuilder">The <see cref="T:System.Reflection.Emit.MethodBuilder" />.</param>
-            <param name="fields">All generated backing fields of the specific type to build the Set overload for.</param>
-            <param name="genericType">Type of the generic.</param>
-        </member>
-        <member name="M:FluentMvvm.Emit.BackingFieldProvider.IsStructWithoutOpEquality(System.Type)">
-            <summary>
-                Determines whether the specified <paramref name="type" /> is a structure without an overloaded <c>operator==</c>.
-            </summary>
-            <param name="type">The type.</param>
-            <returns>
-                <c>true</c> if <paramref name="type" /> is a structure without an overloaded <c>operator==</c>; otherwise,
-                <c>false</c>.
-            </returns>
-        </member>
-        <member name="M:FluentMvvm.Emit.BackingFieldProvider.EmitTypeAwareSet(System.Reflection.Emit.ILGenerator,System.Reflection.FieldInfo)">
-            <summary>
-                Emits an if-branch with different code depending on whether the field type is a reference or value type etc.
-            </summary>
-            <param name="ilGenerator">The <see cref="T:System.Reflection.Emit.ILGenerator" />.</param>
-            <param name="field">The generated backing field to use in the if-branch.</param>
-        </member>
-        <member name="M:FluentMvvm.Emit.BackingFieldProvider.EmitTypeAwareSetWithBoxing(System.Reflection.Emit.ILGenerator,System.Reflection.FieldInfo,System.Type)">
-            <summary>
-                Emits an if-branch with different code depending on whether the field type is a reference or value type etc. for
-                use in the generic <see cref="M:FluentMvvm.Fluent.IPropertySetExpression.Set``1(``0,System.String)" /> overload.
-            </summary>
-            <param name="ilGenerator">The <see cref="T:System.Reflection.Emit.ILGenerator" />.</param>
-            <param name="field">The generated backing field to use in the if-branch.</param>
-            <param name="genericType">Type of the generic.</param>
-        </member>
-        <member name="T:FluentMvvm.Emit.ConstructorInfoCache">
-            <summary>
-                Caches frequently used <see cref="T:System.Reflection.ConstructorInfo" />s so that they are not retrieved every time.
-            </summary>
-        </member>
-        <member name="F:FluentMvvm.Emit.ConstructorInfoCache.InvalidOperationException">
-            <summary>
-                The <see cref="M:System.InvalidOperationException.#ctor(System.String)" /> constructor.
-            </summary>
-        </member>
-        <member name="F:FluentMvvm.Emit.ConstructorInfoCache.ArgumentException">
-            <summary>
-                The <see cref="M:System.ArgumentException.#ctor(System.String)" /> constructor.
-            </summary>
-        </member>
-        <member name="F:FluentMvvm.Emit.ConstructorInfoCache.InvalidCastException">
-            <summary>
-                The <see cref="M:System.InvalidCastException.#ctor(System.String)" /> constructor.
-            </summary>
-        </member>
-        <member name="T:FluentMvvm.Emit.IBackingFieldProvider">
+        <member name="M:FluentMvvm.EmptyFluentAction.Affects(System.String)">
             <inheritdoc />
-            <summary>
-                The base interface for dynamically generated types containing the backing fields of a view model's writable
-                public instance properties.
-            </summary>
         </member>
-        <member name="M:FluentMvvm.Emit.IBackingFieldProvider.Set``1(``0,System.String)">
-            <summary>
-                Sets the value of the specified field to <paramref name="value" /> and returns <c>true</c> if the new value was
-                different from the old value.
-            </summary>
-            <typeparam name="T">The type of the field.</typeparam>
-            <param name="value">The value to set the field to.</param>
-            <param name="propertyName">The name of the backing field, which is the same as the name of the property it backs.</param>
-            <returns></returns>
-            <exception cref="T:System.ArgumentException">
-                No public writable instance property named <paramref name="propertyName" /> could
-                be found -or- <paramref name="propertyName" /> is empty or consists only of white-space characters.
-            </exception>
-            <exception cref="T:System.InvalidOperationException">
-                The type is marked with <see cref="T:FluentMvvm.SuppressFieldGenerationAttribute" />.
-                This method cannot be used when field generation is suppressed.
-            </exception>
+        <member name="M:FluentMvvm.EmptyFluentAction.Affects(System.Windows.Input.ICommand)">
+            <inheritdoc />
         </member>
-        <member name="M:FluentMvvm.Emit.IBackingFieldProvider.Set(System.Boolean,System.String)">
-            <summary>
-                Sets the value of the specified field to <paramref name="value" /> and returns <c>true</c> if the new value was
-                different from the old value.
-            </summary>
-            <param name="value">The value to set the field to.</param>
-            <param name="propertyName">The name of the backing field, which is the same as the name of the property it backs.</param>
-            <returns></returns>
-            <exception cref="T:System.ArgumentException">
-                No public writable instance property named <paramref name="propertyName" /> could
-                be found -or- <paramref name="propertyName" /> is empty or consists only of white-space characters.
-            </exception>
-            <exception cref="T:System.InvalidOperationException">
-                The type is marked with <see cref="T:FluentMvvm.SuppressFieldGenerationAttribute" />.
-                This method cannot be used when field generation is suppressed.
-            </exception>
+        <member name="M:FluentMvvm.EmptyFluentAction.Affects(FluentMvvm.IWpfCommand)">
+            <inheritdoc />
         </member>
-        <member name="M:FluentMvvm.Emit.IBackingFieldProvider.Set(System.Byte,System.String)">
-            <summary>
-                Sets the value of the specified field to <paramref name="value" /> and returns <c>true</c> if the new value was
-                different from the old value.
-            </summary>
-            <param name="value">The value to set the field to.</param>
-            <param name="propertyName">The name of the backing field, which is the same as the name of the property it backs.</param>
-            <returns></returns>
-            <exception cref="T:System.ArgumentException">
-                No public writable instance property named <paramref name="propertyName" /> could
-                be found -or- <paramref name="propertyName" /> is empty or consists only of white-space characters.
-            </exception>
-            <exception cref="T:System.InvalidOperationException">
-                The type is marked with <see cref="T:FluentMvvm.SuppressFieldGenerationAttribute" />.
-                This method cannot be used when field generation is suppressed.
-            </exception>
+        <member name="M:FluentMvvm.EmptyFluentAction.WasUpdated">
+            <inheritdoc />
         </member>
-        <member name="M:FluentMvvm.Emit.IBackingFieldProvider.Set(System.SByte,System.String)">
-            <summary>
-                Sets the value of the specified field to <paramref name="value" /> and returns <c>true</c> if the new value was
-                different from the old value.
-            </summary>
-            <param name="value">The value to set the field to.</param>
-            <param name="propertyName">The name of the backing field, which is the same as the name of the property it backs.</param>
-            <returns></returns>
-            <exception cref="T:System.ArgumentException">
-                No public writable instance property named <paramref name="propertyName" /> could
-                be found -or- <paramref name="propertyName" /> is empty or consists only of white-space characters.
-            </exception>
-            <exception cref="T:System.InvalidOperationException">
-                The type is marked with <see cref="T:FluentMvvm.SuppressFieldGenerationAttribute" />.
-                This method cannot be used when field generation is suppressed.
-            </exception>
+        <member name="M:FluentMvvm.EmptyFluentAction.Set``1(``0,System.String)">
+            <inheritdoc />
         </member>
-        <member name="M:FluentMvvm.Emit.IBackingFieldProvider.Set(System.Char,System.String)">
-            <summary>
-                Sets the value of the specified field to <paramref name="value" /> and returns <c>true</c> if the new value was
-                different from the old value.
-            </summary>
-            <param name="value">The value to set the field to.</param>
-            <param name="propertyName">The name of the backing field, which is the same as the name of the property it backs.</param>
-            <returns></returns>
-            <exception cref="T:System.ArgumentException">
-                No public writable instance property named <paramref name="propertyName" /> could
-                be found -or- <paramref name="propertyName" /> is empty or consists only of white-space characters.
-            </exception>
-            <exception cref="T:System.InvalidOperationException">
-                The type is marked with <see cref="T:FluentMvvm.SuppressFieldGenerationAttribute" />.
-                This method cannot be used when field generation is suppressed.
-            </exception>
+        <member name="M:FluentMvvm.EmptyFluentAction.Set(System.Boolean,System.String)">
+            <inheritdoc />
         </member>
-        <member name="M:FluentMvvm.Emit.IBackingFieldProvider.Set(System.Double,System.String)">
-            <summary>
-                Sets the value of the specified field to <paramref name="value" /> and returns <c>true</c> if the new value was
-                different from the old value.
-            </summary>
-            <param name="value">The value to set the field to.</param>
-            <param name="propertyName">The name of the backing field, which is the same as the name of the property it backs.</param>
-            <returns></returns>
-            <exception cref="T:System.ArgumentException">
-                No public writable instance property named <paramref name="propertyName" /> could
-                be found -or- <paramref name="propertyName" /> is empty or consists only of white-space characters.
-            </exception>
-            <exception cref="T:System.InvalidOperationException">
-                The type is marked with <see cref="T:FluentMvvm.SuppressFieldGenerationAttribute" />.
-                This method cannot be used when field generation is suppressed.
-            </exception>
+        <member name="M:FluentMvvm.EmptyFluentAction.Set(System.Byte,System.String)">
+            <inheritdoc />
         </member>
-        <member name="M:FluentMvvm.Emit.IBackingFieldProvider.Set(System.Single,System.String)">
-            <summary>
-                Sets the value of the specified field to <paramref name="value" /> and returns <c>true</c> if the new value was
-                different from the old value.
-            </summary>
-            <param name="value">The value to set the field to.</param>
-            <param name="propertyName">The name of the backing field, which is the same as the name of the property it backs.</param>
-            <returns></returns>
-            <exception cref="T:System.ArgumentException">
-                No public writable instance property named <paramref name="propertyName" /> could
-                be found -or- <paramref name="propertyName" /> is empty or consists only of white-space characters.
-            </exception>
-            <exception cref="T:System.InvalidOperationException">
-                The type is marked with <see cref="T:FluentMvvm.SuppressFieldGenerationAttribute" />.
-                This method cannot be used when field generation is suppressed.
-            </exception>
+        <member name="M:FluentMvvm.EmptyFluentAction.Set(System.SByte,System.String)">
+            <inheritdoc />
         </member>
-        <member name="M:FluentMvvm.Emit.IBackingFieldProvider.Set(System.Int16,System.String)">
-            <summary>
-                Sets the value of the specified field to <paramref name="value" /> and returns <c>true</c> if the new value was
-                different from the old value.
-            </summary>
-            <param name="value">The value to set the field to.</param>
-            <param name="propertyName">The name of the backing field, which is the same as the name of the property it backs.</param>
-            <returns></returns>
-            <exception cref="T:System.ArgumentException">
-                No public writable instance property named <paramref name="propertyName" /> could
-                be found -or- <paramref name="propertyName" /> is empty or consists only of white-space characters.
-            </exception>
-            <exception cref="T:System.InvalidOperationException">
-                The type is marked with <see cref="T:FluentMvvm.SuppressFieldGenerationAttribute" />.
-                This method cannot be used when field generation is suppressed.
-            </exception>
+        <member name="M:FluentMvvm.EmptyFluentAction.Set(System.Char,System.String)">
+            <inheritdoc />
         </member>
-        <member name="M:FluentMvvm.Emit.IBackingFieldProvider.Set(System.UInt16,System.String)">
-            <summary>
-                Sets the value of the specified field to <paramref name="value" /> and returns <c>true</c> if the new value was
-                different from the old value.
-            </summary>
-            <param name="value">The value to set the field to.</param>
-            <param name="propertyName">The name of the backing field, which is the same as the name of the property it backs.</param>
-            <returns></returns>
-            <exception cref="T:System.ArgumentException">
-                No public writable instance property named <paramref name="propertyName" /> could
-                be found -or- <paramref name="propertyName" /> is empty or consists only of white-space characters.
-            </exception>
-            <exception cref="T:System.InvalidOperationException">
-                The type is marked with <see cref="T:FluentMvvm.SuppressFieldGenerationAttribute" />.
-                This method cannot be used when field generation is suppressed.
-            </exception>
+        <member name="M:FluentMvvm.EmptyFluentAction.Set(System.Decimal,System.String)">
+            <inheritdoc />
         </member>
-        <member name="M:FluentMvvm.Emit.IBackingFieldProvider.Set(System.Int32,System.String)">
-            <summary>
-                Sets the value of the specified field to <paramref name="value" /> and returns <c>true</c> if the new value was
-                different from the old value.
-            </summary>
-            <param name="value">The value to set the field to.</param>
-            <param name="propertyName">The name of the backing field, which is the same as the name of the property it backs.</param>
-            <returns></returns>
-            <exception cref="T:System.ArgumentException">
-                No public writable instance property named <paramref name="propertyName" /> could
-                be found -or- <paramref name="propertyName" /> is empty or consists only of white-space characters.
-            </exception>
-            <exception cref="T:System.InvalidOperationException">
-                The type is marked with <see cref="T:FluentMvvm.SuppressFieldGenerationAttribute" />.
-                This method cannot be used when field generation is suppressed.
-            </exception>
+        <member name="M:FluentMvvm.EmptyFluentAction.Set(System.Double,System.String)">
+            <inheritdoc />
         </member>
-        <member name="M:FluentMvvm.Emit.IBackingFieldProvider.Set(System.UInt32,System.String)">
-            <summary>
-                Sets the value of the specified field to <paramref name="value" /> and returns <c>true</c> if the new value was
-                different from the old value.
-            </summary>
-            <param name="value">The value to set the field to.</param>
-            <param name="propertyName">The name of the backing field, which is the same as the name of the property it backs.</param>
-            <returns></returns>
-            <exception cref="T:System.ArgumentException">
-                No public writable instance property named <paramref name="propertyName" /> could
-                be found -or- <paramref name="propertyName" /> is empty or consists only of white-space characters.
-            </exception>
-            <exception cref="T:System.InvalidOperationException">
-                The type is marked with <see cref="T:FluentMvvm.SuppressFieldGenerationAttribute" />.
-                This method cannot be used when field generation is suppressed.
-            </exception>
+        <member name="M:FluentMvvm.EmptyFluentAction.Set(System.Single,System.String)">
+            <inheritdoc />
         </member>
-        <member name="M:FluentMvvm.Emit.IBackingFieldProvider.Set(System.Int64,System.String)">
-            <summary>
-                Sets the value of the specified field to <paramref name="value" /> and returns <c>true</c> if the new value was
-                different from the old value.
-            </summary>
-            <param name="value">The value to set the field to.</param>
-            <param name="propertyName">The name of the backing field, which is the same as the name of the property it backs.</param>
-            <returns></returns>
-            <exception cref="T:System.ArgumentException">
-                No public writable instance property named <paramref name="propertyName" /> could
-                be found -or- <paramref name="propertyName" /> is empty or consists only of white-space characters.
-            </exception>
-            <exception cref="T:System.InvalidOperationException">
-                The type is marked with <see cref="T:FluentMvvm.SuppressFieldGenerationAttribute" />.
-                This method cannot be used when field generation is suppressed.
-            </exception>
+        <member name="M:FluentMvvm.EmptyFluentAction.Set(System.Int16,System.String)">
+            <inheritdoc />
         </member>
-        <member name="M:FluentMvvm.Emit.IBackingFieldProvider.Set(System.UInt64,System.String)">
-            <summary>
-                Sets the value of the specified field to <paramref name="value" /> and returns <c>true</c> if the new value was
-                different from the old value.
-            </summary>
-            <param name="value">The value to set the field to.</param>
-            <param name="propertyName">The name of the backing field, which is the same as the name of the property it backs.</param>
-            <returns></returns>
-            <exception cref="T:System.ArgumentException">
-                No public writable instance property named <paramref name="propertyName" /> could
-                be found -or- <paramref name="propertyName" /> is empty or consists only of white-space characters.
-            </exception>
-            <exception cref="T:System.InvalidOperationException">
-                The type is marked with <see cref="T:FluentMvvm.SuppressFieldGenerationAttribute" />.
-                This method cannot be used when field generation is suppressed.
-            </exception>
+        <member name="M:FluentMvvm.EmptyFluentAction.Set(System.UInt16,System.String)">
+            <inheritdoc />
         </member>
-        <member name="M:FluentMvvm.Emit.IBackingFieldProvider.Set(System.String,System.String)">
-            <summary>
-                Sets the value of the specified field to <paramref name="value" /> and returns <c>true</c> if the new value was
-                different from the old value.
-            </summary>
-            <param name="value">The value to set the field to.</param>
-            <param name="propertyName">The name of the backing field, which is the same as the name of the property it backs.</param>
-            <returns></returns>
-            <exception cref="T:System.ArgumentException">
-                No public writable instance property named <paramref name="propertyName" /> could
-                be found -or- <paramref name="propertyName" /> is empty or consists only of white-space characters.
-            </exception>
-            <exception cref="T:System.InvalidOperationException">
-                The type is marked with <see cref="T:FluentMvvm.SuppressFieldGenerationAttribute" />.
-                This method cannot be used when field generation is suppressed.
-            </exception>
+        <member name="M:FluentMvvm.EmptyFluentAction.Set(System.Int32,System.String)">
+            <inheritdoc />
         </member>
-        <member name="M:FluentMvvm.Emit.IBackingFieldProvider.Set(System.Decimal,System.String)">
-            <summary>
-                Sets the value of the specified field to <paramref name="value" /> and returns <c>true</c> if the new value was
-                different from the old value.
-            </summary>
-            <param name="value">The value to set the field to.</param>
-            <param name="propertyName">The name of the backing field, which is the same as the name of the property it backs.</param>
-            <returns></returns>
-            <exception cref="T:System.ArgumentException">
-                No public writable instance property named <paramref name="propertyName" /> could
-                be found -or- <paramref name="propertyName" /> is empty or consists only of white-space characters.
-            </exception>
-            <exception cref="T:System.InvalidOperationException">
-                The type is marked with <see cref="T:FluentMvvm.SuppressFieldGenerationAttribute" />.
-                This method cannot be used when field generation is suppressed.
-            </exception>
+        <member name="M:FluentMvvm.EmptyFluentAction.Set(System.UInt32,System.String)">
+            <inheritdoc />
         </member>
-        <member name="M:FluentMvvm.Emit.IBackingFieldProvider.Set(System.DateTime,System.String)">
-            <summary>
-                Sets the value of the specified field to <paramref name="value" /> and returns <c>true</c> if the new value was
-                different from the old value.
-            </summary>
-            <param name="value">The value to set the field to.</param>
-            <param name="propertyName">The name of the backing field, which is the same as the name of the property it backs.</param>
-            <returns></returns>
-            <exception cref="T:System.ArgumentException">
-                No public writable instance property named <paramref name="propertyName" /> could
-                be found -or- <paramref name="propertyName" /> is empty or consists only of white-space characters.
-            </exception>
-            <exception cref="T:System.InvalidOperationException">
-                The type is marked with <see cref="T:FluentMvvm.SuppressFieldGenerationAttribute" />.
-                This method cannot be used when field generation is suppressed.
-            </exception>
+        <member name="M:FluentMvvm.EmptyFluentAction.Set(System.Int64,System.String)">
+            <inheritdoc />
         </member>
-        <member name="T:FluentMvvm.Emit.ILGeneratorExtensions">
-            <summary>
-                Provides extension methods for <see cref="T:System.Reflection.Emit.ILGenerator" />.
-            </summary>
+        <member name="M:FluentMvvm.EmptyFluentAction.Set(System.UInt64,System.String)">
+            <inheritdoc />
         </member>
-        <member name="M:FluentMvvm.Emit.ILGeneratorExtensions.EmitLoadValue(System.Reflection.Emit.ILGenerator,System.Object)">
-            <summary>
-                Puts the correct instruction to load the specified <paramref name="value" /> on the instruction stream.
-            </summary>
-            <param name="ilGenerator">The <see cref="T:System.Reflection.Emit.ILGenerator" />.</param>
-            <param name="value">The value to load.</param>
-            <exception cref="T:System.ArgumentNullException"><paramref name="value" /> is null.</exception>
-            <exception cref="T:System.InvalidOperationException">
-                <paramref name="value" /> is <see cref="T:System.Decimal" />, a class other than
-                string or a struct other than inbuilt primary types.
-            </exception>
+        <member name="M:FluentMvvm.EmptyFluentAction.Set(System.DateTime,System.String)">
+            <inheritdoc />
         </member>
-        <member name="T:FluentMvvm.Emit.MethodInfoCache">
-            <summary>
-                Caches frequently used <see cref="T:System.Reflection.MethodInfo" />s so that they are not retrieved every time.
-            </summary>
+        <member name="M:FluentMvvm.EmptyFluentAction.Set(System.String,System.String)">
+            <inheritdoc />
         </member>
-        <member name="F:FluentMvvm.Emit.MethodInfoCache.GetGeneric">
-            <summary>
-                The generic <see cref="M:FluentMvvm.Fluent.IPropertyGetExpression.Get``1(System.String)" /> method.
-            </summary>
-        </member>
-        <member name="F:FluentMvvm.Emit.MethodInfoCache.GetBool">
-            <summary>
-                The non-generic <see cref="M:FluentMvvm.Fluent.IPropertyGetExpression.GetBool(System.String)" /> method.
-            </summary>
-        </member>
-        <member name="F:FluentMvvm.Emit.MethodInfoCache.GetByte">
-            <summary>
-                The non-generic <see cref="M:FluentMvvm.Fluent.IPropertyGetExpression.GetByte(System.String)" /> method.
-            </summary>
-        </member>
-        <member name="F:FluentMvvm.Emit.MethodInfoCache.GetSByte">
-            <summary>
-                The non-generic <see cref="M:FluentMvvm.Fluent.IPropertyGetExpression.GetSByte(System.String)" /> method.
-            </summary>
-        </member>
-        <member name="F:FluentMvvm.Emit.MethodInfoCache.GetChar">
-            <summary>
-                The non-generic <see cref="M:FluentMvvm.Fluent.IPropertyGetExpression.GetChar(System.String)" /> method.
-            </summary>
-        </member>
-        <member name="F:FluentMvvm.Emit.MethodInfoCache.GetDecimal">
-            <summary>
-                The non-generic <see cref="M:FluentMvvm.Fluent.IPropertyGetExpression.GetDecimal(System.String)" /> method.
-            </summary>
-        </member>
-        <member name="F:FluentMvvm.Emit.MethodInfoCache.GetDouble">
-            <summary>
-                The non-generic <see cref="M:FluentMvvm.Fluent.IPropertyGetExpression.GetDouble(System.String)" /> method.
-            </summary>
-        </member>
-        <member name="F:FluentMvvm.Emit.MethodInfoCache.GetFloat">
-            <summary>
-                The non-generic <see cref="M:FluentMvvm.Fluent.IPropertyGetExpression.GetFloat(System.String)" /> method.
-            </summary>
-        </member>
-        <member name="F:FluentMvvm.Emit.MethodInfoCache.GetInt16">
-            <summary>
-                The non-generic <see cref="M:FluentMvvm.Fluent.IPropertyGetExpression.GetInt16(System.String)" /> method.
-            </summary>
-        </member>
-        <member name="F:FluentMvvm.Emit.MethodInfoCache.GetUInt16">
-            <summary>
-                The non-generic <see cref="M:FluentMvvm.Fluent.IPropertyGetExpression.GetUInt16(System.String)" /> method.
-            </summary>
-        </member>
-        <member name="F:FluentMvvm.Emit.MethodInfoCache.GetInt32">
-            <summary>
-                The non-generic <see cref="M:FluentMvvm.Fluent.IPropertyGetExpression.GetInt32(System.String)" /> method.
-            </summary>
-        </member>
-        <member name="F:FluentMvvm.Emit.MethodInfoCache.GetUInt32">
-            <summary>
-                The non-generic <see cref="M:FluentMvvm.Fluent.IPropertyGetExpression.GetUInt32(System.String)" /> method.
-            </summary>
-        </member>
-        <member name="F:FluentMvvm.Emit.MethodInfoCache.GetInt64">
-            <summary>
-                The non-generic <see cref="M:FluentMvvm.Fluent.IPropertyGetExpression.GetInt64(System.String)" /> method.
-            </summary>
-        </member>
-        <member name="F:FluentMvvm.Emit.MethodInfoCache.GetUInt64">
-            <summary>
-                The non-generic <see cref="M:FluentMvvm.Fluent.IPropertyGetExpression.GetUInt64(System.String)" /> method.
-            </summary>
-        </member>
-        <member name="F:FluentMvvm.Emit.MethodInfoCache.GetString">
-            <summary>
-                The non-generic <see cref="M:FluentMvvm.Fluent.IPropertyGetExpression.GetString(System.String)" /> method.
-            </summary>
-        </member>
-        <member name="F:FluentMvvm.Emit.MethodInfoCache.GetDateTime">
-            <summary>
-                The non-generic <see cref="M:FluentMvvm.Fluent.IPropertyGetExpression.GetDateTime(System.String)" /> method.
-            </summary>
-        </member>
-        <member name="F:FluentMvvm.Emit.MethodInfoCache.SetGeneric">
-            <summary>
-                The generic <see cref="M:FluentMvvm.Fluent.IPropertySetExpression.Set``1(``0,System.String)" /> method.
-            </summary>
-        </member>
-        <member name="F:FluentMvvm.Emit.MethodInfoCache.SetBool">
-            <summary>
-                The non-generic <see cref="M:FluentMvvm.Fluent.IPropertySetExpression.Set(System.Boolean,System.String)" /> method.
-            </summary>
-        </member>
-        <member name="F:FluentMvvm.Emit.MethodInfoCache.SetByte">
-            <summary>
-                The non-generic <see cref="M:FluentMvvm.Fluent.IPropertySetExpression.Set(System.Byte,System.String)" /> method.
-            </summary>
-        </member>
-        <member name="F:FluentMvvm.Emit.MethodInfoCache.SetSByte">
-            <summary>
-                The non-generic <see cref="M:FluentMvvm.Fluent.IPropertySetExpression.Set(System.SByte,System.String)" /> method.
-            </summary>
-        </member>
-        <member name="F:FluentMvvm.Emit.MethodInfoCache.SetChar">
-            <summary>
-                The non-generic <see cref="M:FluentMvvm.Fluent.IPropertySetExpression.Set(System.Char,System.String)" /> method.
-            </summary>
-        </member>
-        <member name="F:FluentMvvm.Emit.MethodInfoCache.SetDecimal">
-            <summary>
-                The non-generic <see cref="M:FluentMvvm.Fluent.IPropertySetExpression.Set(System.Decimal,System.String)" /> method.
-            </summary>
-        </member>
-        <member name="F:FluentMvvm.Emit.MethodInfoCache.SetDouble">
-            <summary>
-                The non-generic <see cref="M:FluentMvvm.Fluent.IPropertySetExpression.Set(System.Double,System.String)" /> method.
-            </summary>
-        </member>
-        <member name="F:FluentMvvm.Emit.MethodInfoCache.SetFloat">
-            <summary>
-                The non-generic <see cref="M:FluentMvvm.Fluent.IPropertySetExpression.Set(System.Single,System.String)" /> method.
-            </summary>
-        </member>
-        <member name="F:FluentMvvm.Emit.MethodInfoCache.SetInt16">
-            <summary>
-                The non-generic <see cref="M:FluentMvvm.Fluent.IPropertySetExpression.Set(System.Int16,System.String)" /> method.
-            </summary>
-        </member>
-        <member name="F:FluentMvvm.Emit.MethodInfoCache.SetUInt16">
-            <summary>
-                The non-generic <see cref="M:FluentMvvm.Fluent.IPropertySetExpression.Set(System.UInt16,System.String)" /> method.
-            </summary>
-        </member>
-        <member name="F:FluentMvvm.Emit.MethodInfoCache.SetInt32">
-            <summary>
-                The non-generic <see cref="M:FluentMvvm.Fluent.IPropertySetExpression.Set(System.Int32,System.String)" /> method.
-            </summary>
-        </member>
-        <member name="F:FluentMvvm.Emit.MethodInfoCache.SetUInt32">
-            <summary>
-                The non-generic <see cref="M:FluentMvvm.Fluent.IPropertySetExpression.Set(System.UInt32,System.String)" /> method.
-            </summary>
-        </member>
-        <member name="F:FluentMvvm.Emit.MethodInfoCache.SetInt64">
-            <summary>
-                The non-generic <see cref="M:FluentMvvm.Fluent.IPropertySetExpression.Set(System.Int64,System.String)" /> method.
-            </summary>
-        </member>
-        <member name="F:FluentMvvm.Emit.MethodInfoCache.SetUInt64">
-            <summary>
-                The non-generic <see cref="M:FluentMvvm.Fluent.IPropertySetExpression.Set(System.UInt64,System.String)" /> method.
-            </summary>
-        </member>
-        <member name="F:FluentMvvm.Emit.MethodInfoCache.SetString">
-            <summary>
-                The non-generic <see cref="M:FluentMvvm.Fluent.IPropertySetExpression.Set(System.String,System.String)" /> method.
-            </summary>
-        </member>
-        <member name="F:FluentMvvm.Emit.MethodInfoCache.SetDateTime">
-            <summary>
-                The non-generic <see cref="M:FluentMvvm.Fluent.IPropertySetExpression.Set(System.DateTime,System.String)" /> method.
-            </summary>
-        </member>
-        <member name="F:FluentMvvm.Emit.MethodInfoCache.StringOpEquality">
-            <summary>
-                The operator <see cref="M:System.String.op_Equality(System.String,System.String)" />.
-            </summary>
-        </member>
-        <member name="F:FluentMvvm.Emit.MethodInfoCache.StringIsNullOrWhiteSpace">
-            <summary>
-                The <see cref="M:System.String.IsNullOrWhiteSpace(System.String)" /> method.
-            </summary>
-        </member>
-        <member name="F:FluentMvvm.Emit.MethodInfoCache.StringConcat3">
-            <summary>
-                The <see cref="M:System.String.Concat(System.String,System.String,System.String)" /> overload taking 3 string parameters.
-            </summary>
-        </member>
-        <member name="F:FluentMvvm.Emit.MethodInfoCache.StringFormat2">
-            <summary>
-                The <see cref="M:System.String.Format(System.String,System.Object)" /> overload taking 2 parameters in total.
-            </summary>
-        </member>
-        <member name="F:FluentMvvm.Emit.MethodInfoCache.ObjectEquals1">
-            <summary>
-                The <see cref="M:System.Object.Equals(System.Object)" /> overload taking 1 parameter.
-            </summary>
-        </member>
-        <member name="F:FluentMvvm.Emit.MethodInfoCache.ObjectEquals2">
-            <summary>
-                The <see cref="M:System.Object.Equals(System.Object)" /> overload taking 2 parameters.
-            </summary>
-        </member>
-        <member name="F:FluentMvvm.Emit.MethodInfoCache.GetTypeFromHandle">
-            <summary>
-                The <see cref="M:System.Type.GetTypeFromHandle(System.RuntimeTypeHandle)" /> method.
-            </summary>
+        <member name="M:FluentMvvm.EmptyFluentAction.Set``1(``0,``0@,System.String)">
+            <inheritdoc />
         </member>
         <member name="T:FluentMvvm.FluentViewModelBase">
             <summary>
-                A base class for ViewModels implementing <see cref="T:System.ComponentModel.INotifyPropertyChanged" /> and providing a fluent API for
+                A base class for view models implementing <see cref="T:System.ComponentModel.INotifyPropertyChanged" /> and providing a fluent API for
                 property setters.
             </summary>
-            <seealso cref="T:FluentMvvm.Fluent.IPropertyGetExpression" />
-            <seealso cref="T:FluentMvvm.Fluent.IPropertySetExpression" />
-            <seealso cref="T:FluentMvvm.Fluent.IConditionalExpression" />
-            <seealso cref="T:FluentMvvm.Fluent.IDependencyExpression" />
             <seealso cref="T:System.ComponentModel.INotifyPropertyChanged" />
-            <seealso cref="T:FluentMvvm.Fluent.IPropertyGetExpression" />
-            <seealso cref="T:FluentMvvm.Fluent.IPropertySetExpression" />
-            <seealso cref="T:FluentMvvm.Fluent.IConditionalExpression" />
-            <seealso cref="T:FluentMvvm.Fluent.IDependencyExpression" />
-            <seealso cref="T:System.ComponentModel.INotifyPropertyChanged" />
-            <inheritdoc cref="T:FluentMvvm.Fluent.IPropertyGetExpression" />
-            <inheritdoc cref="T:FluentMvvm.Fluent.IPropertyGetExpression" />
-            <inheritdoc cref="T:FluentMvvm.Fluent.IConditionalExpression" />
-            <inheritdoc cref="T:FluentMvvm.Fluent.IDependencyExpression" />
         </member>
-        <member name="F:FluentMvvm.FluentViewModelBase.backingFields">
-            <summary>The dynamically generated type containing the backing fields for the concrete view model.</summary>
-        </member>
-        <member name="M:FluentMvvm.FluentViewModelBase.#ctor">
+        <member name="M:FluentMvvm.FluentViewModelBase.#ctor(System.Boolean)">
             <summary>
-                Initializes a new instance of the <see cref="T:FluentMvvm.FluentViewModelBase" /> class.
+            Initializes a new instance of the <see cref="T:FluentMvvm.FluentViewModelBase"/> class.
             </summary>
+            <param name="createBackingFields">Must be set to <c>true</c> in order to use the <c>Get</c> and <c>Set</c> methods.</param>
         </member>
-        <member name="M:FluentMvvm.FluentViewModelBase.#ctor(FluentMvvm.Emit.IBackingFieldProvider)">
+        <member name="M:FluentMvvm.FluentViewModelBase.Get``1(System.String)">
             <summary>
-                Initializes a new instance of the <see cref="T:FluentMvvm.FluentViewModelBase" /> class with a (possibly stubbed) instance of an
-                <see cref="T:FluentMvvm.Emit.IBackingFieldProvider" />.
+                Gets the value of the specified property.
             </summary>
-            <param name="backingFieldProvider">The backing field provider.</param>
+            <param name="propertyName">
+                The name of the property. Filled in by the compiler automatically, do not specify explicitly.
+            </param>
+            <returns>
+                The value of the property.
+            </returns>
+            <exception cref="T:System.ArgumentException">
+                no public writable instance property named <paramref name="propertyName" /> could be found -or- <paramref name="propertyName" /> is empty or consists only of white-space characters.
+            </exception>
+            <exception cref="T:System.InvalidOperationException">
+                there are no backing fields of type <typeparamref name="T" />.
+            </exception>
+        </member>
+        <member name="M:FluentMvvm.FluentViewModelBase.GetBoolean(System.String)">
+            <summary>
+                Gets the value of the specified property.
+            </summary>
+            <param name="propertyName">
+                The name of the property. Filled in by the compiler automatically, do not specify explicitly.
+            </param>
+            <returns>
+                The value of the property.
+            </returns>
+            <exception cref="T:System.ArgumentException">
+                no public writable instance property named <paramref name="propertyName" /> could be found -or- <paramref name="propertyName" /> is empty or consists only of white-space characters.
+            </exception>
+            <exception cref="T:System.InvalidOperationException">
+                there are no backing fields of type <see cref="T:System.Boolean" />.
+            </exception>
+        </member>
+        <member name="M:FluentMvvm.FluentViewModelBase.GetByte(System.String)">
+            <summary>
+                Gets the value of the specified property.
+            </summary>
+            <param name="propertyName">
+                The name of the property. Filled in by the compiler automatically, do not specify explicitly.
+            </param>
+            <returns>
+                The value of the property.
+            </returns>
+            <exception cref="T:System.ArgumentException">
+                no public writable instance property named <paramref name="propertyName" /> could be found -or- <paramref name="propertyName" /> is empty or consists only of white-space characters.
+            </exception>
+            <exception cref="T:System.InvalidOperationException">
+                there are no backing fields of type <see cref="T:System.Byte" />.
+            </exception>
+        </member>
+        <member name="M:FluentMvvm.FluentViewModelBase.GetSByte(System.String)">
+            <summary>
+                Gets the value of the specified property.
+            </summary>
+            <param name="propertyName">
+                The name of the property. Filled in by the compiler automatically, do not specify explicitly.
+            </param>
+            <returns>
+                The value of the property.
+            </returns>
+            <exception cref="T:System.ArgumentException">
+                no public writable instance property named <paramref name="propertyName" /> could be found -or- <paramref name="propertyName" /> is empty or consists only of white-space characters.
+            </exception>
+            <exception cref="T:System.InvalidOperationException">
+                there are no backing fields of type <see cref="T:System.SByte" />.
+            </exception>
+        </member>
+        <member name="M:FluentMvvm.FluentViewModelBase.GetChar(System.String)">
+            <summary>
+                Gets the value of the specified property.
+            </summary>
+            <param name="propertyName">
+                The name of the property. Filled in by the compiler automatically, do not specify explicitly.
+            </param>
+            <returns>
+                The value of the property.
+            </returns>
+            <exception cref="T:System.ArgumentException">
+                no public writable instance property named <paramref name="propertyName" /> could be found -or- <paramref name="propertyName" /> is empty or consists only of white-space characters.
+            </exception>
+            <exception cref="T:System.InvalidOperationException">
+                there are no backing fields of type <see cref="T:System.Char" />.
+            </exception>
+        </member>
+        <member name="M:FluentMvvm.FluentViewModelBase.GetDecimal(System.String)">
+            <summary>
+                Gets the value of the specified property.
+            </summary>
+            <param name="propertyName">
+                The name of the property. Filled in by the compiler automatically, do not specify explicitly.
+            </param>
+            <returns>
+                The value of the property.
+            </returns>
+            <exception cref="T:System.ArgumentException">
+                no public writable instance property named <paramref name="propertyName" /> could be found -or- <paramref name="propertyName" /> is empty or consists only of white-space characters.
+            </exception>
+            <exception cref="T:System.InvalidOperationException">
+                there are no backing fields of type <see cref="T:System.Decimal" />.
+            </exception>
+        </member>
+        <member name="M:FluentMvvm.FluentViewModelBase.GetDouble(System.String)">
+            <summary>
+                Gets the value of the specified property.
+            </summary>
+            <param name="propertyName">
+                The name of the property. Filled in by the compiler automatically, do not specify explicitly.
+            </param>
+            <returns>
+                The value of the property.
+            </returns>
+            <exception cref="T:System.ArgumentException">
+                no public writable instance property named <paramref name="propertyName" /> could be found -or- <paramref name="propertyName" /> is empty or consists only of white-space characters.
+            </exception>
+            <exception cref="T:System.InvalidOperationException">
+                there are no backing fields of type <see cref="T:System.Double" />.
+            </exception>
+        </member>
+        <member name="M:FluentMvvm.FluentViewModelBase.GetSingle(System.String)">
+            <summary>
+                Gets the value of the specified property.
+            </summary>
+            <param name="propertyName">
+                The name of the property. Filled in by the compiler automatically, do not specify explicitly.
+            </param>
+            <returns>
+                The value of the property.
+            </returns>
+            <exception cref="T:System.ArgumentException">
+                no public writable instance property named <paramref name="propertyName" /> could be found -or- <paramref name="propertyName" /> is empty or consists only of white-space characters.
+            </exception>
+            <exception cref="T:System.InvalidOperationException">
+                there are no backing fields of type <see cref="T:System.Single" />.
+            </exception>
+        </member>
+        <member name="M:FluentMvvm.FluentViewModelBase.GetInt16(System.String)">
+            <summary>
+                Gets the value of the specified property.
+            </summary>
+            <param name="propertyName">
+                The name of the property. Filled in by the compiler automatically, do not specify explicitly.
+            </param>
+            <returns>
+                The value of the property.
+            </returns>
+            <exception cref="T:System.ArgumentException">
+                no public writable instance property named <paramref name="propertyName" /> could be found -or- <paramref name="propertyName" /> is empty or consists only of white-space characters.
+            </exception>
+            <exception cref="T:System.InvalidOperationException">
+                there are no backing fields of type <see cref="T:System.Int16" />.
+            </exception>
+        </member>
+        <member name="M:FluentMvvm.FluentViewModelBase.GetUInt16(System.String)">
+            <summary>
+                Gets the value of the specified property.
+            </summary>
+            <param name="propertyName">
+                The name of the property. Filled in by the compiler automatically, do not specify explicitly.
+            </param>
+            <returns>
+                The value of the property.
+            </returns>
+            <exception cref="T:System.ArgumentException">
+                no public writable instance property named <paramref name="propertyName" /> could be found -or- <paramref name="propertyName" /> is empty or consists only of white-space characters.
+            </exception>
+            <exception cref="T:System.InvalidOperationException">
+                there are no backing fields of type <see cref="T:System.UInt16" />.
+            </exception>
+        </member>
+        <member name="M:FluentMvvm.FluentViewModelBase.GetInt32(System.String)">
+            <summary>
+                Gets the value of the specified property.
+            </summary>
+            <param name="propertyName">
+                The name of the property. Filled in by the compiler automatically, do not specify explicitly.
+            </param>
+            <returns>
+                The value of the property.
+            </returns>
+            <exception cref="T:System.ArgumentException">
+                no public writable instance property named <paramref name="propertyName" /> could be found -or- <paramref name="propertyName" /> is empty or consists only of white-space characters.
+            </exception>
+            <exception cref="T:System.InvalidOperationException">
+                there are no backing fields of type <see cref="T:System.Int32" />.
+            </exception>
+        </member>
+        <member name="M:FluentMvvm.FluentViewModelBase.GetUInt32(System.String)">
+            <summary>
+                Gets the value of the specified property.
+            </summary>
+            <param name="propertyName">
+                The name of the property. Filled in by the compiler automatically, do not specify explicitly.
+            </param>
+            <returns>
+                The value of the property.
+            </returns>
+            <exception cref="T:System.ArgumentException">
+                no public writable instance property named <paramref name="propertyName" /> could be found -or- <paramref name="propertyName" /> is empty or consists only of white-space characters.
+            </exception>
+            <exception cref="T:System.InvalidOperationException">
+                there are no backing fields of type <see cref="T:System.UInt32" />.
+            </exception>
+        </member>
+        <member name="M:FluentMvvm.FluentViewModelBase.GetInt64(System.String)">
+            <summary>
+                Gets the value of the specified property.
+            </summary>
+            <param name="propertyName">
+                The name of the property. Filled in by the compiler automatically, do not specify explicitly.
+            </param>
+            <returns>
+                The value of the property.
+            </returns>
+            <exception cref="T:System.ArgumentException">
+                no public writable instance property named <paramref name="propertyName" /> could be found -or- <paramref name="propertyName" /> is empty or consists only of white-space characters.
+            </exception>
+            <exception cref="T:System.InvalidOperationException">
+                there are no backing fields of type <see cref="T:System.Int64" />.
+            </exception>
+        </member>
+        <member name="M:FluentMvvm.FluentViewModelBase.GetUInt64(System.String)">
+            <summary>
+                Gets the value of the specified property.
+            </summary>
+            <param name="propertyName">
+                The name of the property. Filled in by the compiler automatically, do not specify explicitly.
+            </param>
+            <returns>
+                The value of the property.
+            </returns>
+            <exception cref="T:System.ArgumentException">
+                no public writable instance property named <paramref name="propertyName" /> could be found -or- <paramref name="propertyName" /> is empty or consists only of white-space characters.
+            </exception>
+            <exception cref="T:System.InvalidOperationException">
+                there are no backing fields of type <see cref="T:System.UInt64" />.
+            </exception>
+        </member>
+        <member name="M:FluentMvvm.FluentViewModelBase.GetDateTime(System.String)">
+            <summary>
+                Gets the value of the specified property.
+            </summary>
+            <param name="propertyName">
+                The name of the property. Filled in by the compiler automatically, do not specify explicitly.
+            </param>
+            <returns>
+                The value of the property.
+            </returns>
+            <exception cref="T:System.ArgumentException">
+                no public writable instance property named <paramref name="propertyName" /> could be found -or- <paramref name="propertyName" /> is empty or consists only of white-space characters.
+            </exception>
+            <exception cref="T:System.InvalidOperationException">
+                there are no backing fields of type <see cref="T:System.DateTime" />.
+            </exception>
+        </member>
+        <member name="M:FluentMvvm.FluentViewModelBase.GetString(System.String)">
+            <summary>
+                Gets the value of the specified property.
+            </summary>
+            <param name="propertyName">
+                The name of the property. Filled in by the compiler automatically, do not specify explicitly.
+            </param>
+            <returns>
+                The value of the property.
+            </returns>
+            <exception cref="T:System.ArgumentException">
+                no public writable instance property named <paramref name="propertyName" /> could be found -or- <paramref name="propertyName" /> is empty or consists only of white-space characters.
+            </exception>
+            <exception cref="T:System.InvalidOperationException">
+                there are no backing fields of type <see cref="T:System.String" />.
+            </exception>
+        </member>
+        <member name="M:FluentMvvm.FluentViewModelBase.Set``1(``0,System.String)">
+            <summary>
+                Sets the value of the specified property to <paramref name="value" /> and raises a
+                <see cref="E:System.ComponentModel.INotifyPropertyChanged.PropertyChanged" /> event if the new value was different from the old value.
+            </summary>
+            <param name="value">The value to set the property to.</param>
+            <param name="propertyName">
+                The name of the property. Filled in by the compiler automatically, do not specify explicitly.
+            </param>
+            <returns></returns>
+            <exception cref="T:System.ArgumentException">
+                no public writable instance property named <paramref name="propertyName" /> could be found -or- <paramref name="propertyName" /> is empty or consists only of white-space characters.
+            </exception>
+            <exception cref="T:System.InvalidOperationException">
+                there are no backing fields of type <typeparamref name="T" />.
+            </exception>
+        </member>
+        <member name="M:FluentMvvm.FluentViewModelBase.Set(System.Boolean,System.String)">
+            <summary>
+                Sets the value of the specified property to <paramref name="value" /> and raises a
+                <see cref="E:System.ComponentModel.INotifyPropertyChanged.PropertyChanged" /> event if the new value was different from the old value.
+            </summary>
+            <param name="value">The value to set the property to.</param>
+            <param name="propertyName">
+                The name of the property. Filled in by the compiler automatically, do not specify explicitly.
+            </param>
+            <returns></returns>
+            <exception cref="T:System.ArgumentException">
+                no public writable instance property named <paramref name="propertyName" /> could be found -or- <paramref name="propertyName" /> is empty or consists only of white-space characters.
+            </exception>
+            <exception cref="T:System.InvalidOperationException">
+                there are no backing fields of type <see cref="T:System.Boolean" />.
+            </exception>
+        </member>
+        <member name="M:FluentMvvm.FluentViewModelBase.Set(System.Byte,System.String)">
+            <summary>
+                Sets the value of the specified property to <paramref name="value" /> and raises a
+                <see cref="E:System.ComponentModel.INotifyPropertyChanged.PropertyChanged" /> event if the new value was different from the old value.
+            </summary>
+            <param name="value">The value to set the property to.</param>
+            <param name="propertyName">
+                The name of the property. Filled in by the compiler automatically, do not specify explicitly.
+            </param>
+            <returns></returns>
+            <exception cref="T:System.ArgumentException">
+                no public writable instance property named <paramref name="propertyName" /> could be found -or- <paramref name="propertyName" /> is empty or consists only of white-space characters.
+            </exception>
+            <exception cref="T:System.InvalidOperationException">
+                there are no backing fields of type <see cref="T:System.Byte" />.
+            </exception>
+        </member>
+        <member name="M:FluentMvvm.FluentViewModelBase.Set(System.SByte,System.String)">
+            <summary>
+                Sets the value of the specified property to <paramref name="value" /> and raises a
+                <see cref="E:System.ComponentModel.INotifyPropertyChanged.PropertyChanged" /> event if the new value was different from the old value.
+            </summary>
+            <param name="value">The value to set the property to.</param>
+            <param name="propertyName">
+                The name of the property. Filled in by the compiler automatically, do not specify explicitly.
+            </param>
+            <returns></returns>
+            <exception cref="T:System.ArgumentException">
+                no public writable instance property named <paramref name="propertyName" /> could be found -or- <paramref name="propertyName" /> is empty or consists only of white-space characters.
+            </exception>
+            <exception cref="T:System.InvalidOperationException">
+                there are no backing fields of type <see cref="T:System.SByte" />.
+            </exception>
+        </member>
+        <member name="M:FluentMvvm.FluentViewModelBase.Set(System.Char,System.String)">
+            <summary>
+                Sets the value of the specified property to <paramref name="value" /> and raises a
+                <see cref="E:System.ComponentModel.INotifyPropertyChanged.PropertyChanged" /> event if the new value was different from the old value.
+            </summary>
+            <param name="value">The value to set the property to.</param>
+            <param name="propertyName">
+                The name of the property. Filled in by the compiler automatically, do not specify explicitly.
+            </param>
+            <returns></returns>
+            <exception cref="T:System.ArgumentException">
+                no public writable instance property named <paramref name="propertyName" /> could be found -or- <paramref name="propertyName" /> is empty or consists only of white-space characters.
+            </exception>
+            <exception cref="T:System.InvalidOperationException">
+                there are no backing fields of type <see cref="T:System.Char" />.
+            </exception>
+        </member>
+        <member name="M:FluentMvvm.FluentViewModelBase.Set(System.Decimal,System.String)">
+            <summary>
+                Sets the value of the specified property to <paramref name="value" /> and raises a
+                <see cref="E:System.ComponentModel.INotifyPropertyChanged.PropertyChanged" /> event if the new value was different from the old value.
+            </summary>
+            <param name="value">The value to set the property to.</param>
+            <param name="propertyName">
+                The name of the property. Filled in by the compiler automatically, do not specify explicitly.
+            </param>
+            <returns></returns>
+            <exception cref="T:System.ArgumentException">
+                no public writable instance property named <paramref name="propertyName" /> could be found -or- <paramref name="propertyName" /> is empty or consists only of white-space characters.
+            </exception>
+            <exception cref="T:System.InvalidOperationException">
+                there are no backing fields of type <see cref="T:System.Decimal" />.
+            </exception>
+        </member>
+        <member name="M:FluentMvvm.FluentViewModelBase.Set(System.Double,System.String)">
+            <summary>
+                Sets the value of the specified property to <paramref name="value" /> and raises a
+                <see cref="E:System.ComponentModel.INotifyPropertyChanged.PropertyChanged" /> event if the new value was different from the old value.
+            </summary>
+            <param name="value">The value to set the property to.</param>
+            <param name="propertyName">
+                The name of the property. Filled in by the compiler automatically, do not specify explicitly.
+            </param>
+            <returns></returns>
+            <exception cref="T:System.ArgumentException">
+                no public writable instance property named <paramref name="propertyName" /> could be found -or- <paramref name="propertyName" /> is empty or consists only of white-space characters.
+            </exception>
+            <exception cref="T:System.InvalidOperationException">
+                there are no backing fields of type <see cref="T:System.Double" />.
+            </exception>
+        </member>
+        <member name="M:FluentMvvm.FluentViewModelBase.Set(System.Single,System.String)">
+            <summary>
+                Sets the value of the specified property to <paramref name="value" /> and raises a
+                <see cref="E:System.ComponentModel.INotifyPropertyChanged.PropertyChanged" /> event if the new value was different from the old value.
+            </summary>
+            <param name="value">The value to set the property to.</param>
+            <param name="propertyName">
+                The name of the property. Filled in by the compiler automatically, do not specify explicitly.
+            </param>
+            <returns></returns>
+            <exception cref="T:System.ArgumentException">
+                no public writable instance property named <paramref name="propertyName" /> could be found -or- <paramref name="propertyName" /> is empty or consists only of white-space characters.
+            </exception>
+            <exception cref="T:System.InvalidOperationException">
+                there are no backing fields of type <see cref="T:System.Single" />.
+            </exception>
+        </member>
+        <member name="M:FluentMvvm.FluentViewModelBase.Set(System.Int16,System.String)">
+            <summary>
+                Sets the value of the specified property to <paramref name="value" /> and raises a
+                <see cref="E:System.ComponentModel.INotifyPropertyChanged.PropertyChanged" /> event if the new value was different from the old value.
+            </summary>
+            <param name="value">The value to set the property to.</param>
+            <param name="propertyName">
+                The name of the property. Filled in by the compiler automatically, do not specify explicitly.
+            </param>
+            <returns></returns>
+            <exception cref="T:System.ArgumentException">
+                no public writable instance property named <paramref name="propertyName" /> could be found -or- <paramref name="propertyName" /> is empty or consists only of white-space characters.
+            </exception>
+            <exception cref="T:System.InvalidOperationException">
+                there are no backing fields of type <see cref="T:System.Int16" />.
+            </exception>
+        </member>
+        <member name="M:FluentMvvm.FluentViewModelBase.Set(System.UInt16,System.String)">
+            <summary>
+                Sets the value of the specified property to <paramref name="value" /> and raises a
+                <see cref="E:System.ComponentModel.INotifyPropertyChanged.PropertyChanged" /> event if the new value was different from the old value.
+            </summary>
+            <param name="value">The value to set the property to.</param>
+            <param name="propertyName">
+                The name of the property. Filled in by the compiler automatically, do not specify explicitly.
+            </param>
+            <returns></returns>
+            <exception cref="T:System.ArgumentException">
+                no public writable instance property named <paramref name="propertyName" /> could be found -or- <paramref name="propertyName" /> is empty or consists only of white-space characters.
+            </exception>
+            <exception cref="T:System.InvalidOperationException">
+                there are no backing fields of type <see cref="T:System.UInt16" />.
+            </exception>
+        </member>
+        <member name="M:FluentMvvm.FluentViewModelBase.Set(System.Int32,System.String)">
+            <summary>
+                Sets the value of the specified property to <paramref name="value" /> and raises a
+                <see cref="E:System.ComponentModel.INotifyPropertyChanged.PropertyChanged" /> event if the new value was different from the old value.
+            </summary>
+            <param name="value">The value to set the property to.</param>
+            <param name="propertyName">
+                The name of the property. Filled in by the compiler automatically, do not specify explicitly.
+            </param>
+            <returns></returns>
+            <exception cref="T:System.ArgumentException">
+                no public writable instance property named <paramref name="propertyName" /> could be found -or- <paramref name="propertyName" /> is empty or consists only of white-space characters.
+            </exception>
+            <exception cref="T:System.InvalidOperationException">
+                there are no backing fields of type <see cref="T:System.Int32" />.
+            </exception>
+        </member>
+        <member name="M:FluentMvvm.FluentViewModelBase.Set(System.UInt32,System.String)">
+            <summary>
+                Sets the value of the specified property to <paramref name="value" /> and raises a
+                <see cref="E:System.ComponentModel.INotifyPropertyChanged.PropertyChanged" /> event if the new value was different from the old value.
+            </summary>
+            <param name="value">The value to set the property to.</param>
+            <param name="propertyName">
+                The name of the property. Filled in by the compiler automatically, do not specify explicitly.
+            </param>
+            <returns></returns>
+            <exception cref="T:System.ArgumentException">
+                no public writable instance property named <paramref name="propertyName" /> could be found -or- <paramref name="propertyName" /> is empty or consists only of white-space characters.
+            </exception>
+            <exception cref="T:System.InvalidOperationException">
+                there are no backing fields of type <see cref="T:System.UInt32" />.
+            </exception>
+        </member>
+        <member name="M:FluentMvvm.FluentViewModelBase.Set(System.Int64,System.String)">
+            <summary>
+                Sets the value of the specified property to <paramref name="value" /> and raises a
+                <see cref="E:System.ComponentModel.INotifyPropertyChanged.PropertyChanged" /> event if the new value was different from the old value.
+            </summary>
+            <param name="value">The value to set the property to.</param>
+            <param name="propertyName">
+                The name of the property. Filled in by the compiler automatically, do not specify explicitly.
+            </param>
+            <returns></returns>
+            <exception cref="T:System.ArgumentException">
+                no public writable instance property named <paramref name="propertyName" /> could be found -or- <paramref name="propertyName" /> is empty or consists only of white-space characters.
+            </exception>
+            <exception cref="T:System.InvalidOperationException">
+                there are no backing fields of type <see cref="T:System.Int64" />.
+            </exception>
+        </member>
+        <member name="M:FluentMvvm.FluentViewModelBase.Set(System.UInt64,System.String)">
+            <summary>
+                Sets the value of the specified property to <paramref name="value" /> and raises a
+                <see cref="E:System.ComponentModel.INotifyPropertyChanged.PropertyChanged" /> event if the new value was different from the old value.
+            </summary>
+            <param name="value">The value to set the property to.</param>
+            <param name="propertyName">
+                The name of the property. Filled in by the compiler automatically, do not specify explicitly.
+            </param>
+            <returns></returns>
+            <exception cref="T:System.ArgumentException">
+                no public writable instance property named <paramref name="propertyName" /> could be found -or- <paramref name="propertyName" /> is empty or consists only of white-space characters.
+            </exception>
+            <exception cref="T:System.InvalidOperationException">
+                there are no backing fields of type <see cref="T:System.UInt64" />.
+            </exception>
+        </member>
+        <member name="M:FluentMvvm.FluentViewModelBase.Set(System.DateTime,System.String)">
+            <summary>
+                Sets the value of the specified property to <paramref name="value" /> and raises a
+                <see cref="E:System.ComponentModel.INotifyPropertyChanged.PropertyChanged" /> event if the new value was different from the old value.
+            </summary>
+            <param name="value">The value to set the property to.</param>
+            <param name="propertyName">
+                The name of the property. Filled in by the compiler automatically, do not specify explicitly.
+            </param>
+            <returns></returns>
+            <exception cref="T:System.ArgumentException">
+                no public writable instance property named <paramref name="propertyName" /> could be found -or- <paramref name="propertyName" /> is empty or consists only of white-space characters.
+            </exception>
+            <exception cref="T:System.InvalidOperationException">
+                there are no backing fields of type <see cref="T:System.DateTime" />.
+            </exception>
+        </member>
+        <member name="M:FluentMvvm.FluentViewModelBase.Set(System.String,System.String)">
+            <summary>
+                Sets the value of the specified property to <paramref name="value" /> and raises a
+                <see cref="E:System.ComponentModel.INotifyPropertyChanged.PropertyChanged" /> event if the new value was different from the old value.
+            </summary>
+            <param name="value">The value to set the property to.</param>
+            <param name="propertyName">
+                The name of the property. Filled in by the compiler automatically, do not specify explicitly.
+            </param>
+            <returns></returns>
+            <exception cref="T:System.ArgumentException">
+                no public writable instance property named <paramref name="propertyName" /> could be found -or- <paramref name="propertyName" /> is empty or consists only of white-space characters.
+            </exception>
+            <exception cref="T:System.InvalidOperationException">
+                there are no backing fields of type <see cref="T:System.String" />.
+            </exception>
+        </member>
+        <member name="M:FluentMvvm.FluentViewModelBase.Set``1(``0,``0@,System.String)">
+            <summary>
+                Sets the value of the specified property to <paramref name="value" /> and raises a
+                <see cref="E:System.ComponentModel.INotifyPropertyChanged.PropertyChanged" /> event if the new value was different from the old value.
+            </summary>
+            <param name="value">The value to set the property to.</param>
+            <param name="oldValue">A reference to the old value of the property. This can be a field.</param>
+            <param name="propertyName">
+                The name of the property. Filled in by the compiler automatically, do not specify explicitly.
+            </param>
+            <returns></returns>
+            <exception cref="T:System.ArgumentException">
+                no public writable instance property named <paramref name="propertyName" /> could be found -or- <paramref name="propertyName" /> is empty or consists only of white-space characters.
+            </exception>
         </member>
         <member name="M:FluentMvvm.FluentViewModelBase.When(System.Boolean)">
-            <inheritdoc />
+            <summary>
+                If <paramref name="condition" /> is <c>false</c>, no following
+                <c>Set</c>, <see cref="M:FluentMvvm.IDependencyExpression.Affects(System.String)" /> or
+                <see cref="M:FluentMvvm.IDependencyExpression.Affects(System.Windows.Input.ICommand)" /> will be executed.
+            </summary>
+            <param name="condition">only if set to <c>true</c> will the following fluent calls be executed.</param>
         </member>
         <member name="M:FluentMvvm.FluentViewModelBase.When(System.Func{System.Boolean})">
-            <inheritdoc />
+            <summary>
+                If <paramref name="condition" /> evaluates to <c>false</c>, no following
+                <c>Set</c>, <see cref="M:FluentMvvm.IDependencyExpression.Affects(System.String)" /> or
+                <see cref="M:FluentMvvm.IDependencyExpression.Affects(System.Windows.Input.ICommand)" /> will be executed.
+            </summary>
+            <param name="condition">only if evaluates to <c>true</c> will the following fluent calls be executed.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="condition" /> is <c>null</c>.</exception>
         </member>
-        <member name="M:FluentMvvm.FluentViewModelBase.FluentMvvm#Fluent#IDependencyExpression#Affects(System.String)">
-            <inheritdoc />
+        <member name="M:FluentMvvm.FluentViewModelBase.FluentMvvm#IDependencyExpression#Affects(System.String)">
+            <summary>
+                Raises a <see cref="E:System.ComponentModel.INotifyPropertyChanged.PropertyChanged" /> event for the property
+                <paramref name="propertyName" /> if the new property value was different from the old value.
+            </summary>
+            <param name="propertyName">The name of the property that changes when this property changes.</param>
+            <returns></returns>
+            <exception cref="T:System.ArgumentException">
+                <paramref name="propertyName" /> is null, empty or consists only of white-space
+                characters.
+            </exception>
         </member>
-        <member name="M:FluentMvvm.FluentViewModelBase.FluentMvvm#Fluent#IDependencyExpression#Affects(System.Windows.Input.ICommand)">
-            <inheritdoc />
+        <member name="M:FluentMvvm.FluentViewModelBase.FluentMvvm#IDependencyExpression#Affects(System.Windows.Input.ICommand)">
+            <summary>
+                Raises a <see cref="E:System.Windows.Input.ICommand.CanExecuteChanged" /> event for the <see cref="T:System.Windows.Input.ICommand" /> if the new property
+                value was different from the old value.
+            </summary>
+            <param name="command">The command.</param>
+            <returns></returns>
+            <exception cref="T:Microsoft.CSharp.RuntimeBinder.RuntimeBinderException">
+                <paramref name="command" /> does not provide a public, parameter-less
+                <c>RaiseCanExecuteChanged</c> method.
+            </exception>
+            <exception cref="T:System.ArgumentNullException"><paramref name="command" /> is <c>null</c>.</exception>
+            <remarks>
+                For this method to work correctly, <paramref name="command" /> must provide a
+                <c>public void RaiseCanExecuteChanged()</c> method.
+            </remarks>
         </member>
-        <member name="M:FluentMvvm.FluentViewModelBase.FluentMvvm#Fluent#IDependencyExpression#WasUpdated">
-            <inheritdoc />
+        <member name="M:FluentMvvm.FluentViewModelBase.FluentMvvm#IDependencyExpression#Affects(FluentMvvm.IWpfCommand)">
+            <summary>
+                Raises a <see cref="E:System.Windows.Input.ICommand.CanExecuteChanged" /> event for the <see cref="T:FluentMvvm.IWpfCommand" /> if the new property
+                value was different from the old value.
+            </summary>
+            <param name="command">The command.</param>
+            <returns></returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="command" /> is <c>null</c>.</exception>
+        </member>
+        <member name="M:FluentMvvm.FluentViewModelBase.FluentMvvm#IDependencyExpression#WasUpdated">
+            <summary>
+                Returns a value indicating whether the new property value was different from the old value.
+            </summary>
+            <returns>
+                <c>true</c> if the new property value was different from the old value; otherwise, <c>false</c>.
+            </returns>
         </member>
         <member name="E:FluentMvvm.FluentViewModelBase.PropertyChanged">
             <inheritdoc />
-        </member>
-        <member name="M:FluentMvvm.FluentViewModelBase.AfterSet">
-            <summary>
-                Provides a way to run custom code immediately after the field was set and the
-                <see cref="E:System.ComponentModel.INotifyPropertyChanged.PropertyChanged" /> event was raised.
-            </summary>
-            <remarks>
-                This method will only be called if the value passed to <see cref="M:FluentMvvm.FluentViewModelBase.Set``1(``0,System.String)" /> or its overloads is different from the
-                current field value.
-            </remarks>
         </member>
         <member name="M:FluentMvvm.FluentViewModelBase.RaisePropertyChanged(System.String)">
             <summary>
@@ -897,225 +749,46 @@
                 on the compiler inserting the name automatically for you.
             </param>
         </member>
-        <member name="M:FluentMvvm.FluentViewModelBase.Get``1(System.String)">
-            <inheritdoc />
-        </member>
-        <member name="M:FluentMvvm.FluentViewModelBase.GetBool(System.String)">
-            <inheritdoc />
-        </member>
-        <member name="M:FluentMvvm.FluentViewModelBase.GetByte(System.String)">
-            <inheritdoc />
-        </member>
-        <member name="M:FluentMvvm.FluentViewModelBase.GetSByte(System.String)">
-            <inheritdoc />
-        </member>
-        <member name="M:FluentMvvm.FluentViewModelBase.GetChar(System.String)">
-            <inheritdoc />
-        </member>
-        <member name="M:FluentMvvm.FluentViewModelBase.GetDecimal(System.String)">
-            <inheritdoc />
-        </member>
-        <member name="M:FluentMvvm.FluentViewModelBase.GetDouble(System.String)">
-            <inheritdoc />
-        </member>
-        <member name="M:FluentMvvm.FluentViewModelBase.GetFloat(System.String)">
-            <inheritdoc />
-        </member>
-        <member name="M:FluentMvvm.FluentViewModelBase.GetInt16(System.String)">
-            <inheritdoc />
-        </member>
-        <member name="M:FluentMvvm.FluentViewModelBase.GetUInt16(System.String)">
-            <inheritdoc />
-        </member>
-        <member name="M:FluentMvvm.FluentViewModelBase.GetInt32(System.String)">
-            <inheritdoc />
-        </member>
-        <member name="M:FluentMvvm.FluentViewModelBase.GetUInt32(System.String)">
-            <inheritdoc />
-        </member>
-        <member name="M:FluentMvvm.FluentViewModelBase.GetInt64(System.String)">
-            <inheritdoc />
-        </member>
-        <member name="M:FluentMvvm.FluentViewModelBase.GetUInt64(System.String)">
-            <inheritdoc />
-        </member>
-        <member name="M:FluentMvvm.FluentViewModelBase.GetString(System.String)">
-            <inheritdoc />
-        </member>
-        <member name="M:FluentMvvm.FluentViewModelBase.GetDateTime(System.String)">
-            <inheritdoc />
-        </member>
-        <member name="M:FluentMvvm.FluentViewModelBase.Set``1(``0,System.String)">
-            <inheritdoc />
-        </member>
-        <member name="M:FluentMvvm.FluentViewModelBase.Set(System.Boolean,System.String)">
-            <inheritdoc />
-        </member>
-        <member name="M:FluentMvvm.FluentViewModelBase.Set(System.Byte,System.String)">
-            <inheritdoc />
-        </member>
-        <member name="M:FluentMvvm.FluentViewModelBase.Set(System.SByte,System.String)">
-            <inheritdoc />
-        </member>
-        <member name="M:FluentMvvm.FluentViewModelBase.Set(System.Char,System.String)">
-            <inheritdoc />
-        </member>
-        <member name="M:FluentMvvm.FluentViewModelBase.Set(System.Decimal,System.String)">
-            <inheritdoc />
-        </member>
-        <member name="M:FluentMvvm.FluentViewModelBase.Set(System.Double,System.String)">
-            <inheritdoc />
-        </member>
-        <member name="M:FluentMvvm.FluentViewModelBase.Set(System.Single,System.String)">
-            <inheritdoc />
-        </member>
-        <member name="M:FluentMvvm.FluentViewModelBase.Set(System.Int16,System.String)">
-            <inheritdoc />
-        </member>
-        <member name="M:FluentMvvm.FluentViewModelBase.Set(System.UInt16,System.String)">
-            <inheritdoc />
-        </member>
-        <member name="M:FluentMvvm.FluentViewModelBase.Set(System.Int32,System.String)">
-            <inheritdoc />
-        </member>
-        <member name="M:FluentMvvm.FluentViewModelBase.Set(System.UInt32,System.String)">
-            <inheritdoc />
-        </member>
-        <member name="M:FluentMvvm.FluentViewModelBase.Set(System.Int64,System.String)">
-            <inheritdoc />
-        </member>
-        <member name="M:FluentMvvm.FluentViewModelBase.Set(System.UInt64,System.String)">
-            <inheritdoc />
-        </member>
-        <member name="M:FluentMvvm.FluentViewModelBase.Set(System.String,System.String)">
-            <inheritdoc />
-        </member>
-        <member name="M:FluentMvvm.FluentViewModelBase.Set(System.DateTime,System.String)">
-            <inheritdoc />
-        </member>
-        <member name="M:FluentMvvm.FluentViewModelBase.DetermineReturnValue(System.Boolean,System.String)">
-            <summary>
-                Returns the correct <see cref="T:FluentMvvm.Fluent.IDependencyExpression" /> implementation; either this instance, if
-                <paramref name="returnValue" /> is <c>true</c>, or a <see cref="T:FluentMvvm.Fluent.EmptyFluentAction" /> otherwise.
-            </summary>
-            <param name="returnValue">Indicates whether the call to <c>Set</c> or its overloads returned <c>true</c>.</param>
-            <param name="propertyName">The name of the property that was set.</param>
-            <returns>A <see cref="T:FluentMvvm.Fluent.IDependencyExpression" /> to continue the fluent call chain with.</returns>
-        </member>
-        <member name="T:FluentMvvm.Fluent.EmptyFluentAction">
-            <summary>
-                An object implementing all fluent methods as methods doing nothing.
-            </summary>
-            <seealso cref="T:FluentMvvm.Fluent.IPropertySetExpression" />
-            <seealso cref="T:FluentMvvm.Fluent.IDependencyExpression" />
-            <seealso cref="T:FluentMvvm.Fluent.IPropertySetExpression" />
-            <seealso cref="T:FluentMvvm.Fluent.IDependencyExpression" />
-            <inheritdoc cref="T:FluentMvvm.Fluent.IPropertySetExpression" />
-            <inheritdoc cref="T:FluentMvvm.Fluent.IPropertyGetExpression" />
-        </member>
-        <member name="P:FluentMvvm.Fluent.EmptyFluentAction.Default">
-            <summary>
-                Gets a singleton <see cref="T:FluentMvvm.Fluent.EmptyFluentAction" />.
-            </summary>
-            <value>
-                A singleton instance of an <see cref="T:FluentMvvm.Fluent.EmptyFluentAction" />.
-            </value>
-        </member>
-        <member name="M:FluentMvvm.Fluent.EmptyFluentAction.Affects(System.String)">
-            <inheritdoc />
-        </member>
-        <member name="M:FluentMvvm.Fluent.EmptyFluentAction.Affects(System.Windows.Input.ICommand)">
-            <inheritdoc />
-        </member>
-        <member name="M:FluentMvvm.Fluent.EmptyFluentAction.WasUpdated">
-            <inheritdoc />
-        </member>
-        <member name="M:FluentMvvm.Fluent.EmptyFluentAction.Set``1(``0,System.String)">
-            <inheritdoc />
-        </member>
-        <member name="M:FluentMvvm.Fluent.EmptyFluentAction.Set(System.Boolean,System.String)">
-            <inheritdoc />
-        </member>
-        <member name="M:FluentMvvm.Fluent.EmptyFluentAction.Set(System.Byte,System.String)">
-            <inheritdoc />
-        </member>
-        <member name="M:FluentMvvm.Fluent.EmptyFluentAction.Set(System.SByte,System.String)">
-            <inheritdoc />
-        </member>
-        <member name="M:FluentMvvm.Fluent.EmptyFluentAction.Set(System.Char,System.String)">
-            <inheritdoc />
-        </member>
-        <member name="M:FluentMvvm.Fluent.EmptyFluentAction.Set(System.Decimal,System.String)">
-            <inheritdoc />
-        </member>
-        <member name="M:FluentMvvm.Fluent.EmptyFluentAction.Set(System.Double,System.String)">
-            <inheritdoc />
-        </member>
-        <member name="M:FluentMvvm.Fluent.EmptyFluentAction.Set(System.Single,System.String)">
-            <inheritdoc />
-        </member>
-        <member name="M:FluentMvvm.Fluent.EmptyFluentAction.Set(System.Int16,System.String)">
-            <inheritdoc />
-        </member>
-        <member name="M:FluentMvvm.Fluent.EmptyFluentAction.Set(System.UInt16,System.String)">
-            <inheritdoc />
-        </member>
-        <member name="M:FluentMvvm.Fluent.EmptyFluentAction.Set(System.Int32,System.String)">
-            <inheritdoc />
-        </member>
-        <member name="M:FluentMvvm.Fluent.EmptyFluentAction.Set(System.UInt32,System.String)">
-            <inheritdoc />
-        </member>
-        <member name="M:FluentMvvm.Fluent.EmptyFluentAction.Set(System.Int64,System.String)">
-            <inheritdoc />
-        </member>
-        <member name="M:FluentMvvm.Fluent.EmptyFluentAction.Set(System.UInt64,System.String)">
-            <inheritdoc />
-        </member>
-        <member name="M:FluentMvvm.Fluent.EmptyFluentAction.Set(System.String,System.String)">
-            <inheritdoc />
-        </member>
-        <member name="M:FluentMvvm.Fluent.EmptyFluentAction.Set(System.DateTime,System.String)">
-            <inheritdoc />
-        </member>
-        <member name="T:FluentMvvm.Fluent.IConditionalExpression">
+        <member name="T:FluentMvvm.IConditionalExpression">
             <summary>
                 Provides methods that determine whether or not the following fluent calls should execute.
             </summary>
         </member>
-        <member name="M:FluentMvvm.Fluent.IConditionalExpression.When(System.Boolean)">
+        <member name="M:FluentMvvm.IConditionalExpression.When(System.Boolean)">
             <summary>
                 If <paramref name="condition" /> is <c>false</c>, no following
-                <see cref="M:FluentMvvm.Fluent.IPropertySetExpression.Set``1(``0,System.String)" />, <see cref="M:FluentMvvm.Fluent.IDependencyExpression.Affects(System.String)" /> or
-                <see cref="M:FluentMvvm.Fluent.IDependencyExpression.Affects(System.Windows.Input.ICommand)" /> will be executed.
+                <c>Set</c>, <see cref="M:FluentMvvm.IDependencyExpression.Affects(System.String)" /> or
+                <see cref="M:FluentMvvm.IDependencyExpression.Affects(System.Windows.Input.ICommand)" /> will be executed.
             </summary>
             <param name="condition">only if set to <c>true</c> will the following fluent calls be executed.</param>
-            <returns></returns>
         </member>
-        <member name="M:FluentMvvm.Fluent.IConditionalExpression.When(System.Func{System.Boolean})">
+        <member name="M:FluentMvvm.IConditionalExpression.When(System.Func{System.Boolean})">
             <summary>
                 If <paramref name="condition" /> evaluates to <c>false</c>, no following
-                <see cref="M:FluentMvvm.Fluent.IPropertySetExpression.Set``1(``0,System.String)" />, <see cref="M:FluentMvvm.Fluent.IDependencyExpression.Affects(System.String)" /> or
-                <see cref="M:FluentMvvm.Fluent.IDependencyExpression.Affects(System.Windows.Input.ICommand)" /> will be executed.
+                <c>Set</c>, <see cref="M:FluentMvvm.IDependencyExpression.Affects(System.String)" /> or
+                <see cref="M:FluentMvvm.IDependencyExpression.Affects(System.Windows.Input.ICommand)" /> will be executed.
             </summary>
             <param name="condition">only if evaluates to <c>true</c> will the following fluent calls be executed.</param>
-            <returns></returns>
             <exception cref="T:System.ArgumentNullException"><paramref name="condition" /> is <c>null</c>.</exception>
         </member>
-        <member name="T:FluentMvvm.Fluent.IDependencyExpression">
+        <member name="T:FluentMvvm.IDependencyExpression">
             <summary>
                 Provides method to express dependencies between properties or between a property and a command.
             </summary>
         </member>
-        <member name="M:FluentMvvm.Fluent.IDependencyExpression.Affects(System.String)">
+        <member name="M:FluentMvvm.IDependencyExpression.Affects(System.String)">
             <summary>
                 Raises a <see cref="E:System.ComponentModel.INotifyPropertyChanged.PropertyChanged" /> event for the property
                 <paramref name="propertyName" /> if the new property value was different from the old value.
             </summary>
             <param name="propertyName">The name of the property that changes when this property changes.</param>
             <returns></returns>
+            <exception cref="T:System.ArgumentException">
+                <paramref name="propertyName" /> is null, empty or consists only of white-space
+                characters.
+            </exception>
         </member>
-        <member name="M:FluentMvvm.Fluent.IDependencyExpression.Affects(System.Windows.Input.ICommand)">
+        <member name="M:FluentMvvm.IDependencyExpression.Affects(System.Windows.Input.ICommand)">
             <summary>
                 Raises a <see cref="E:System.Windows.Input.ICommand.CanExecuteChanged" /> event for the <see cref="T:System.Windows.Input.ICommand" /> if the new property
                 value was different from the old value.
@@ -1123,15 +796,25 @@
             <param name="command">The command.</param>
             <returns></returns>
             <exception cref="T:Microsoft.CSharp.RuntimeBinder.RuntimeBinderException">
-                <paramref name="command" /> does not provide a public, parameterless
+                <paramref name="command" /> does not provide a public, parameter-less
                 <c>RaiseCanExecuteChanged</c> method.
             </exception>
+            <exception cref="T:System.ArgumentNullException"><paramref name="command" /> is <c>null</c>.</exception>
             <remarks>
                 For this method to work correctly, <paramref name="command" /> must provide a
                 <c>public void RaiseCanExecuteChanged()</c> method.
             </remarks>
         </member>
-        <member name="M:FluentMvvm.Fluent.IDependencyExpression.WasUpdated">
+        <member name="M:FluentMvvm.IDependencyExpression.Affects(FluentMvvm.IWpfCommand)">
+            <summary>
+                Raises a <see cref="E:System.Windows.Input.ICommand.CanExecuteChanged" /> event for the <see cref="T:FluentMvvm.IWpfCommand" /> if the new property
+                value was different from the old value.
+            </summary>
+            <param name="command">The command.</param>
+            <returns></returns>
+            <exception cref="T:System.ArgumentNullException"><paramref name="command" /> is <c>null</c>.</exception>
+        </member>
+        <member name="M:FluentMvvm.IDependencyExpression.WasUpdated">
             <summary>
                 Returns a value indicating whether the new property value was different from the old value.
             </summary>
@@ -1139,808 +822,740 @@
                 <c>true</c> if the new property value was different from the old value; otherwise, <c>false</c>.
             </returns>
         </member>
-        <member name="T:FluentMvvm.Fluent.IPropertyGetExpression">
+        <member name="T:FluentMvvm.Internals.FixedSizeDictionary`1">
+            <summary>
+                Provides a fixed-size read-only dictionary.
+            </summary>
+            <remarks>No values can be added or removed after creation, but the values itself are mutable.</remarks>
+            <typeparam name="TValue">The type of values in the dictionary.</typeparam>
+        </member>
+        <member name="F:FluentMvvm.Internals.FixedSizeDictionary`1.Count">
+            <summary>
+                Gets the number of elements in the collection.
+            </summary>
+        </member>
+        <member name="M:FluentMvvm.Internals.FixedSizeDictionary`1.#ctor(System.Int32)">
+            <summary>
+                Initializes a new instance of the <see cref="T:FluentMvvm.Internals.FixedSizeDictionary`1" /> class.
+            </summary>
+            <param name="bucketSize">The number of <see cref="T:FluentMvvm.Internals.FixedSizeDictionary`1.Entry" />s to create as the backing array.</param>
+        </member>
+        <member name="M:FluentMvvm.Internals.FixedSizeDictionary`1.TryGetEntry(System.String,FluentMvvm.Internals.FixedSizeDictionary{`0}.Entry@)">
+            <summary>
+                Gets the entry associated with the specified key.
+            </summary>
+            <param name="key">The key of the value to get.</param>
+            <param name="entry">
+                When this method returns <c>true</c>, contains the entry associated with the specified key, if the
+                key is found; otherwise, <c>null</c>. This parameter is passed uninitialized.
+            </param>
+            <returns><c>true</c>, if <paramref name="key" /> exists in the dictionary; otherwise, <c>false</c>.</returns>
+        </member>
+        <member name="M:FluentMvvm.Internals.FixedSizeDictionary`1.Create``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.String},System.Func{``0,`0})">
+            <summary>
+                Creates a <see cref="T:FluentMvvm.Internals.FixedSizeDictionary`1" /> from an <see cref="T:System.Collections.Generic.IEnumerable`1" /> according to specified
+                key selector and value selector functions.
+            </summary>
+            <typeparam name="TSource"></typeparam>
+            <param name="source"></param>
+            <param name="keySelector"></param>
+            <param name="valueSelector"></param>
+            <exception cref="T:System.InvalidOperationException">An entry with the same key already exists.</exception>
+        </member>
+        <member name="M:FluentMvvm.Internals.FixedSizeDictionary`1.CalculateCapacity(System.Int32)">
+            <summary>
+            Calculates the number of buckets for a collection of size <paramref name="collectionSize"/> so that the load factor does not exceed ln(2).
+            </summary>
+            <param name="collectionSize">The number of values to add to the dictionary.</param>
+        </member>
+        <member name="M:FluentMvvm.Internals.FixedSizeDictionary`1.DetermineIndex(System.Int32)">
+            <summary>
+                Determines the index in the buckets array for the element with hash code <paramref name="hashCode" />.
+            </summary>
+            <param name="hashCode">The hash code of the element.</param>
+            <returns>The index in the buckets array.</returns>
+        </member>
+        <member name="M:FluentMvvm.Internals.FixedSizeDictionary`1.Add(System.String,`0)">
+            <summary>
+                Adds the <paramref name="value" /> to the dictionary, if the key <paramref name="key" /> was not already added to
+                the dictionary.
+            </summary>
+            <param name="key">The key.</param>
+            <param name="value">The value.</param>
+            <exception cref="T:System.InvalidOperationException">An entry with the key <paramref name="key" /> already exists.</exception>
+        </member>
+        <member name="T:FluentMvvm.Internals.FixedSizeDictionary`1.Entry">
+            <summary>
+                Represents <see cref="T:FluentMvvm.Internals.FixedSizeDictionary`1" /> entry.
+            </summary>
+        </member>
+        <member name="M:FluentMvvm.Internals.FixedSizeDictionary`1.Entry.#ctor(System.String,`0,System.Int32)">
+            <summary>
+                Initializes a new instance of the <see cref="T:FluentMvvm.Internals.FixedSizeDictionary`1.Entry" /> class.
+            </summary>
+            <param name="key">The key.</param>
+            <param name="value">The value.</param>
+            <param name="hashCode">The hash code.</param>
+        </member>
+        <member name="M:FluentMvvm.Internals.ObjectExtensions.NotNull``1(``0,System.String)">
+            <summary>
+            Throws an <see cref="T:System.ArgumentNullException"/> if <paramref name="value"/> is <c>null</c>.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="value"></param>
+            <param name="parameterName"></param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="value"/> is <c>null</c>.</exception>
+            <returns><paramref name="value"/>, if it is not <c>null</c>.</returns>
+        </member>
+        <member name="M:FluentMvvm.Internals.ObjectExtensions.NotNullOrEmptyOrWhiteSpace(System.String,System.String)">
+            <summary>
+            Throws a <see cref="T:System.ArgumentException"/> if <paramref name="value"/> must not be <c>null</c>, empty or consist only of white-space characters.
+            </summary>
+            <param name="value"></param>
+            <param name="parameterName"></param>
+            <exception cref="T:System.ArgumentException"><paramref name="value"/> is <c>null</c>, empty or consists only of white-space characters.</exception>
+            <returns><paramref name="value"/>, if it is not <c>null</c>, empty or consists only of whitespace characters.</returns>
+        </member>
+        <member name="F:FluentMvvm.Internals.RuntimeHelper.AreLiteralsInterned">
+            <summary>
+            Indicates whether literal strings are interned.
+            </summary>
+        </member>
+        <member name="T:FluentMvvm.Internals.ThrowHelper">
+            <summary>
+            Using the <see cref="T:FluentMvvm.Internals.ThrowHelper"/> methods allows for callers to be inlined, reduces duplicate CIL code in generic types and ensures consistent exception messages across the library.
+            </summary>
+        </member>
+        <member name="M:FluentMvvm.Internals.ThrowHelper.ThrowKeyNotFoundException(System.String)">
+            <summary>
+            Throws a <see cref="T:System.Collections.Generic.KeyNotFoundException"/> with a message stating that <paramref name="key"/> was not present in the dictionary.
+            </summary>
+            <param name="key">The key that is not present in the dictionary.</param>
+            <exception cref="T:System.Collections.Generic.KeyNotFoundException"><paramref name="key"/> was not present in the dictionary.</exception>
+        </member>
+        <member name="M:FluentMvvm.Internals.ThrowHelper.ThrowDuplicateKeyException(System.String)">
+            <summary>
+            Throws a <see cref="T:System.InvalidOperationException"/> with a message stating that <paramref name="key"/> was already present in the dictionary.
+            </summary>
+            <param name="key">The key that is already present in the dictionary.</param>
+            <exception cref="T:System.InvalidOperationException"><paramref name="key"/> was already present in the dictionary.</exception>
+        </member>
+        <member name="M:FluentMvvm.Internals.ThrowHelper.ThrowArgumentNullEmptyOrWhiteSpace(System.String)">
+            <summary>
+            Throws a <see cref="T:System.ArgumentException"/> with a message stating that <paramref name="name"/> must not be <c>null</c>, empty or consist only of white-space characters.
+            </summary>
+            <param name="name">The name of the parameter that is <c>null</c>, empty or consists only of white-space characters.</param>
+            <exception cref="T:System.ArgumentException">the parameter is <c>null</c>, empty or consists only of white-space characters.</exception>
+        </member>
+        <member name="M:FluentMvvm.Internals.ThrowHelper.ThrowArgumentNullException(System.String)">
+            <summary>
+            Throws an <see cref="T:System.ArgumentNullException"/>.
+            </summary>
+            <param name="name">The name of the parameter that is <c>null</c>.</param>
+            <exception cref="T:System.ArgumentNullException">the parameter is <c>null</c>.</exception>
+        </member>
+        <member name="M:FluentMvvm.Internals.ThrowHelper.ThrowNoBackingFieldsOfType``1(System.Type)">
+            <summary>
+            Throws an <see cref="T:System.InvalidOperationException"/> stating that no backing fields of type <typeparamref name="T"/> were found on type <paramref name="onType"/>.
+            </summary>
+            <typeparam name="T">The type of the backing fields.</typeparam>
+            <param name="onType">The type to search for the fields on.</param>
+            <exception cref="T:System.InvalidOperationException">there are no backing fields of type <typeparamref name="T"/> on the type <paramref name="onType"/>.</exception>
+        </member>
+        <member name="M:FluentMvvm.Internals.ThrowHelper.ThrowPropertyNotFound(System.String,System.Type,System.Type)">
+            <summary>
+            Throws an <see cref="T:System.ArgumentException"/> stating that no public writable instance property named <paramref name="propertyName"/> was found on type <paramref name="onType"/>.
+            </summary>
+            <param name="propertyName">The name of the property.</param>
+            <param name="propertyType">The type of the property.</param>
+            <param name="onType">The type to search for the property on</param>
+            <exception cref="T:System.ArgumentException">there is no public writable instance property named <paramref name="propertyName"/> on type <paramref name="onType"/>.</exception>
+        </member>
+        <member name="M:FluentMvvm.Internals.TypeHelper.GetDefaultValue(System.Reflection.PropertyInfo)">
+            <summary>
+            Gets the default value for the type of the property, taking into account a <see cref="T:System.ComponentModel.DefaultValueAttribute"/> if it is applied to the property.
+            </summary>
+            <param name="propertyInfo">The property.</param>
+            <returns>The default value for the type of the property.</returns>
+        </member>
+        <member name="M:FluentMvvm.Internals.TypeHelper.DoesOverloadExist(System.Type)">
+            <summary>
+            Returns a value indicating whether a specific <c>Get</c> or <c>Set</c> overload for <paramref name="type"/> exists.
+            </summary>
+            <param name="type">The type.</param>
+            <returns><c>true</c>, if <paramref name="type"/> is a reference type that is not <see cref="T:System.DateTime"/>, <see cref="T:System.Decimal"/> or <see cref="T:System.String"/>.</returns>
+        </member>
+        <member name="T:FluentMvvm.IPropertyGetExpression">
             <summary>
                 Provides methods that can be used to get the value of a property.
             </summary>
         </member>
-        <member name="M:FluentMvvm.Fluent.IPropertyGetExpression.Get``1(System.String)">
+        <member name="M:FluentMvvm.IPropertyGetExpression.Get``1(System.String)">
             <summary>
                 Gets the value of the specified property.
             </summary>
-            <typeparam name="T">The type of the property.</typeparam>
             <param name="propertyName">
-                The name of the property. Filled in by the compiler automatically, do not specify
-                explicitly.
+                The name of the property. Filled in by the compiler automatically, do not specify explicitly.
             </param>
             <returns>
                 The value of the property.
             </returns>
             <exception cref="T:System.ArgumentException">
-                No public writable instance property named <paramref name="propertyName" /> could
-                be found -or- <paramref name="propertyName" /> is empty or consists only of white-space characters.
-            </exception>
-            <exception cref="T:System.InvalidCastException">
-                Unable to cast the actual type of the property to the specified type
-                <typeparamref name="T" />.
+                no public writable instance property named <paramref name="propertyName" /> could be found -or- <paramref name="propertyName" /> is empty or consists only of white-space characters.
             </exception>
             <exception cref="T:System.InvalidOperationException">
-                The type is marked with <see cref="T:FluentMvvm.SuppressFieldGenerationAttribute" />.
-                This method cannot be used when field generation is suppressed.
+                there are no backing fields of type <typeparamref name="T" />.
             </exception>
-            <remarks>
-                It is advised to use overloads such as <see cref="M:FluentMvvm.Fluent.IPropertyGetExpression.GetInt32(System.String)" /> and <see cref="M:FluentMvvm.Fluent.IPropertyGetExpression.GetString(System.String)" /> etc. (where they exist)
-                for better performance.
-            </remarks>
         </member>
-        <member name="M:FluentMvvm.Fluent.IPropertyGetExpression.GetBool(System.String)">
+        <member name="M:FluentMvvm.IPropertyGetExpression.GetBoolean(System.String)">
             <summary>
                 Gets the value of the specified property.
             </summary>
             <param name="propertyName">
-                The name of the property. Filled in by the compiler automatically, do not specify
-                explicitly.
+                The name of the property. Filled in by the compiler automatically, do not specify explicitly.
             </param>
             <returns>
                 The value of the property.
             </returns>
             <exception cref="T:System.ArgumentException">
-                No public writable instance property named <paramref name="propertyName" /> of type
-                <see cref="T:System.Boolean" /> could be found -or- <paramref name="propertyName" /> is empty or consists only of
-                white-space characters.
+                no public writable instance property named <paramref name="propertyName" /> could be found -or- <paramref name="propertyName" /> is empty or consists only of white-space characters.
             </exception>
             <exception cref="T:System.InvalidOperationException">
-                The type is marked with <see cref="T:FluentMvvm.SuppressFieldGenerationAttribute" />.
-                This method cannot be used when field generation is suppressed.
+                there are no backing fields of type <see cref="T:System.Boolean" />.
             </exception>
-            <remarks>
-                Intended to only be used in property <c>get</c> accessors.
-            </remarks>
         </member>
-        <member name="M:FluentMvvm.Fluent.IPropertyGetExpression.GetByte(System.String)">
+        <member name="M:FluentMvvm.IPropertyGetExpression.GetByte(System.String)">
             <summary>
                 Gets the value of the specified property.
             </summary>
             <param name="propertyName">
-                The name of the property. Filled in by the compiler automatically, do not specify
-                explicitly.
+                The name of the property. Filled in by the compiler automatically, do not specify explicitly.
             </param>
             <returns>
                 The value of the property.
             </returns>
             <exception cref="T:System.ArgumentException">
-                No public writable instance property named <paramref name="propertyName" /> of type
-                <see cref="T:System.Byte" /> could be found -or- <paramref name="propertyName" /> is empty or consists only of
-                white-space characters.
+                no public writable instance property named <paramref name="propertyName" /> could be found -or- <paramref name="propertyName" /> is empty or consists only of white-space characters.
             </exception>
             <exception cref="T:System.InvalidOperationException">
-                The type is marked with <see cref="T:FluentMvvm.SuppressFieldGenerationAttribute" />.
-                This method cannot be used when field generation is suppressed.
+                there are no backing fields of type <see cref="T:System.Byte" />.
             </exception>
-            <remarks>
-                Intended to only be used in property <c>get</c> accessors.
-            </remarks>
         </member>
-        <member name="M:FluentMvvm.Fluent.IPropertyGetExpression.GetChar(System.String)">
+        <member name="M:FluentMvvm.IPropertyGetExpression.GetSByte(System.String)">
             <summary>
                 Gets the value of the specified property.
             </summary>
             <param name="propertyName">
-                The name of the property. Filled in by the compiler automatically, do not specify
-                explicitly.
+                The name of the property. Filled in by the compiler automatically, do not specify explicitly.
             </param>
             <returns>
                 The value of the property.
             </returns>
             <exception cref="T:System.ArgumentException">
-                No public writable instance property named <paramref name="propertyName" /> of type
-                <see cref="T:System.Char" /> could be found -or- <paramref name="propertyName" /> is empty or consists only of
-                white-space characters.
+                no public writable instance property named <paramref name="propertyName" /> could be found -or- <paramref name="propertyName" /> is empty or consists only of white-space characters.
             </exception>
             <exception cref="T:System.InvalidOperationException">
-                The type is marked with <see cref="T:FluentMvvm.SuppressFieldGenerationAttribute" />.
-                This method cannot be used when field generation is suppressed.
+                there are no backing fields of type <see cref="T:System.SByte" />.
             </exception>
-            <remarks>
-                Intended to only be used in property <c>get</c> accessors.
-            </remarks>
         </member>
-        <member name="M:FluentMvvm.Fluent.IPropertyGetExpression.GetDateTime(System.String)">
+        <member name="M:FluentMvvm.IPropertyGetExpression.GetChar(System.String)">
             <summary>
                 Gets the value of the specified property.
             </summary>
             <param name="propertyName">
-                The name of the property. Filled in by the compiler automatically, do not specify
-                explicitly.
+                The name of the property. Filled in by the compiler automatically, do not specify explicitly.
             </param>
             <returns>
                 The value of the property.
             </returns>
             <exception cref="T:System.ArgumentException">
-                No public writable instance property named <paramref name="propertyName" /> of type
-                <see cref="T:System.DateTime" /> could be found -or- <paramref name="propertyName" /> is empty or consists only of
-                white-space characters.
+                no public writable instance property named <paramref name="propertyName" /> could be found -or- <paramref name="propertyName" /> is empty or consists only of white-space characters.
             </exception>
             <exception cref="T:System.InvalidOperationException">
-                The type is marked with <see cref="T:FluentMvvm.SuppressFieldGenerationAttribute" />.
-                This method cannot be used when field generation is suppressed.
+                there are no backing fields of type <see cref="T:System.Char" />.
             </exception>
-            <remarks>
-                Intended to only be used in property <c>get</c> accessors.
-            </remarks>
         </member>
-        <member name="M:FluentMvvm.Fluent.IPropertyGetExpression.GetDecimal(System.String)">
+        <member name="M:FluentMvvm.IPropertyGetExpression.GetDecimal(System.String)">
             <summary>
                 Gets the value of the specified property.
             </summary>
             <param name="propertyName">
-                The name of the property. Filled in by the compiler automatically, do not specify
-                explicitly.
+                The name of the property. Filled in by the compiler automatically, do not specify explicitly.
             </param>
             <returns>
                 The value of the property.
             </returns>
             <exception cref="T:System.ArgumentException">
-                No public writable instance property named <paramref name="propertyName" /> of type
-                <see cref="T:System.Decimal" /> could be found -or- <paramref name="propertyName" /> is empty or consists only of
-                white-space characters.
+                no public writable instance property named <paramref name="propertyName" /> could be found -or- <paramref name="propertyName" /> is empty or consists only of white-space characters.
             </exception>
             <exception cref="T:System.InvalidOperationException">
-                The type is marked with <see cref="T:FluentMvvm.SuppressFieldGenerationAttribute" />.
-                This method cannot be used when field generation is suppressed.
+                there are no backing fields of type <see cref="T:System.Decimal" />.
             </exception>
-            <remarks>
-                Intended to only be used in property <c>get</c> accessors.
-            </remarks>
         </member>
-        <member name="M:FluentMvvm.Fluent.IPropertyGetExpression.GetDouble(System.String)">
+        <member name="M:FluentMvvm.IPropertyGetExpression.GetDouble(System.String)">
             <summary>
                 Gets the value of the specified property.
             </summary>
             <param name="propertyName">
-                The name of the property. Filled in by the compiler automatically, do not specify
-                explicitly.
+                The name of the property. Filled in by the compiler automatically, do not specify explicitly.
             </param>
             <returns>
                 The value of the property.
             </returns>
             <exception cref="T:System.ArgumentException">
-                No public writable instance property named <paramref name="propertyName" /> of type
-                <see cref="T:System.Double" /> could be found -or- <paramref name="propertyName" /> is empty or consists only of
-                white-space characters.
+                no public writable instance property named <paramref name="propertyName" /> could be found -or- <paramref name="propertyName" /> is empty or consists only of white-space characters.
             </exception>
             <exception cref="T:System.InvalidOperationException">
-                The type is marked with <see cref="T:FluentMvvm.SuppressFieldGenerationAttribute" />.
-                This method cannot be used when field generation is suppressed.
+                there are no backing fields of type <see cref="T:System.Double" />.
             </exception>
-            <remarks>
-                Intended to only be used in property <c>get</c> accessors.
-            </remarks>
         </member>
-        <member name="M:FluentMvvm.Fluent.IPropertyGetExpression.GetFloat(System.String)">
+        <member name="M:FluentMvvm.IPropertyGetExpression.GetSingle(System.String)">
             <summary>
                 Gets the value of the specified property.
             </summary>
             <param name="propertyName">
-                The name of the property. Filled in by the compiler automatically, do not specify
-                explicitly.
+                The name of the property. Filled in by the compiler automatically, do not specify explicitly.
             </param>
             <returns>
                 The value of the property.
             </returns>
             <exception cref="T:System.ArgumentException">
-                No public writable instance property named <paramref name="propertyName" /> of type
-                <see cref="T:System.Single" /> could be found -or- <paramref name="propertyName" /> is empty or consists only of
-                white-space characters.
+                no public writable instance property named <paramref name="propertyName" /> could be found -or- <paramref name="propertyName" /> is empty or consists only of white-space characters.
             </exception>
             <exception cref="T:System.InvalidOperationException">
-                The type is marked with <see cref="T:FluentMvvm.SuppressFieldGenerationAttribute" />.
-                This method cannot be used when field generation is suppressed.
+                there are no backing fields of type <see cref="T:System.Single" />.
             </exception>
-            <remarks>
-                Intended to only be used in property <c>get</c> accessors.
-            </remarks>
         </member>
-        <member name="M:FluentMvvm.Fluent.IPropertyGetExpression.GetInt16(System.String)">
+        <member name="M:FluentMvvm.IPropertyGetExpression.GetInt16(System.String)">
             <summary>
                 Gets the value of the specified property.
             </summary>
             <param name="propertyName">
-                The name of the property. Filled in by the compiler automatically, do not specify
-                explicitly.
+                The name of the property. Filled in by the compiler automatically, do not specify explicitly.
             </param>
             <returns>
                 The value of the property.
             </returns>
             <exception cref="T:System.ArgumentException">
-                No public writable instance property named <paramref name="propertyName" /> of type
-                <see cref="T:System.Int16" /> could be found -or- <paramref name="propertyName" /> is empty or consists only of
-                white-space characters.
+                no public writable instance property named <paramref name="propertyName" /> could be found -or- <paramref name="propertyName" /> is empty or consists only of white-space characters.
             </exception>
             <exception cref="T:System.InvalidOperationException">
-                The type is marked with <see cref="T:FluentMvvm.SuppressFieldGenerationAttribute" />.
-                This method cannot be used when field generation is suppressed.
+                there are no backing fields of type <see cref="T:System.Int16" />.
             </exception>
-            <remarks>
-                Intended to only be used in property <c>get</c> accessors.
-            </remarks>
         </member>
-        <member name="M:FluentMvvm.Fluent.IPropertyGetExpression.GetInt32(System.String)">
+        <member name="M:FluentMvvm.IPropertyGetExpression.GetUInt16(System.String)">
             <summary>
                 Gets the value of the specified property.
             </summary>
             <param name="propertyName">
-                The name of the property. Filled in by the compiler automatically, do not specify
-                explicitly.
+                The name of the property. Filled in by the compiler automatically, do not specify explicitly.
             </param>
             <returns>
                 The value of the property.
             </returns>
             <exception cref="T:System.ArgumentException">
-                No public writable instance property named <paramref name="propertyName" /> of type
-                <see cref="T:System.Int32" /> could be found -or- <paramref name="propertyName" /> is empty or consists only of
-                white-space characters.
+                no public writable instance property named <paramref name="propertyName" /> could be found -or- <paramref name="propertyName" /> is empty or consists only of white-space characters.
             </exception>
             <exception cref="T:System.InvalidOperationException">
-                The type is marked with <see cref="T:FluentMvvm.SuppressFieldGenerationAttribute" />.
-                This method cannot be used when field generation is suppressed.
+                there are no backing fields of type <see cref="T:System.UInt16" />.
             </exception>
-            <remarks>
-                Intended to only be used in property <c>get</c> accessors.
-            </remarks>
         </member>
-        <member name="M:FluentMvvm.Fluent.IPropertyGetExpression.GetInt64(System.String)">
+        <member name="M:FluentMvvm.IPropertyGetExpression.GetInt32(System.String)">
             <summary>
                 Gets the value of the specified property.
             </summary>
             <param name="propertyName">
-                The name of the property. Filled in by the compiler automatically, do not specify
-                explicitly.
+                The name of the property. Filled in by the compiler automatically, do not specify explicitly.
             </param>
             <returns>
                 The value of the property.
             </returns>
             <exception cref="T:System.ArgumentException">
-                No public writable instance property named <paramref name="propertyName" /> of type
-                <see cref="T:System.Int64" /> could be found -or- <paramref name="propertyName" /> is empty or consists only of
-                white-space characters.
+                no public writable instance property named <paramref name="propertyName" /> could be found -or- <paramref name="propertyName" /> is empty or consists only of white-space characters.
             </exception>
             <exception cref="T:System.InvalidOperationException">
-                The type is marked with <see cref="T:FluentMvvm.SuppressFieldGenerationAttribute" />.
-                This method cannot be used when field generation is suppressed.
+                there are no backing fields of type <see cref="T:System.Int32" />.
             </exception>
-            <remarks>
-                Intended to only be used in property <c>get</c> accessors.
-            </remarks>
         </member>
-        <member name="M:FluentMvvm.Fluent.IPropertyGetExpression.GetSByte(System.String)">
+        <member name="M:FluentMvvm.IPropertyGetExpression.GetUInt32(System.String)">
             <summary>
                 Gets the value of the specified property.
             </summary>
             <param name="propertyName">
-                The name of the property. Filled in by the compiler automatically, do not specify
-                explicitly.
+                The name of the property. Filled in by the compiler automatically, do not specify explicitly.
             </param>
             <returns>
                 The value of the property.
             </returns>
             <exception cref="T:System.ArgumentException">
-                No public writable instance property named <paramref name="propertyName" /> of type
-                <see cref="T:System.SByte" /> could be found -or- <paramref name="propertyName" /> is empty or consists only of
-                white-space characters.
+                no public writable instance property named <paramref name="propertyName" /> could be found -or- <paramref name="propertyName" /> is empty or consists only of white-space characters.
             </exception>
             <exception cref="T:System.InvalidOperationException">
-                The type is marked with <see cref="T:FluentMvvm.SuppressFieldGenerationAttribute" />.
-                This method cannot be used when field generation is suppressed.
+                there are no backing fields of type <see cref="T:System.UInt32" />.
             </exception>
-            <remarks>
-                Intended to only be used in property <c>get</c> accessors.
-            </remarks>
         </member>
-        <member name="M:FluentMvvm.Fluent.IPropertyGetExpression.GetString(System.String)">
+        <member name="M:FluentMvvm.IPropertyGetExpression.GetInt64(System.String)">
             <summary>
                 Gets the value of the specified property.
             </summary>
             <param name="propertyName">
-                The name of the property. Filled in by the compiler automatically, do not specify
-                explicitly.
+                The name of the property. Filled in by the compiler automatically, do not specify explicitly.
             </param>
             <returns>
                 The value of the property.
             </returns>
             <exception cref="T:System.ArgumentException">
-                No public writable instance property named <paramref name="propertyName" /> of type
-                <see cref="T:System.String" /> could be found -or- <paramref name="propertyName" /> is empty or consists only of
-                white-space characters.
+                no public writable instance property named <paramref name="propertyName" /> could be found -or- <paramref name="propertyName" /> is empty or consists only of white-space characters.
             </exception>
             <exception cref="T:System.InvalidOperationException">
-                The type is marked with <see cref="T:FluentMvvm.SuppressFieldGenerationAttribute" />.
-                This method cannot be used when field generation is suppressed.
+                there are no backing fields of type <see cref="T:System.Int64" />.
             </exception>
-            <remarks>
-                Intended to only be used in property <c>get</c> accessors.
-            </remarks>
         </member>
-        <member name="M:FluentMvvm.Fluent.IPropertyGetExpression.GetUInt16(System.String)">
+        <member name="M:FluentMvvm.IPropertyGetExpression.GetUInt64(System.String)">
             <summary>
                 Gets the value of the specified property.
             </summary>
             <param name="propertyName">
-                The name of the property. Filled in by the compiler automatically, do not specify
-                explicitly.
+                The name of the property. Filled in by the compiler automatically, do not specify explicitly.
             </param>
             <returns>
                 The value of the property.
             </returns>
             <exception cref="T:System.ArgumentException">
-                No public writable instance property named <paramref name="propertyName" /> of type
-                <see cref="T:System.UInt16" /> could be found -or- <paramref name="propertyName" /> is empty or consists only of
-                white-space characters.
+                no public writable instance property named <paramref name="propertyName" /> could be found -or- <paramref name="propertyName" /> is empty or consists only of white-space characters.
             </exception>
             <exception cref="T:System.InvalidOperationException">
-                The type is marked with <see cref="T:FluentMvvm.SuppressFieldGenerationAttribute" />.
-                This method cannot be used when field generation is suppressed.
+                there are no backing fields of type <see cref="T:System.UInt64" />.
             </exception>
-            <remarks>
-                Intended to only be used in property <c>get</c> accessors.
-            </remarks>
         </member>
-        <member name="M:FluentMvvm.Fluent.IPropertyGetExpression.GetUInt32(System.String)">
+        <member name="M:FluentMvvm.IPropertyGetExpression.GetDateTime(System.String)">
             <summary>
                 Gets the value of the specified property.
             </summary>
             <param name="propertyName">
-                The name of the property. Filled in by the compiler automatically, do not specify
-                explicitly.
+                The name of the property. Filled in by the compiler automatically, do not specify explicitly.
             </param>
             <returns>
                 The value of the property.
             </returns>
             <exception cref="T:System.ArgumentException">
-                No public writable instance property named <paramref name="propertyName" /> of type
-                <see cref="T:System.UInt32" /> could be found -or- <paramref name="propertyName" /> is empty or consists only of
-                white-space characters.
+                no public writable instance property named <paramref name="propertyName" /> could be found -or- <paramref name="propertyName" /> is empty or consists only of white-space characters.
             </exception>
             <exception cref="T:System.InvalidOperationException">
-                The type is marked with <see cref="T:FluentMvvm.SuppressFieldGenerationAttribute" />.
-                This method cannot be used when field generation is suppressed.
+                there are no backing fields of type <see cref="T:System.DateTime" />.
             </exception>
-            <remarks>
-                Intended to only be used in property <c>get</c> accessors.
-            </remarks>
         </member>
-        <member name="M:FluentMvvm.Fluent.IPropertyGetExpression.GetUInt64(System.String)">
+        <member name="M:FluentMvvm.IPropertyGetExpression.GetString(System.String)">
             <summary>
                 Gets the value of the specified property.
             </summary>
             <param name="propertyName">
-                The name of the property. Filled in by the compiler automatically, do not specify
-                explicitly.
+                The name of the property. Filled in by the compiler automatically, do not specify explicitly.
             </param>
             <returns>
                 The value of the property.
             </returns>
             <exception cref="T:System.ArgumentException">
-                No public writable instance property named <paramref name="propertyName" /> of type
-                <see cref="T:System.UInt64" /> could be found -or- <paramref name="propertyName" /> is empty or consists only of
-                white-space characters.
+                no public writable instance property named <paramref name="propertyName" /> could be found -or- <paramref name="propertyName" /> is empty or consists only of white-space characters.
             </exception>
             <exception cref="T:System.InvalidOperationException">
-                The type is marked with <see cref="T:FluentMvvm.SuppressFieldGenerationAttribute" />.
-                This method cannot be used when field generation is suppressed.
+                there are no backing fields of type <see cref="T:System.String" />.
             </exception>
-            <remarks>
-                Intended to only be used in property <c>get</c> accessors.
-            </remarks>
         </member>
-        <member name="T:FluentMvvm.Fluent.IPropertySetExpression">
+        <member name="T:FluentMvvm.IPropertySetExpression">
             <summary>
                 Provides methods that can be used to set a property value.
             </summary>
             <seealso cref="T:System.ComponentModel.INotifyPropertyChanged" />
         </member>
-        <member name="M:FluentMvvm.Fluent.IPropertySetExpression.Set``1(``0,System.String)">
+        <member name="M:FluentMvvm.IPropertySetExpression.Set``1(``0,System.String)">
             <summary>
                 Sets the value of the specified property to <paramref name="value" /> and raises a
                 <see cref="E:System.ComponentModel.INotifyPropertyChanged.PropertyChanged" /> event if the new value was different from the old value.
             </summary>
-            <typeparam name="T">The type of the property.</typeparam>
             <param name="value">The value to set the property to.</param>
             <param name="propertyName">
-                The name of the property. Filled in by the compiler automatically, do not specify
-                explicitly.
+                The name of the property. Filled in by the compiler automatically, do not specify explicitly.
             </param>
             <returns></returns>
             <exception cref="T:System.ArgumentException">
-                No public writable instance property named <paramref name="propertyName" /> could
-                be found -or- <paramref name="propertyName" /> is empty or consists only of white-space characters.
+                no public writable instance property named <paramref name="propertyName" /> could be found -or- <paramref name="propertyName" /> is empty or consists only of white-space characters.
             </exception>
             <exception cref="T:System.InvalidOperationException">
-                The type is marked with <see cref="T:FluentMvvm.SuppressFieldGenerationAttribute" />.
-                This method cannot be used when field generation is suppressed.
+                there are no backing fields of type <typeparamref name="T" />.
             </exception>
-            <remarks>
-                Intended to only be used in property <c>set</c> accessors.
-            </remarks>
         </member>
-        <member name="M:FluentMvvm.Fluent.IPropertySetExpression.Set(System.Boolean,System.String)">
+        <member name="M:FluentMvvm.IPropertySetExpression.Set(System.Boolean,System.String)">
             <summary>
-                Sets the value of this property to <paramref name="value" /> and raises a
+                Sets the value of the specified property to <paramref name="value" /> and raises a
                 <see cref="E:System.ComponentModel.INotifyPropertyChanged.PropertyChanged" /> event if the new value was different from the old value.
             </summary>
             <param name="value">The value to set the property to.</param>
             <param name="propertyName">
-                The name of the property. Filled in by the compiler automatically, do not specify
-                explicitly.
+                The name of the property. Filled in by the compiler automatically, do not specify explicitly.
             </param>
             <returns></returns>
             <exception cref="T:System.ArgumentException">
-                No public writable instance property named <paramref name="propertyName" /> of type
-                <see cref="T:System.Boolean" /> could be found -or- <paramref name="propertyName" /> is empty or consists only of
-                white-space characters.
+                no public writable instance property named <paramref name="propertyName" /> could be found -or- <paramref name="propertyName" /> is empty or consists only of white-space characters.
             </exception>
             <exception cref="T:System.InvalidOperationException">
-                The type is marked with <see cref="T:FluentMvvm.SuppressFieldGenerationAttribute" />.
-                This method cannot be used when field generation is suppressed.
+                there are no backing fields of type <see cref="T:System.Boolean" />.
             </exception>
-            <remarks>
-                Intended to only be used in property <c>set</c> accessors.
-            </remarks>
         </member>
-        <member name="M:FluentMvvm.Fluent.IPropertySetExpression.Set(System.Byte,System.String)">
+        <member name="M:FluentMvvm.IPropertySetExpression.Set(System.Byte,System.String)">
             <summary>
-                Sets the value of this property to <paramref name="value" /> and raises a
+                Sets the value of the specified property to <paramref name="value" /> and raises a
                 <see cref="E:System.ComponentModel.INotifyPropertyChanged.PropertyChanged" /> event if the new value was different from the old value.
             </summary>
             <param name="value">The value to set the property to.</param>
             <param name="propertyName">
-                The name of the property. Filled in by the compiler automatically, do not specify
-                explicitly.
+                The name of the property. Filled in by the compiler automatically, do not specify explicitly.
             </param>
             <returns></returns>
             <exception cref="T:System.ArgumentException">
-                No public writable instance property named <paramref name="propertyName" /> of type
-                <see cref="T:System.Byte" /> could be found -or- <paramref name="propertyName" /> is empty or consists only of
-                white-space characters.
+                no public writable instance property named <paramref name="propertyName" /> could be found -or- <paramref name="propertyName" /> is empty or consists only of white-space characters.
             </exception>
             <exception cref="T:System.InvalidOperationException">
-                The type is marked with <see cref="T:FluentMvvm.SuppressFieldGenerationAttribute" />.
-                This method cannot be used when field generation is suppressed.
+                there are no backing fields of type <see cref="T:System.Byte" />.
             </exception>
-            <remarks>
-                Intended to only be used in property <c>set</c> accessors.
-            </remarks>
         </member>
-        <member name="M:FluentMvvm.Fluent.IPropertySetExpression.Set(System.SByte,System.String)">
+        <member name="M:FluentMvvm.IPropertySetExpression.Set(System.SByte,System.String)">
             <summary>
-                Sets the value of this property to <paramref name="value" /> and raises a
+                Sets the value of the specified property to <paramref name="value" /> and raises a
                 <see cref="E:System.ComponentModel.INotifyPropertyChanged.PropertyChanged" /> event if the new value was different from the old value.
             </summary>
             <param name="value">The value to set the property to.</param>
             <param name="propertyName">
-                The name of the property. Filled in by the compiler automatically, do not specify
-                explicitly.
+                The name of the property. Filled in by the compiler automatically, do not specify explicitly.
             </param>
             <returns></returns>
             <exception cref="T:System.ArgumentException">
-                No public writable instance property named <paramref name="propertyName" /> of type
-                <see cref="T:System.SByte" /> could be found -or- <paramref name="propertyName" /> is empty or consists only of
-                white-space characters.
+                no public writable instance property named <paramref name="propertyName" /> could be found -or- <paramref name="propertyName" /> is empty or consists only of white-space characters.
             </exception>
             <exception cref="T:System.InvalidOperationException">
-                The type is marked with <see cref="T:FluentMvvm.SuppressFieldGenerationAttribute" />.
-                This method cannot be used when field generation is suppressed.
+                there are no backing fields of type <see cref="T:System.SByte" />.
             </exception>
-            <remarks>
-                Intended to only be used in property <c>set</c> accessors.
-            </remarks>
         </member>
-        <member name="M:FluentMvvm.Fluent.IPropertySetExpression.Set(System.Char,System.String)">
+        <member name="M:FluentMvvm.IPropertySetExpression.Set(System.Char,System.String)">
             <summary>
-                Sets the value of this property to <paramref name="value" /> and raises a
+                Sets the value of the specified property to <paramref name="value" /> and raises a
                 <see cref="E:System.ComponentModel.INotifyPropertyChanged.PropertyChanged" /> event if the new value was different from the old value.
             </summary>
             <param name="value">The value to set the property to.</param>
             <param name="propertyName">
-                The name of the property. Filled in by the compiler automatically, do not specify
-                explicitly.
+                The name of the property. Filled in by the compiler automatically, do not specify explicitly.
             </param>
             <returns></returns>
             <exception cref="T:System.ArgumentException">
-                No public writable instance property named <paramref name="propertyName" /> of type
-                <see cref="T:System.Char" /> could be found -or- <paramref name="propertyName" /> is empty or consists only of
-                white-space characters.
+                no public writable instance property named <paramref name="propertyName" /> could be found -or- <paramref name="propertyName" /> is empty or consists only of white-space characters.
             </exception>
             <exception cref="T:System.InvalidOperationException">
-                The type is marked with <see cref="T:FluentMvvm.SuppressFieldGenerationAttribute" />.
-                This method cannot be used when field generation is suppressed.
+                there are no backing fields of type <see cref="T:System.Char" />.
             </exception>
-            <remarks>
-                Intended to only be used in property <c>set</c> accessors.
-            </remarks>
         </member>
-        <member name="M:FluentMvvm.Fluent.IPropertySetExpression.Set(System.Decimal,System.String)">
+        <member name="M:FluentMvvm.IPropertySetExpression.Set(System.Decimal,System.String)">
             <summary>
-                Sets the value of this property to <paramref name="value" /> and raises a
+                Sets the value of the specified property to <paramref name="value" /> and raises a
                 <see cref="E:System.ComponentModel.INotifyPropertyChanged.PropertyChanged" /> event if the new value was different from the old value.
             </summary>
             <param name="value">The value to set the property to.</param>
             <param name="propertyName">
-                The name of the property. Filled in by the compiler automatically, do not specify
-                explicitly.
+                The name of the property. Filled in by the compiler automatically, do not specify explicitly.
             </param>
             <returns></returns>
             <exception cref="T:System.ArgumentException">
-                No public writable instance property named <paramref name="propertyName" /> of type
-                <see cref="T:System.Decimal" /> could be found -or- <paramref name="propertyName" /> is empty or consists only of
-                white-space characters.
+                no public writable instance property named <paramref name="propertyName" /> could be found -or- <paramref name="propertyName" /> is empty or consists only of white-space characters.
             </exception>
             <exception cref="T:System.InvalidOperationException">
-                The type is marked with <see cref="T:FluentMvvm.SuppressFieldGenerationAttribute" />.
-                This method cannot be used when field generation is suppressed.
+                there are no backing fields of type <see cref="T:System.Decimal" />.
             </exception>
-            <remarks>
-                Intended to only be used in property <c>set</c> accessors.
-            </remarks>
         </member>
-        <member name="M:FluentMvvm.Fluent.IPropertySetExpression.Set(System.Double,System.String)">
+        <member name="M:FluentMvvm.IPropertySetExpression.Set(System.Double,System.String)">
             <summary>
-                Sets the value of this property to <paramref name="value" /> and raises a
+                Sets the value of the specified property to <paramref name="value" /> and raises a
                 <see cref="E:System.ComponentModel.INotifyPropertyChanged.PropertyChanged" /> event if the new value was different from the old value.
             </summary>
             <param name="value">The value to set the property to.</param>
             <param name="propertyName">
-                The name of the property. Filled in by the compiler automatically, do not specify
-                explicitly.
+                The name of the property. Filled in by the compiler automatically, do not specify explicitly.
             </param>
             <returns></returns>
             <exception cref="T:System.ArgumentException">
-                No public writable instance property named <paramref name="propertyName" /> of type
-                <see cref="T:System.Double" /> could be found -or- <paramref name="propertyName" /> is empty or consists only of
-                white-space characters.
+                no public writable instance property named <paramref name="propertyName" /> could be found -or- <paramref name="propertyName" /> is empty or consists only of white-space characters.
             </exception>
             <exception cref="T:System.InvalidOperationException">
-                The type is marked with <see cref="T:FluentMvvm.SuppressFieldGenerationAttribute" />.
-                This method cannot be used when field generation is suppressed.
+                there are no backing fields of type <see cref="T:System.Double" />.
             </exception>
-            <remarks>
-                Intended to only be used in property <c>set</c> accessors.
-            </remarks>
         </member>
-        <member name="M:FluentMvvm.Fluent.IPropertySetExpression.Set(System.Single,System.String)">
+        <member name="M:FluentMvvm.IPropertySetExpression.Set(System.Single,System.String)">
             <summary>
-                Sets the value of this property to <paramref name="value" /> and raises a
+                Sets the value of the specified property to <paramref name="value" /> and raises a
                 <see cref="E:System.ComponentModel.INotifyPropertyChanged.PropertyChanged" /> event if the new value was different from the old value.
             </summary>
             <param name="value">The value to set the property to.</param>
             <param name="propertyName">
-                The name of the property. Filled in by the compiler automatically, do not specify
-                explicitly.
+                The name of the property. Filled in by the compiler automatically, do not specify explicitly.
             </param>
             <returns></returns>
             <exception cref="T:System.ArgumentException">
-                No public writable instance property named <paramref name="propertyName" /> of type
-                <see cref="T:System.Single" /> could be found -or- <paramref name="propertyName" /> is empty or consists only of
-                white-space characters.
+                no public writable instance property named <paramref name="propertyName" /> could be found -or- <paramref name="propertyName" /> is empty or consists only of white-space characters.
             </exception>
             <exception cref="T:System.InvalidOperationException">
-                The type is marked with <see cref="T:FluentMvvm.SuppressFieldGenerationAttribute" />.
-                This method cannot be used when field generation is suppressed.
+                there are no backing fields of type <see cref="T:System.Single" />.
             </exception>
-            <remarks>
-                Intended to only be used in property <c>set</c> accessors.
-            </remarks>
         </member>
-        <member name="M:FluentMvvm.Fluent.IPropertySetExpression.Set(System.Int16,System.String)">
+        <member name="M:FluentMvvm.IPropertySetExpression.Set(System.Int16,System.String)">
             <summary>
-                Sets the value of this property to <paramref name="value" /> and raises a
+                Sets the value of the specified property to <paramref name="value" /> and raises a
                 <see cref="E:System.ComponentModel.INotifyPropertyChanged.PropertyChanged" /> event if the new value was different from the old value.
             </summary>
             <param name="value">The value to set the property to.</param>
             <param name="propertyName">
-                The name of the property. Filled in by the compiler automatically, do not specify
-                explicitly.
+                The name of the property. Filled in by the compiler automatically, do not specify explicitly.
             </param>
             <returns></returns>
             <exception cref="T:System.ArgumentException">
-                No public writable instance property named <paramref name="propertyName" /> of type
-                <see cref="T:System.Int16" /> could be found -or- <paramref name="propertyName" /> is empty or consists only of
-                white-space characters.
+                no public writable instance property named <paramref name="propertyName" /> could be found -or- <paramref name="propertyName" /> is empty or consists only of white-space characters.
             </exception>
             <exception cref="T:System.InvalidOperationException">
-                The type is marked with <see cref="T:FluentMvvm.SuppressFieldGenerationAttribute" />.
-                This method cannot be used when field generation is suppressed.
+                there are no backing fields of type <see cref="T:System.Int16" />.
             </exception>
-            <remarks>
-                Intended to only be used in property <c>set</c> accessors.
-            </remarks>
         </member>
-        <member name="M:FluentMvvm.Fluent.IPropertySetExpression.Set(System.UInt16,System.String)">
+        <member name="M:FluentMvvm.IPropertySetExpression.Set(System.UInt16,System.String)">
             <summary>
-                Sets the value of this property to <paramref name="value" /> and raises a
+                Sets the value of the specified property to <paramref name="value" /> and raises a
                 <see cref="E:System.ComponentModel.INotifyPropertyChanged.PropertyChanged" /> event if the new value was different from the old value.
             </summary>
             <param name="value">The value to set the property to.</param>
             <param name="propertyName">
-                The name of the property. Filled in by the compiler automatically, do not specify
-                explicitly.
+                The name of the property. Filled in by the compiler automatically, do not specify explicitly.
             </param>
             <returns></returns>
             <exception cref="T:System.ArgumentException">
-                No public writable instance property named <paramref name="propertyName" /> of type
-                <see cref="T:System.UInt16" /> could be found -or- <paramref name="propertyName" /> is empty or consists only of
-                white-space characters.
+                no public writable instance property named <paramref name="propertyName" /> could be found -or- <paramref name="propertyName" /> is empty or consists only of white-space characters.
             </exception>
             <exception cref="T:System.InvalidOperationException">
-                The type is marked with <see cref="T:FluentMvvm.SuppressFieldGenerationAttribute" />.
-                This method cannot be used when field generation is suppressed.
+                there are no backing fields of type <see cref="T:System.UInt16" />.
             </exception>
-            <remarks>
-                Intended to only be used in property <c>set</c> accessors.
-            </remarks>
         </member>
-        <member name="M:FluentMvvm.Fluent.IPropertySetExpression.Set(System.Int32,System.String)">
+        <member name="M:FluentMvvm.IPropertySetExpression.Set(System.Int32,System.String)">
             <summary>
-                Sets the value of this property to <paramref name="value" /> and raises a
+                Sets the value of the specified property to <paramref name="value" /> and raises a
                 <see cref="E:System.ComponentModel.INotifyPropertyChanged.PropertyChanged" /> event if the new value was different from the old value.
             </summary>
             <param name="value">The value to set the property to.</param>
             <param name="propertyName">
-                The name of the property. Filled in by the compiler automatically, do not specify
-                explicitly.
+                The name of the property. Filled in by the compiler automatically, do not specify explicitly.
             </param>
             <returns></returns>
             <exception cref="T:System.ArgumentException">
-                No public writable instance property named <paramref name="propertyName" /> of type
-                <see cref="T:System.Int32" /> could be found -or- <paramref name="propertyName" /> is empty or consists only of
-                white-space characters.
+                no public writable instance property named <paramref name="propertyName" /> could be found -or- <paramref name="propertyName" /> is empty or consists only of white-space characters.
             </exception>
             <exception cref="T:System.InvalidOperationException">
-                The type is marked with <see cref="T:FluentMvvm.SuppressFieldGenerationAttribute" />.
-                This method cannot be used when field generation is suppressed.
+                there are no backing fields of type <see cref="T:System.Int32" />.
             </exception>
-            <remarks>
-                Intended to only be used in property <c>set</c> accessors.
-            </remarks>
         </member>
-        <member name="M:FluentMvvm.Fluent.IPropertySetExpression.Set(System.UInt32,System.String)">
+        <member name="M:FluentMvvm.IPropertySetExpression.Set(System.UInt32,System.String)">
             <summary>
-                Sets the value of this property to <paramref name="value" /> and raises a
+                Sets the value of the specified property to <paramref name="value" /> and raises a
                 <see cref="E:System.ComponentModel.INotifyPropertyChanged.PropertyChanged" /> event if the new value was different from the old value.
             </summary>
             <param name="value">The value to set the property to.</param>
             <param name="propertyName">
-                The name of the property. Filled in by the compiler automatically, do not specify
-                explicitly.
+                The name of the property. Filled in by the compiler automatically, do not specify explicitly.
             </param>
             <returns></returns>
             <exception cref="T:System.ArgumentException">
-                No public writable instance property named <paramref name="propertyName" /> of type
-                <see cref="T:System.UInt32" /> could be found -or- <paramref name="propertyName" /> is empty or consists only of
-                white-space characters.
+                no public writable instance property named <paramref name="propertyName" /> could be found -or- <paramref name="propertyName" /> is empty or consists only of white-space characters.
             </exception>
             <exception cref="T:System.InvalidOperationException">
-                The type is marked with <see cref="T:FluentMvvm.SuppressFieldGenerationAttribute" />.
-                This method cannot be used when field generation is suppressed.
+                there are no backing fields of type <see cref="T:System.UInt32" />.
             </exception>
-            <remarks>
-                Intended to only be used in property <c>set</c> accessors.
-            </remarks>
         </member>
-        <member name="M:FluentMvvm.Fluent.IPropertySetExpression.Set(System.Int64,System.String)">
+        <member name="M:FluentMvvm.IPropertySetExpression.Set(System.Int64,System.String)">
             <summary>
-                Sets the value of this property to <paramref name="value" /> and raises a
+                Sets the value of the specified property to <paramref name="value" /> and raises a
                 <see cref="E:System.ComponentModel.INotifyPropertyChanged.PropertyChanged" /> event if the new value was different from the old value.
             </summary>
             <param name="value">The value to set the property to.</param>
             <param name="propertyName">
-                The name of the property. Filled in by the compiler automatically, do not specify
-                explicitly.
+                The name of the property. Filled in by the compiler automatically, do not specify explicitly.
             </param>
             <returns></returns>
             <exception cref="T:System.ArgumentException">
-                No public writable instance property named <paramref name="propertyName" /> of type
-                <see cref="T:System.Int64" /> could be found -or- <paramref name="propertyName" /> is empty or consists only of
-                white-space characters.
+                no public writable instance property named <paramref name="propertyName" /> could be found -or- <paramref name="propertyName" /> is empty or consists only of white-space characters.
             </exception>
             <exception cref="T:System.InvalidOperationException">
-                The type is marked with <see cref="T:FluentMvvm.SuppressFieldGenerationAttribute" />.
-                This method cannot be used when field generation is suppressed.
+                there are no backing fields of type <see cref="T:System.Int64" />.
             </exception>
-            <remarks>
-                Intended to only be used in property <c>set</c> accessors.
-            </remarks>
         </member>
-        <member name="M:FluentMvvm.Fluent.IPropertySetExpression.Set(System.UInt64,System.String)">
+        <member name="M:FluentMvvm.IPropertySetExpression.Set(System.UInt64,System.String)">
             <summary>
-                Sets the value of this property to <paramref name="value" /> and raises a
+                Sets the value of the specified property to <paramref name="value" /> and raises a
                 <see cref="E:System.ComponentModel.INotifyPropertyChanged.PropertyChanged" /> event if the new value was different from the old value.
             </summary>
             <param name="value">The value to set the property to.</param>
             <param name="propertyName">
-                The name of the property. Filled in by the compiler automatically, do not specify
-                explicitly.
+                The name of the property. Filled in by the compiler automatically, do not specify explicitly.
             </param>
             <returns></returns>
             <exception cref="T:System.ArgumentException">
-                No public writable instance property named <paramref name="propertyName" /> of type
-                <see cref="T:System.UInt64" /> could be found -or- <paramref name="propertyName" /> is empty or consists only of
-                white-space characters.
+                no public writable instance property named <paramref name="propertyName" /> could be found -or- <paramref name="propertyName" /> is empty or consists only of white-space characters.
             </exception>
             <exception cref="T:System.InvalidOperationException">
-                The type is marked with <see cref="T:FluentMvvm.SuppressFieldGenerationAttribute" />.
-                This method cannot be used when field generation is suppressed.
+                there are no backing fields of type <see cref="T:System.UInt64" />.
             </exception>
-            <remarks>
-                Intended to only be used in property <c>set</c> accessors.
-            </remarks>
         </member>
-        <member name="M:FluentMvvm.Fluent.IPropertySetExpression.Set(System.String,System.String)">
+        <member name="M:FluentMvvm.IPropertySetExpression.Set(System.DateTime,System.String)">
             <summary>
-                Sets the value of this property to <paramref name="value" /> and raises a
+                Sets the value of the specified property to <paramref name="value" /> and raises a
                 <see cref="E:System.ComponentModel.INotifyPropertyChanged.PropertyChanged" /> event if the new value was different from the old value.
             </summary>
             <param name="value">The value to set the property to.</param>
             <param name="propertyName">
-                The name of the property. Filled in by the compiler automatically, do not specify
-                explicitly.
+                The name of the property. Filled in by the compiler automatically, do not specify explicitly.
             </param>
             <returns></returns>
             <exception cref="T:System.ArgumentException">
-                No public writable instance property named <paramref name="propertyName" /> of type
-                <see cref="T:System.String" /> could be found -or- <paramref name="propertyName" /> is empty or consists only of
-                white-space characters.
+                no public writable instance property named <paramref name="propertyName" /> could be found -or- <paramref name="propertyName" /> is empty or consists only of white-space characters.
             </exception>
             <exception cref="T:System.InvalidOperationException">
-                The type is marked with <see cref="T:FluentMvvm.SuppressFieldGenerationAttribute" />.
-                This method cannot be used when field generation is suppressed.
+                there are no backing fields of type <see cref="T:System.DateTime" />.
             </exception>
-            <remarks>
-                Intended to only be used in property <c>set</c> accessors.
-            </remarks>
         </member>
-        <member name="M:FluentMvvm.Fluent.IPropertySetExpression.Set(System.DateTime,System.String)">
+        <member name="M:FluentMvvm.IPropertySetExpression.Set(System.String,System.String)">
             <summary>
-                Sets the value of this property to <paramref name="value" /> and raises a
+                Sets the value of the specified property to <paramref name="value" /> and raises a
                 <see cref="E:System.ComponentModel.INotifyPropertyChanged.PropertyChanged" /> event if the new value was different from the old value.
             </summary>
             <param name="value">The value to set the property to.</param>
             <param name="propertyName">
-                The name of the property. Filled in by the compiler automatically, do not specify
-                explicitly.
+                The name of the property. Filled in by the compiler automatically, do not specify explicitly.
             </param>
             <returns></returns>
             <exception cref="T:System.ArgumentException">
-                No public writable instance property named <paramref name="propertyName" /> of type
-                <see cref="T:System.DateTime" /> could be found -or- <paramref name="propertyName" /> is empty or consists only of
-                white-space characters.
+                no public writable instance property named <paramref name="propertyName" /> could be found -or- <paramref name="propertyName" /> is empty or consists only of white-space characters.
             </exception>
             <exception cref="T:System.InvalidOperationException">
-                The type is marked with <see cref="T:FluentMvvm.SuppressFieldGenerationAttribute" />.
-                This method cannot be used when field generation is suppressed.
+                there are no backing fields of type <see cref="T:System.String" />.
             </exception>
-            <remarks>
-                Intended to only be used in property <c>set</c> accessors.
-            </remarks>
         </member>
-        <member name="T:FluentMvvm.InternalException">
+        <member name="M:FluentMvvm.IPropertySetExpression.Set``1(``0,``0@,System.String)">
             <summary>
-                Represents an unexpected error in the library that is likely caused by an internal error.
+                Sets the value of the specified property to <paramref name="value" /> and raises a
+                <see cref="E:System.ComponentModel.INotifyPropertyChanged.PropertyChanged" /> event if the new value was different from the old value.
             </summary>
-            <remarks>
-                Internal by design as it indicates a flaw in the library that cannot be fixed by the user and should not be caught
-                either.
-            </remarks>
-            <seealso cref="T:System.Exception" />
-        </member>
-        <member name="M:FluentMvvm.InternalException.#ctor(System.String)">
-            <summary>
-                Initializes a new instance of the <see cref="T:FluentMvvm.InternalException" /> class.
-            </summary>
-            <param name="message">The message that describes the error.</param>
+            <param name="value">The value to set the property to.</param>
+            <param name="oldValue">A reference to the old value of the property. This can be a field.</param>
+            <param name="propertyName">
+                The name of the property. Filled in by the compiler automatically, do not specify explicitly.
+            </param>
+            <returns></returns>
+            <exception cref="T:System.ArgumentException">
+                no public writable instance property named <paramref name="propertyName" /> could be found -or- <paramref name="propertyName" /> is empty or consists only of white-space characters.
+            </exception>
         </member>
         <member name="T:FluentMvvm.IWpfCommand">
-            <inheritdoc />
             <summary>
                 The base interface for WPF commands allowing consumers to raise the <see cref="E:System.Windows.Input.ICommand.CanExecuteChanged" />
                 event.
@@ -1951,12 +1566,6 @@
             <summary>
                 Raises the <see cref="E:System.ComponentModel.INotifyPropertyChanged.PropertyChanged" /> event.
             </summary>
-        </member>
-        <member name="T:FluentMvvm.SuppressFieldGenerationAttribute">
-            <inheritdoc />
-            <summary>Indicates that no backing field shall be generated for the property or type the attribute is applied to.</summary>
-            <remarks>If applied to a type, no backing field is generated for any property of that type.</remarks>
-            <seealso cref="T:System.Attribute" />
         </member>
     </members>
 </doc>

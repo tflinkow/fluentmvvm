@@ -1,0 +1,189 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>How it works: Creating backing fields at runtime </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="How it works: Creating backing fields at runtime ">
+    <meta name="generator" content="docfx 2.56.6.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+
+<p><a href="https://github.com/flinkow/fluentmvvm">↩ Go back home</a></p>
+<h1 id="how-it-works-creating-backing-fields-at-runtime">How it works: Creating backing fields at runtime</h1>
+<h2 id="contents">Contents</h2>
+<ul>
+<li><a href="TODO#features">Using a dictionary to act as the backing fields</a></li>
+<li><a href="TODO#features">A specialized read-only dictionary</a></li>
+<li><a href="TODO#features">The disadvantage and an ugly-solution</a></li>
+</ul>
+<p>One goal of <code>fluentmvvm</code> was to write properties and let <code>fluentmvvm</code> take care of supplying the backing fields.</p>
+<pre><code class="lang-csharp">public int Age
+{
+    get =&gt; this.GetInt32();
+    set =&gt; this.Set(value);
+}
+</code></pre>
+<p>The following sections give insight into how the backing fields will be created at runtime.</p>
+<h2 id="note">Note</h2>
+<blockquote>
+<p>Versions before <code>0.5.0-alpha</code> did not use the following approach but instead generated types at runtime by emitting CIL directly. The advantage was that boxing could be avoided entirely. Apart from maintainability, a significant disadvantage was that the <code>Get</code> and <code>Set</code> methods ran in <code>O(n)</code>, with <code>n</code> being the number of properties. Using a dictionary allows for the <code>Get</code> and <code>Set</code> methods to run in close to <code>O(1)</code> (almost constant time, no matter the number of properties).</p>
+</blockquote>
+<h2 id="using-a-dictionary-to-act-as-the-backing-fields">Using a dictionary to act as the backing fields</h2>
+<p>A field essentially is a key-value pair consisting of the name of the field and its value. Therefore it is easy to think of fields as the elements of a <code>Dictionary&lt;string, TValue&gt;</code>.</p>
+<p>What this means is instead of having</p>
+<pre><code class="lang-csharp">private int age;
+
+public int Age
+{
+    get =&gt; this.age;
+    set =&gt; this.age = value;
+}
+</code></pre>
+<p>we can simply use</p>
+<pre><code class="lang-csharp">private readonly IDictionary&lt;string, int&gt; intFields = new Dictionary&lt;string, int&gt;();
+
+public int Age
+{
+    get =&gt; this.intFields[&quot;Age&quot;];
+    set =&gt; this.intFields[&quot;Age&quot;] = value;    
+}
+</code></pre>
+<h2 id="a-specialized-read-only-dictionary">A specialized read-only dictionary</h2>
+<p>The standard <code>Dictionary&lt;TKey, TValue&gt;</code> is already highly optimized but contains features that are not needed for our use case (such as resizing, adding, and removing elements after creation).</p>
+<p>And maybe the most important: the <code>Set</code> method of <code>FluentViewModelBase</code> raises the <code>PropertyChanged</code> event only if the new value was different from the old value. Therefore it is necessary to retrieve a value from the dictionary before setting the value. <code>Dictionary&lt;TKey, TValue&gt;</code> requires two lookups to do this, i.e.</p>
+<pre><code class="lang-csharp">public void Set(int value, [CallerMemberName] string propertyName = null)
+{
+    if(this.intFields.TryGetValue(propertyName, out int value)) // first lookup
+    {
+        if(value != newValue)
+        {
+            this.intFields[propertyName] = value; // second lookup!
+            // ...
+        }
+    }
+}
+</code></pre>
+<p>If we can do that with only one lookup, we can drastically reduce the time needed to set values.</p>
+<p>By writing a custom <code>IReadOnlyDictionary&lt;string, TValue&gt;</code> we could not only accomplish that but also achieve performance gains on older runtimes (about 22% on .NET Framework 4.8) in general and significant performance gains (and improved memory usage) when only one element is in the dictionary<sup id="a1"><a href="#SingleElementDictionary">†</a></sup> (about 25% on .NET Core 3.1 and about 47% on .NET Framework 4.8).</p>
+<p>This custom dictionary is the <a href="TODO"><code>FixedSizeDictionary&lt;TValue&gt;</code></a>. It is a simplified dictionary with separate chaining for collision resolution. The capacity (number of buckets) is fixed and determined based on the number of elements that shall be added to it. It is chosen to be a power of two with the additional constraint that the load factor (i.e., the ratio between available and occupied slots) never exceeds <code>ln(2)</code>.</p>
+<p>It features a <code>TryGetEntry</code> method, which can be used both for getting and setting a value:</p>
+<pre><code class="lang-csharp">public void Set(int value, [CallerMemberName] string propertyName = null)
+{
+    if(this.intFields.TryGetEntry(propertyName, out FixedSizeDictionary&lt;int&gt;.Entry? entry)) // one lookup
+    {
+        if(value != entry.Value) // entry.Value is the old value
+        {
+            entry.Value = value; // setting the new value - no additional lookup!
+            // ...
+        }
+    }
+}
+</code></pre>
+<h2 id="the-disadvantage-and-an-ugly-solution">The disadvantage and an ugly-solution</h2>
+<p>Sadly, a big disadvantage of this approach is that one <code>FixedSizeDictionary&lt;TValue&gt;</code> can only be used for fields of type <code>TValue</code>. There is no way to put fields of type <code>int</code> into the same dictionary as fields of type <code>string</code> etc., without using <a href="https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/types/boxing-and-unboxing">boxing</a>.</p>
+<p>This is why all classes, <code>struct</code>s and enumerations for which no explicit overload and thus no designated dictionary exists will be put into one <code>FixedSizeDictionary&lt;object&gt;</code>. For reference types, this is fine (although not incredibly beautiful), but for value types, the process of boxing (making and <code>object</code> from the value) is quite costly. I believe, however, that this is a sacrifice that's worth making in order to have the <code>Get</code> and <code>Set</code> methods run in almost <code>O(1)</code>.</p>
+<h1 id="footnotes">Footnotes</h1>
+<p><b id="SingleElementDictionary">†</b> Because we create a designated dictionary for every primitive type, it is beneficial to have a fast and memory-efficient solution for dictionaries with only a few entries. This is important because some types (e.g., <code>DateTime</code>, <code>uint</code>, etc.) are not used as often as others (<code>int</code>, <code>string</code>, etc.). If a view model has only one property of a certain primitive type, it makes sense for the dictionary only to have one entry too. <code>Dictionary&lt;TKey, TValue&gt;</code> will always have <a href="https://source.dot.net/#System.Private.CoreLib/HashHelpers.cs,e8668bf19da49963">at least three entries</a>. <a href="#a1">↩ Back</a></p>
+<h1 id="license">License</h1>
+<p>(c) Thomas Flinkow 2019 - 2021 · <a href="https://github.com/flinkow">GitHub</a> · <a href="flinkow@thomas-flinkow.de">email</a></p>
+<p>Distributed under the MIT license. See <a href="https://github.com/flinkow/fluentmvvm/blob/master/LICENSE"><code>LICENSE</code></a> for more information.</p>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/flinkow/fluentmvvm/blob/master/docfx_project/articles/CreatingBackingFields.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

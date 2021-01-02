@@ -3,7 +3,6 @@ using System.Windows.Input;
 
 namespace FluentMvvm
 {
-    /// <inheritdoc />
     /// <summary>
     ///     The base interface for WPF commands allowing consumers to raise the <see cref="ICommand.CanExecuteChanged" />
     ///     event.

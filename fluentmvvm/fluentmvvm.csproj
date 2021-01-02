@@ -7,26 +7,32 @@
     <Nullable>enable</Nullable>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <Version>0.3.2-alpha</Version>
+    <Version>0.5.0-alpha</Version>
 	<RunCodeAnalysis>false</RunCodeAnalysis>
     <Authors>Thomas Flinkow</Authors>
     <Company></Company>
     <Description>An easy-to-use, fast ViewModelBase providing an intuitive fluent API.</Description>
-    <Copyright>(c) Thomas Flinkow 2019, 2020</Copyright>
+    <Copyright>(c) Thomas Flinkow 2019 - 2021</Copyright>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageProjectUrl>https://github.com/flinkow/fluentmvvm</PackageProjectUrl>
     <RepositoryUrl>https://github.com/flinkow/fluentmvvm.git</RepositoryUrl>
     <PackageTags>c#,wpf,mvvm,fluent,viewmodel</PackageTags>
-    <PackageReleaseNotes>- Fixed an exception that would occur when retrieving the value of a string property that is null using Get&lt;T&gt;
-- Fixed an exception that would occur when setting the value of a property whose type is an interface</PackageReleaseNotes>
-    <AssemblyVersion>0.3.2.0</AssemblyVersion>
-    <FileVersion>0.3.2.0</FileVersion>
+    <PackageReleaseNotes>- Removed dynamic code generation in favor of increased performance and increased code maintainability.
+- Getting and setting properties of a type with n properties now works in O(1) instead of in O(n).</PackageReleaseNotes>
+    <AssemblyVersion>0.5.0.0</AssemblyVersion>
+    <FileVersion>0.5.0.0</FileVersion>
+    <EnableNETAnalyzers>true</EnableNETAnalyzers>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>C:\Devel\fluentmvvm\fluentmvvm\fluentmvvm.xml</DocumentationFile>
+    <DocumentationFile>C:\devel\fluentmvvm\fluentmvvm\fluentmvvm.xml</DocumentationFile>
     <DebugType>embedded</DebugType>
     <DebugSymbols>true</DebugSymbols>
+    <DefineConstants>TRACE</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DefineConstants>TRACE</DefineConstants>
   </PropertyGroup>
 
   <ItemGroup>
@@ -34,33 +40,20 @@
       <_Parameter1>$(AssemblyName).tests</_Parameter1>
     </AssemblyAttribute>
     <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
-      <_Parameter1>$(AssemblyName).dynamic</_Parameter1>
-    </AssemblyAttribute>
-    <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
       <_Parameter1>DynamicProxyGenAssembly2</_Parameter1>
     </AssemblyAttribute>
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.8">
+    <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="5.0.1">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
-    <PackageReference Include="Microsoft.DotNet.Analyzers.Compatibility" Version="0.2.12-alpha">
+    <PackageReference Include="Nullable" Version="1.3.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Nullable" Version="1.2.1">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="StyleCop.Analyzers" Version="1.2.0-beta.164">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="System.Dynamic.Runtime" Version="4.3.0" />
-    <PackageReference Include="System.Reflection.Emit" Version="4.7.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -68,6 +61,79 @@
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="BackingFields.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>BackingFields.cs</LastGenOutput>
+    </None>
+    <None Update="BackingFieldsCreationDisabled.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>BackingFieldsCreationDisabled.cs</LastGenOutput>
+    </None>
+    <None Update="EmptyFluentAction.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>EmptyFluentAction.cs</LastGenOutput>
+    </None>
+    <None Update="IBackingFields.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>IBackingFields.cs</LastGenOutput>
+    </None>
+    <None Update="IPropertyGetExpression.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>IPropertyGetExpression.cs</LastGenOutput>
+    </None>
+    <None Update="IPropertySetExpression.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>IPropertySetExpression.cs</LastGenOutput>
+    </None>
+    <None Update="FluentViewModelBase.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>FluentViewModelBase.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="BackingFields.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>BackingFields.tt</DependentUpon>
+    </Compile>
+    <Compile Update="BackingFieldsCreationDisabled.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>BackingFieldsCreationDisabled.tt</DependentUpon>
+    </Compile>
+    <Compile Update="EmptyFluentAction.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>EmptyFluentAction.tt</DependentUpon>
+    </Compile>
+    <Compile Update="IBackingFields.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>IBackingFields.tt</DependentUpon>
+    </Compile>
+    <Compile Update="IPropertyGetExpression.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>IPropertyGetExpression.tt</DependentUpon>
+    </Compile>
+    <Compile Update="IPropertySetExpression.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>IPropertySetExpression.tt</DependentUpon>
+    </Compile>
+    <Compile Update="FluentViewModelBase.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>FluentViewModelBase.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
 
 </Project>

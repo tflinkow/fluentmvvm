@@ -1,0 +1,1117 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Interface IPropertySetExpression
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Interface IPropertySetExpression
+   ">
+    <meta name="generator" content="docfx 2.56.6.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="FluentMvvm.IPropertySetExpression">
+  
+  
+  <h1 id="FluentMvvm_IPropertySetExpression" data-uid="FluentMvvm.IPropertySetExpression" class="text-break">Interface IPropertySetExpression
+  </h1>
+  <div class="markdown level0 summary"><p>Provides methods that can be used to set a property value.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="FluentMvvm.html">FluentMvvm</a></h6>
+  <h6><strong>Assembly</strong>: fluentmvvm - Backup.dll</h6>
+  <h5 id="FluentMvvm_IPropertySetExpression_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public interface IPropertySetExpression</code></pre>
+  </div>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/flinkow/fluentmvvm/new/master/apiSpec/new?filename=FluentMvvm_IPropertySetExpression_Set_Boolean_System_String_.md&amp;value=---%0Auid%3A%20FluentMvvm.IPropertySetExpression.Set(Boolean%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/flinkow/fluentmvvm/blob/master/fluentmvvm/IPropertySetExpression.cs/#L49">View Source</a>
+  </span>
+  <a id="FluentMvvm_IPropertySetExpression_Set_" data-uid="FluentMvvm.IPropertySetExpression.Set*"></a>
+  <h4 id="FluentMvvm_IPropertySetExpression_Set_Boolean_System_String_" data-uid="FluentMvvm.IPropertySetExpression.Set(Boolean,System.String)">Set(Boolean, String)</h4>
+  <div class="markdown level1 summary"><p>Sets the value of the specified property to <code data-dev-comment-type="paramref" class="paramref">value</code> and raises a
+<see cref="!:INotifyPropertyChanged.PropertyChanged"></see> event if the new value was different from the old value.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">IDependencyExpression Set(Boolean value, string propertyName = &quot;&quot;)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Boolean</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>The value to set the property to.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">propertyName</span></td>
+        <td><p>The name of the property. Filled in by the compiler automatically, do not specify explicitly.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FluentMvvm.IDependencyExpression.html">IDependencyExpression</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/flinkow/fluentmvvm/new/master/apiSpec/new?filename=FluentMvvm_IPropertySetExpression_Set_Byte_System_String_.md&amp;value=---%0Auid%3A%20FluentMvvm.IPropertySetExpression.Set(Byte%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/flinkow/fluentmvvm/blob/master/fluentmvvm/IPropertySetExpression.cs/#L66">View Source</a>
+  </span>
+  <a id="FluentMvvm_IPropertySetExpression_Set_" data-uid="FluentMvvm.IPropertySetExpression.Set*"></a>
+  <h4 id="FluentMvvm_IPropertySetExpression_Set_Byte_System_String_" data-uid="FluentMvvm.IPropertySetExpression.Set(Byte,System.String)">Set(Byte, String)</h4>
+  <div class="markdown level1 summary"><p>Sets the value of the specified property to <code data-dev-comment-type="paramref" class="paramref">value</code> and raises a
+<see cref="!:INotifyPropertyChanged.PropertyChanged"></see> event if the new value was different from the old value.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">IDependencyExpression Set(Byte value, string propertyName = &quot;&quot;)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Byte</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>The value to set the property to.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">propertyName</span></td>
+        <td><p>The name of the property. Filled in by the compiler automatically, do not specify explicitly.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FluentMvvm.IDependencyExpression.html">IDependencyExpression</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/flinkow/fluentmvvm/new/master/apiSpec/new?filename=FluentMvvm_IPropertySetExpression_Set_Char_System_String_.md&amp;value=---%0Auid%3A%20FluentMvvm.IPropertySetExpression.Set(Char%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/flinkow/fluentmvvm/blob/master/fluentmvvm/IPropertySetExpression.cs/#L100">View Source</a>
+  </span>
+  <a id="FluentMvvm_IPropertySetExpression_Set_" data-uid="FluentMvvm.IPropertySetExpression.Set*"></a>
+  <h4 id="FluentMvvm_IPropertySetExpression_Set_Char_System_String_" data-uid="FluentMvvm.IPropertySetExpression.Set(Char,System.String)">Set(Char, String)</h4>
+  <div class="markdown level1 summary"><p>Sets the value of the specified property to <code data-dev-comment-type="paramref" class="paramref">value</code> and raises a
+<see cref="!:INotifyPropertyChanged.PropertyChanged"></see> event if the new value was different from the old value.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">IDependencyExpression Set(Char value, string propertyName = &quot;&quot;)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Char</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>The value to set the property to.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">propertyName</span></td>
+        <td><p>The name of the property. Filled in by the compiler automatically, do not specify explicitly.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FluentMvvm.IDependencyExpression.html">IDependencyExpression</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/flinkow/fluentmvvm/new/master/apiSpec/new?filename=FluentMvvm_IPropertySetExpression_Set_DateTime_System_String_.md&amp;value=---%0Auid%3A%20FluentMvvm.IPropertySetExpression.Set(DateTime%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/flinkow/fluentmvvm/blob/master/fluentmvvm/IPropertySetExpression.cs/#L270">View Source</a>
+  </span>
+  <a id="FluentMvvm_IPropertySetExpression_Set_" data-uid="FluentMvvm.IPropertySetExpression.Set*"></a>
+  <h4 id="FluentMvvm_IPropertySetExpression_Set_DateTime_System_String_" data-uid="FluentMvvm.IPropertySetExpression.Set(DateTime,System.String)">Set(DateTime, String)</h4>
+  <div class="markdown level1 summary"><p>Sets the value of the specified property to <code data-dev-comment-type="paramref" class="paramref">value</code> and raises a
+<see cref="!:INotifyPropertyChanged.PropertyChanged"></see> event if the new value was different from the old value.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">IDependencyExpression Set(DateTime value, string propertyName = &quot;&quot;)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">DateTime</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>The value to set the property to.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">propertyName</span></td>
+        <td><p>The name of the property. Filled in by the compiler automatically, do not specify explicitly.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FluentMvvm.IDependencyExpression.html">IDependencyExpression</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/flinkow/fluentmvvm/new/master/apiSpec/new?filename=FluentMvvm_IPropertySetExpression_Set_Decimal_System_String_.md&amp;value=---%0Auid%3A%20FluentMvvm.IPropertySetExpression.Set(Decimal%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/flinkow/fluentmvvm/blob/master/fluentmvvm/IPropertySetExpression.cs/#L117">View Source</a>
+  </span>
+  <a id="FluentMvvm_IPropertySetExpression_Set_" data-uid="FluentMvvm.IPropertySetExpression.Set*"></a>
+  <h4 id="FluentMvvm_IPropertySetExpression_Set_Decimal_System_String_" data-uid="FluentMvvm.IPropertySetExpression.Set(Decimal,System.String)">Set(Decimal, String)</h4>
+  <div class="markdown level1 summary"><p>Sets the value of the specified property to <code data-dev-comment-type="paramref" class="paramref">value</code> and raises a
+<see cref="!:INotifyPropertyChanged.PropertyChanged"></see> event if the new value was different from the old value.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">IDependencyExpression Set(Decimal value, string propertyName = &quot;&quot;)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Decimal</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>The value to set the property to.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">propertyName</span></td>
+        <td><p>The name of the property. Filled in by the compiler automatically, do not specify explicitly.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FluentMvvm.IDependencyExpression.html">IDependencyExpression</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/flinkow/fluentmvvm/new/master/apiSpec/new?filename=FluentMvvm_IPropertySetExpression_Set_Double_System_String_.md&amp;value=---%0Auid%3A%20FluentMvvm.IPropertySetExpression.Set(Double%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/flinkow/fluentmvvm/blob/master/fluentmvvm/IPropertySetExpression.cs/#L134">View Source</a>
+  </span>
+  <a id="FluentMvvm_IPropertySetExpression_Set_" data-uid="FluentMvvm.IPropertySetExpression.Set*"></a>
+  <h4 id="FluentMvvm_IPropertySetExpression_Set_Double_System_String_" data-uid="FluentMvvm.IPropertySetExpression.Set(Double,System.String)">Set(Double, String)</h4>
+  <div class="markdown level1 summary"><p>Sets the value of the specified property to <code data-dev-comment-type="paramref" class="paramref">value</code> and raises a
+<see cref="!:INotifyPropertyChanged.PropertyChanged"></see> event if the new value was different from the old value.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">IDependencyExpression Set(Double value, string propertyName = &quot;&quot;)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Double</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>The value to set the property to.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">propertyName</span></td>
+        <td><p>The name of the property. Filled in by the compiler automatically, do not specify explicitly.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FluentMvvm.IDependencyExpression.html">IDependencyExpression</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/flinkow/fluentmvvm/new/master/apiSpec/new?filename=FluentMvvm_IPropertySetExpression_Set_Int16_System_String_.md&amp;value=---%0Auid%3A%20FluentMvvm.IPropertySetExpression.Set(Int16%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/flinkow/fluentmvvm/blob/master/fluentmvvm/IPropertySetExpression.cs/#L168">View Source</a>
+  </span>
+  <a id="FluentMvvm_IPropertySetExpression_Set_" data-uid="FluentMvvm.IPropertySetExpression.Set*"></a>
+  <h4 id="FluentMvvm_IPropertySetExpression_Set_Int16_System_String_" data-uid="FluentMvvm.IPropertySetExpression.Set(Int16,System.String)">Set(Int16, String)</h4>
+  <div class="markdown level1 summary"><p>Sets the value of the specified property to <code data-dev-comment-type="paramref" class="paramref">value</code> and raises a
+<see cref="!:INotifyPropertyChanged.PropertyChanged"></see> event if the new value was different from the old value.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">IDependencyExpression Set(Int16 value, string propertyName = &quot;&quot;)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Int16</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>The value to set the property to.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">propertyName</span></td>
+        <td><p>The name of the property. Filled in by the compiler automatically, do not specify explicitly.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FluentMvvm.IDependencyExpression.html">IDependencyExpression</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/flinkow/fluentmvvm/new/master/apiSpec/new?filename=FluentMvvm_IPropertySetExpression_Set_Int32_System_String_.md&amp;value=---%0Auid%3A%20FluentMvvm.IPropertySetExpression.Set(Int32%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/flinkow/fluentmvvm/blob/master/fluentmvvm/IPropertySetExpression.cs/#L202">View Source</a>
+  </span>
+  <a id="FluentMvvm_IPropertySetExpression_Set_" data-uid="FluentMvvm.IPropertySetExpression.Set*"></a>
+  <h4 id="FluentMvvm_IPropertySetExpression_Set_Int32_System_String_" data-uid="FluentMvvm.IPropertySetExpression.Set(Int32,System.String)">Set(Int32, String)</h4>
+  <div class="markdown level1 summary"><p>Sets the value of the specified property to <code data-dev-comment-type="paramref" class="paramref">value</code> and raises a
+<see cref="!:INotifyPropertyChanged.PropertyChanged"></see> event if the new value was different from the old value.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">IDependencyExpression Set(Int32 value, string propertyName = &quot;&quot;)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Int32</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>The value to set the property to.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">propertyName</span></td>
+        <td><p>The name of the property. Filled in by the compiler automatically, do not specify explicitly.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FluentMvvm.IDependencyExpression.html">IDependencyExpression</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/flinkow/fluentmvvm/new/master/apiSpec/new?filename=FluentMvvm_IPropertySetExpression_Set_Int64_System_String_.md&amp;value=---%0Auid%3A%20FluentMvvm.IPropertySetExpression.Set(Int64%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/flinkow/fluentmvvm/blob/master/fluentmvvm/IPropertySetExpression.cs/#L236">View Source</a>
+  </span>
+  <a id="FluentMvvm_IPropertySetExpression_Set_" data-uid="FluentMvvm.IPropertySetExpression.Set*"></a>
+  <h4 id="FluentMvvm_IPropertySetExpression_Set_Int64_System_String_" data-uid="FluentMvvm.IPropertySetExpression.Set(Int64,System.String)">Set(Int64, String)</h4>
+  <div class="markdown level1 summary"><p>Sets the value of the specified property to <code data-dev-comment-type="paramref" class="paramref">value</code> and raises a
+<see cref="!:INotifyPropertyChanged.PropertyChanged"></see> event if the new value was different from the old value.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">IDependencyExpression Set(Int64 value, string propertyName = &quot;&quot;)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Int64</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>The value to set the property to.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">propertyName</span></td>
+        <td><p>The name of the property. Filled in by the compiler automatically, do not specify explicitly.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FluentMvvm.IDependencyExpression.html">IDependencyExpression</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/flinkow/fluentmvvm/new/master/apiSpec/new?filename=FluentMvvm_IPropertySetExpression_Set_SByte_System_String_.md&amp;value=---%0Auid%3A%20FluentMvvm.IPropertySetExpression.Set(SByte%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/flinkow/fluentmvvm/blob/master/fluentmvvm/IPropertySetExpression.cs/#L83">View Source</a>
+  </span>
+  <a id="FluentMvvm_IPropertySetExpression_Set_" data-uid="FluentMvvm.IPropertySetExpression.Set*"></a>
+  <h4 id="FluentMvvm_IPropertySetExpression_Set_SByte_System_String_" data-uid="FluentMvvm.IPropertySetExpression.Set(SByte,System.String)">Set(SByte, String)</h4>
+  <div class="markdown level1 summary"><p>Sets the value of the specified property to <code data-dev-comment-type="paramref" class="paramref">value</code> and raises a
+<see cref="!:INotifyPropertyChanged.PropertyChanged"></see> event if the new value was different from the old value.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">IDependencyExpression Set(SByte value, string propertyName = &quot;&quot;)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">SByte</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>The value to set the property to.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">propertyName</span></td>
+        <td><p>The name of the property. Filled in by the compiler automatically, do not specify explicitly.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FluentMvvm.IDependencyExpression.html">IDependencyExpression</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/flinkow/fluentmvvm/new/master/apiSpec/new?filename=FluentMvvm_IPropertySetExpression_Set_Single_System_String_.md&amp;value=---%0Auid%3A%20FluentMvvm.IPropertySetExpression.Set(Single%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/flinkow/fluentmvvm/blob/master/fluentmvvm/IPropertySetExpression.cs/#L151">View Source</a>
+  </span>
+  <a id="FluentMvvm_IPropertySetExpression_Set_" data-uid="FluentMvvm.IPropertySetExpression.Set*"></a>
+  <h4 id="FluentMvvm_IPropertySetExpression_Set_Single_System_String_" data-uid="FluentMvvm.IPropertySetExpression.Set(Single,System.String)">Set(Single, String)</h4>
+  <div class="markdown level1 summary"><p>Sets the value of the specified property to <code data-dev-comment-type="paramref" class="paramref">value</code> and raises a
+<see cref="!:INotifyPropertyChanged.PropertyChanged"></see> event if the new value was different from the old value.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">IDependencyExpression Set(Single value, string propertyName = &quot;&quot;)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Single</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>The value to set the property to.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">propertyName</span></td>
+        <td><p>The name of the property. Filled in by the compiler automatically, do not specify explicitly.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FluentMvvm.IDependencyExpression.html">IDependencyExpression</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/flinkow/fluentmvvm/new/master/apiSpec/new?filename=FluentMvvm_IPropertySetExpression_Set_String_System_String_.md&amp;value=---%0Auid%3A%20FluentMvvm.IPropertySetExpression.Set(String%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/flinkow/fluentmvvm/blob/master/fluentmvvm/IPropertySetExpression.cs/#L287">View Source</a>
+  </span>
+  <a id="FluentMvvm_IPropertySetExpression_Set_" data-uid="FluentMvvm.IPropertySetExpression.Set*"></a>
+  <h4 id="FluentMvvm_IPropertySetExpression_Set_String_System_String_" data-uid="FluentMvvm.IPropertySetExpression.Set(String,System.String)">Set(String, String)</h4>
+  <div class="markdown level1 summary"><p>Sets the value of the specified property to <code data-dev-comment-type="paramref" class="paramref">value</code> and raises a
+<see cref="!:INotifyPropertyChanged.PropertyChanged"></see> event if the new value was different from the old value.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">IDependencyExpression Set(String value, string propertyName = &quot;&quot;)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">String</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>The value to set the property to.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">propertyName</span></td>
+        <td><p>The name of the property. Filled in by the compiler automatically, do not specify explicitly.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FluentMvvm.IDependencyExpression.html">IDependencyExpression</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/flinkow/fluentmvvm/new/master/apiSpec/new?filename=FluentMvvm_IPropertySetExpression_Set_UInt16_System_String_.md&amp;value=---%0Auid%3A%20FluentMvvm.IPropertySetExpression.Set(UInt16%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/flinkow/fluentmvvm/blob/master/fluentmvvm/IPropertySetExpression.cs/#L185">View Source</a>
+  </span>
+  <a id="FluentMvvm_IPropertySetExpression_Set_" data-uid="FluentMvvm.IPropertySetExpression.Set*"></a>
+  <h4 id="FluentMvvm_IPropertySetExpression_Set_UInt16_System_String_" data-uid="FluentMvvm.IPropertySetExpression.Set(UInt16,System.String)">Set(UInt16, String)</h4>
+  <div class="markdown level1 summary"><p>Sets the value of the specified property to <code data-dev-comment-type="paramref" class="paramref">value</code> and raises a
+<see cref="!:INotifyPropertyChanged.PropertyChanged"></see> event if the new value was different from the old value.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">IDependencyExpression Set(UInt16 value, string propertyName = &quot;&quot;)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UInt16</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>The value to set the property to.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">propertyName</span></td>
+        <td><p>The name of the property. Filled in by the compiler automatically, do not specify explicitly.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FluentMvvm.IDependencyExpression.html">IDependencyExpression</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/flinkow/fluentmvvm/new/master/apiSpec/new?filename=FluentMvvm_IPropertySetExpression_Set_UInt32_System_String_.md&amp;value=---%0Auid%3A%20FluentMvvm.IPropertySetExpression.Set(UInt32%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/flinkow/fluentmvvm/blob/master/fluentmvvm/IPropertySetExpression.cs/#L219">View Source</a>
+  </span>
+  <a id="FluentMvvm_IPropertySetExpression_Set_" data-uid="FluentMvvm.IPropertySetExpression.Set*"></a>
+  <h4 id="FluentMvvm_IPropertySetExpression_Set_UInt32_System_String_" data-uid="FluentMvvm.IPropertySetExpression.Set(UInt32,System.String)">Set(UInt32, String)</h4>
+  <div class="markdown level1 summary"><p>Sets the value of the specified property to <code data-dev-comment-type="paramref" class="paramref">value</code> and raises a
+<see cref="!:INotifyPropertyChanged.PropertyChanged"></see> event if the new value was different from the old value.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">IDependencyExpression Set(UInt32 value, string propertyName = &quot;&quot;)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UInt32</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>The value to set the property to.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">propertyName</span></td>
+        <td><p>The name of the property. Filled in by the compiler automatically, do not specify explicitly.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FluentMvvm.IDependencyExpression.html">IDependencyExpression</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/flinkow/fluentmvvm/new/master/apiSpec/new?filename=FluentMvvm_IPropertySetExpression_Set_UInt64_System_String_.md&amp;value=---%0Auid%3A%20FluentMvvm.IPropertySetExpression.Set(UInt64%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/flinkow/fluentmvvm/blob/master/fluentmvvm/IPropertySetExpression.cs/#L253">View Source</a>
+  </span>
+  <a id="FluentMvvm_IPropertySetExpression_Set_" data-uid="FluentMvvm.IPropertySetExpression.Set*"></a>
+  <h4 id="FluentMvvm_IPropertySetExpression_Set_UInt64_System_String_" data-uid="FluentMvvm.IPropertySetExpression.Set(UInt64,System.String)">Set(UInt64, String)</h4>
+  <div class="markdown level1 summary"><p>Sets the value of the specified property to <code data-dev-comment-type="paramref" class="paramref">value</code> and raises a
+<see cref="!:INotifyPropertyChanged.PropertyChanged"></see> event if the new value was different from the old value.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">IDependencyExpression Set(UInt64 value, string propertyName = &quot;&quot;)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">UInt64</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>The value to set the property to.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">propertyName</span></td>
+        <td><p>The name of the property. Filled in by the compiler automatically, do not specify explicitly.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FluentMvvm.IDependencyExpression.html">IDependencyExpression</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/flinkow/fluentmvvm/new/master/apiSpec/new?filename=FluentMvvm_IPropertySetExpression_Set__1___0___0__System_String_.md&amp;value=---%0Auid%3A%20FluentMvvm.IPropertySetExpression.Set%60%601(%60%600%2C%60%600%40%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/flinkow/fluentmvvm/blob/master/fluentmvvm/IPropertySetExpression.cs/#L304">View Source</a>
+  </span>
+  <a id="FluentMvvm_IPropertySetExpression_Set_" data-uid="FluentMvvm.IPropertySetExpression.Set*"></a>
+  <h4 id="FluentMvvm_IPropertySetExpression_Set__1___0___0__System_String_" data-uid="FluentMvvm.IPropertySetExpression.Set``1(``0,``0@,System.String)">Set&lt;T&gt;(T, ref T, String)</h4>
+  <div class="markdown level1 summary"><p>Sets the value of the specified property to <code data-dev-comment-type="paramref" class="paramref">value</code> and raises a
+<see cref="!:INotifyPropertyChanged.PropertyChanged"></see> event if the new value was different from the old value.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">IDependencyExpression Set&lt;T&gt;(T value, ref T oldValue, string propertyName = &quot;&quot;)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>The value to set the property to.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><span class="parametername">oldValue</span></td>
+        <td><p>A reference to the old value of the property. This can be a field.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">propertyName</span></td>
+        <td><p>The name of the property. Filled in by the compiler automatically, do not specify explicitly.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FluentMvvm.IDependencyExpression.html">IDependencyExpression</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/flinkow/fluentmvvm/new/master/apiSpec/new?filename=FluentMvvm_IPropertySetExpression_Set__1___0_System_String_.md&amp;value=---%0Auid%3A%20FluentMvvm.IPropertySetExpression.Set%60%601(%60%600%2CSystem.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/flinkow/fluentmvvm/blob/master/fluentmvvm/IPropertySetExpression.cs/#L32">View Source</a>
+  </span>
+  <a id="FluentMvvm_IPropertySetExpression_Set_" data-uid="FluentMvvm.IPropertySetExpression.Set*"></a>
+  <h4 id="FluentMvvm_IPropertySetExpression_Set__1___0_System_String_" data-uid="FluentMvvm.IPropertySetExpression.Set``1(``0,System.String)">Set&lt;T&gt;(T, String)</h4>
+  <div class="markdown level1 summary"><p>Sets the value of the specified property to <code data-dev-comment-type="paramref" class="paramref">value</code> and raises a
+<see cref="!:INotifyPropertyChanged.PropertyChanged"></see> event if the new value was different from the old value.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">IDependencyExpression Set&lt;T&gt;(T value, string propertyName = &quot;&quot;)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>The value to set the property to.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.String</span></td>
+        <td><span class="parametername">propertyName</span></td>
+        <td><p>The name of the property. Filled in by the compiler automatically, do not specify explicitly.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="FluentMvvm.IDependencyExpression.html">IDependencyExpression</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/flinkow/fluentmvvm/new/master/apiSpec/new?filename=FluentMvvm_IPropertySetExpression.md&amp;value=---%0Auid%3A%20FluentMvvm.IPropertySetExpression%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/flinkow/fluentmvvm/blob/master/fluentmvvm/IPropertySetExpression.cs/#L15" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

@@ -1,20 +1,21 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+    <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <RootNamespace>FluentMvvm.Tests</RootNamespace>
-    <RunAnalyzersDuringLiveAnalysis>true</RunAnalyzersDuringLiveAnalysis>
-    <RunAnalyzersDuringBuild>true</RunAnalyzersDuringBuild>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="FluentAssertions" Version="5.10.2" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.6.0-preview-20200226-03" />
-    <PackageReference Include="NSubstitute" Version="4.2.1" />
-    <PackageReference Include="NSubstitute.Analyzers.CSharp" Version="1.0.12" />
-    <PackageReference Include="xunit" Version="2.3.1" />
-    <PackageReference Include="xunit.analyzers" Version="0.10.0" />
-    <PackageReference Include="xunit.runner.visualstudio" Version="2.3.1">
+    <PackageReference Include="AutoFixture" Version="4.15.0" />
+    <PackageReference Include="AutoFixture.AutoMoq" Version="4.15.0" />
+    <PackageReference Include="AutoFixture.Xunit2" Version="4.15.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.9.0-preview-20201123-03" />
+    <PackageReference Include="Moq" Version="4.15.2" />
+    <PackageReference Include="Shouldly" Version="4.0.3" />
+    <PackageReference Include="xunit" Version="2.4.1" />
+    <PackageReference Include="Xunit.Assume" Version="1.0.0" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.3">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
@@ -22,6 +23,52 @@
 
   <ItemGroup>
     <ProjectReference Include="..\fluentmvvm\fluentmvvm.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="BackingFieldsCreationDisabledTest.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>BackingFieldsCreationDisabledTest.cs</LastGenOutput>
+    </None>
+    <None Update="BackingFieldsTest.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>BackingFieldsTest.cs</LastGenOutput>
+    </None>
+    <None Update="EmptyFluentActionTest.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>EmptyFluentActionTest.cs</LastGenOutput>
+    </None>
+    <None Update="FluentViewModelBaseTest.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>FluentViewModelBaseTest.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="BackingFieldsCreationDisabledTest.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>BackingFieldsCreationDisabledTest.tt</DependentUpon>
+    </Compile>
+    <Compile Update="BackingFieldsTest.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>BackingFieldsTest.tt</DependentUpon>
+    </Compile>
+    <Compile Update="EmptyFluentActionTest.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>EmptyFluentActionTest.tt</DependentUpon>
+    </Compile>
+    <Compile Update="FluentViewModelBaseTest.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>FluentViewModelBaseTest.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
 
 </Project>
