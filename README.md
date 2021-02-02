@@ -14,8 +14,9 @@
 
 ## Further reading
 
-- [How it works: Creating backing fields at runtime](TODO)
-- [How it works: Improved performance with string interning](TODO)
+- [API Documentation](https://flinkow.github.io/fluentmvvm/api/FluentMvvm.html)
+- [How it works: Creating backing fields at runtime](https://flinkow.github.io/fluentmvvm/articles/CreatingBackingFields.html)
+- [How it works: Improved performance with string interning](https://flinkow.github.io/fluentmvvm/articles/ImprovingPerformance.html)
 
 # Features
 
