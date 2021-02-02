@@ -115,6 +115,12 @@
             </summary>
             <param name="createBackingFields">Must be set to <c>true</c> in order to use the <c>Get</c> and <c>Set</c> methods.</param>
         </member>
+        <member name="M:FluentMvvm.FluentViewModelBase.AfterSet">
+            <summary>
+            This method allows for code to execute after a property value that was different from the old value was set.
+            </summary>
+            <remarks>This method will only be executed if the new property value was different from the old value.</remarks>
+        </member>
         <member name="M:FluentMvvm.FluentViewModelBase.Get``1(System.String)">
             <summary>
                 Gets the value of the specified property.

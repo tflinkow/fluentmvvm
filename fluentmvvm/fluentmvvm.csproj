@@ -7,7 +7,7 @@
     <Nullable>enable</Nullable>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <Version>0.5.0-alpha</Version>
+    <Version>0.6.0-alpha</Version>
 	<RunCodeAnalysis>false</RunCodeAnalysis>
     <Authors>Thomas Flinkow</Authors>
     <Company></Company>
@@ -17,10 +17,9 @@
     <PackageProjectUrl>https://github.com/flinkow/fluentmvvm</PackageProjectUrl>
     <RepositoryUrl>https://github.com/flinkow/fluentmvvm.git</RepositoryUrl>
     <PackageTags>c#,wpf,mvvm,fluent,viewmodel</PackageTags>
-    <PackageReleaseNotes>- Removed dynamic code generation in favor of increased performance and increased code maintainability.
-- Getting and setting properties of a type with n properties now works in O(1) instead of in O(n).</PackageReleaseNotes>
-    <AssemblyVersion>0.5.0.0</AssemblyVersion>
-    <FileVersion>0.5.0.0</FileVersion>
+    <PackageReleaseNotes>- Added an AfterSet() method that view models inheriting from FluentViewModelBase can override to execute code after setting a value that is different from the old value to a property.</PackageReleaseNotes>
+    <AssemblyVersion>0.6.0.0</AssemblyVersion>
+    <FileVersion>0.6.0.0</FileVersion>
     <EnableNETAnalyzers>true</EnableNETAnalyzers>
   </PropertyGroup>
 

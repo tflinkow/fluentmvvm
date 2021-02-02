@@ -469,7 +469,7 @@ namespace FluentMvvm.Tests
 <# foreach (Type type in types) { #>
 
         [Fact]
-        public void Set<#= type.Name == typeof(object).Name ? "Generic" : type.Name #>_ExistingPropertyAndDifferentValue_SetsValueAndRaisesEvent()
+        public void Set<#= type.Name == typeof(object).Name ? "Generic" : type.Name #>_ExistingPropertyAndDifferentValue_SetsValueAndRaisesEventAndCallsAfterSet()
         {
             // Arrange
             var fixture = new Fixture();
@@ -483,11 +483,13 @@ namespace FluentMvvm.Tests
 
             var viewModelMock = new Mock<FluentViewModelBase>(false) { CallBase = true };  
             viewModelMock.SetupGet(x => x.BackingFields).Returns(backingFields);
+            viewModelMock.Setup(x => x.AfterSet());
             var viewModel = viewModelMock.Object;
 
             // Act & Assert
             viewModel.Set(value, propertyName).ShouldBeSameAs(viewModel);
             viewModelMock.Verify(x => x.RaisePropertyChanged(propertyName), Times.Once());
+            viewModelMock.Verify(x => x.AfterSet(), Times.Once());
         }
 <# } #>
 
@@ -508,11 +510,13 @@ namespace FluentMvvm.Tests
 
             var viewModelMock = new Mock<FluentViewModelBase>(false) { CallBase = true };  
             viewModelMock.SetupGet(x => x.BackingFields).Returns(backingFields);
+            viewModelMock.Setup(x => x.AfterSet());
             var viewModel = viewModelMock.Object;
 
             // Act & Assert
             viewModel.Set(value, propertyName).ShouldBeSameAs(EmptyFluentAction.Default);
             viewModelMock.Verify(x => x.RaisePropertyChanged(propertyName), Times.Never());
+            viewModelMock.Verify(x => x.AfterSet(), Times.Never());
         }
 <# } #>
 
