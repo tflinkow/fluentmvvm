@@ -54,7 +54,9 @@ namespace FluentMvvm
         /// This method allows for code to execute after a property value that was different from the old value was set.
         /// </summary>
         /// <remarks>This method will only be executed if the new property value was different from the old value.</remarks>
-        protected internal virtual void AfterSet() { }
+        /// <param name="value">The new value of the property.</param>
+        /// <param name="propertyName">The name of the property.</param>
+        protected internal virtual void AfterSet<T>(T value, string propertyName) { }
 
         /// <summary>
         ///     Gets the value of the specified property.
@@ -397,7 +399,7 @@ namespace FluentMvvm
             {
                 Debug.Assert(!String.IsNullOrWhiteSpace(propertyName));
 
-                this.AfterSet();
+                this.AfterSet(value, propertyName);
                 this.RaisePropertyChanged(propertyName);
                 return this;
             }
@@ -426,7 +428,7 @@ namespace FluentMvvm
             {
                 Debug.Assert(!String.IsNullOrWhiteSpace(propertyName));
 
-                this.AfterSet();
+                this.AfterSet(value, propertyName);
                 this.RaisePropertyChanged(propertyName);
                 return this;
             }
@@ -455,7 +457,7 @@ namespace FluentMvvm
             {
                 Debug.Assert(!String.IsNullOrWhiteSpace(propertyName));
 
-                this.AfterSet();
+                this.AfterSet(value, propertyName);
                 this.RaisePropertyChanged(propertyName);
                 return this;
             }
@@ -484,7 +486,7 @@ namespace FluentMvvm
             {
                 Debug.Assert(!String.IsNullOrWhiteSpace(propertyName));
 
-                this.AfterSet();
+                this.AfterSet(value, propertyName);
                 this.RaisePropertyChanged(propertyName);
                 return this;
             }
@@ -513,7 +515,7 @@ namespace FluentMvvm
             {
                 Debug.Assert(!String.IsNullOrWhiteSpace(propertyName));
 
-                this.AfterSet();
+                this.AfterSet(value, propertyName);
                 this.RaisePropertyChanged(propertyName);
                 return this;
             }
@@ -542,7 +544,7 @@ namespace FluentMvvm
             {
                 Debug.Assert(!String.IsNullOrWhiteSpace(propertyName));
 
-                this.AfterSet();
+                this.AfterSet(value, propertyName);
                 this.RaisePropertyChanged(propertyName);
                 return this;
             }
@@ -571,7 +573,7 @@ namespace FluentMvvm
             {
                 Debug.Assert(!String.IsNullOrWhiteSpace(propertyName));
 
-                this.AfterSet();
+                this.AfterSet(value, propertyName);
                 this.RaisePropertyChanged(propertyName);
                 return this;
             }
@@ -600,7 +602,7 @@ namespace FluentMvvm
             {
                 Debug.Assert(!String.IsNullOrWhiteSpace(propertyName));
 
-                this.AfterSet();
+                this.AfterSet(value, propertyName);
                 this.RaisePropertyChanged(propertyName);
                 return this;
             }
@@ -629,7 +631,7 @@ namespace FluentMvvm
             {
                 Debug.Assert(!String.IsNullOrWhiteSpace(propertyName));
 
-                this.AfterSet();
+                this.AfterSet(value, propertyName);
                 this.RaisePropertyChanged(propertyName);
                 return this;
             }
@@ -658,7 +660,7 @@ namespace FluentMvvm
             {
                 Debug.Assert(!String.IsNullOrWhiteSpace(propertyName));
 
-                this.AfterSet();
+                this.AfterSet(value, propertyName);
                 this.RaisePropertyChanged(propertyName);
                 return this;
             }
@@ -687,7 +689,7 @@ namespace FluentMvvm
             {
                 Debug.Assert(!String.IsNullOrWhiteSpace(propertyName));
 
-                this.AfterSet();
+                this.AfterSet(value, propertyName);
                 this.RaisePropertyChanged(propertyName);
                 return this;
             }
@@ -716,7 +718,7 @@ namespace FluentMvvm
             {
                 Debug.Assert(!String.IsNullOrWhiteSpace(propertyName));
 
-                this.AfterSet();
+                this.AfterSet(value, propertyName);
                 this.RaisePropertyChanged(propertyName);
                 return this;
             }
@@ -745,7 +747,7 @@ namespace FluentMvvm
             {
                 Debug.Assert(!String.IsNullOrWhiteSpace(propertyName));
 
-                this.AfterSet();
+                this.AfterSet(value, propertyName);
                 this.RaisePropertyChanged(propertyName);
                 return this;
             }
@@ -774,7 +776,7 @@ namespace FluentMvvm
             {
                 Debug.Assert(!String.IsNullOrWhiteSpace(propertyName));
 
-                this.AfterSet();
+                this.AfterSet(value, propertyName);
                 this.RaisePropertyChanged(propertyName);
                 return this;
             }
@@ -803,7 +805,7 @@ namespace FluentMvvm
             {
                 Debug.Assert(!String.IsNullOrWhiteSpace(propertyName));
 
-                this.AfterSet();
+                this.AfterSet(value, propertyName);
                 this.RaisePropertyChanged(propertyName);
                 return this;
             }
@@ -832,7 +834,7 @@ namespace FluentMvvm
             {
                 Debug.Assert(!String.IsNullOrWhiteSpace(propertyName));
 
-                this.AfterSet();
+                this.AfterSet(value, propertyName);
                 this.RaisePropertyChanged(propertyName);
                 return this;
             }
@@ -861,7 +863,7 @@ namespace FluentMvvm
             }
 
             oldValue = value;
-            this.AfterSet();
+            this.AfterSet(value, propertyName);
             this.RaisePropertyChanged(propertyName);
 
             return this;

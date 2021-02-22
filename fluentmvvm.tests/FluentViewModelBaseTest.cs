@@ -2949,13 +2949,13 @@ namespace FluentMvvm.Tests
 
             var viewModelMock = new Mock<FluentViewModelBase>(false) { CallBase = true };  
             viewModelMock.SetupGet(x => x.BackingFields).Returns(backingFields);
-            viewModelMock.Setup(x => x.AfterSet());
+            viewModelMock.Setup(x => x.AfterSet(value, propertyName));
             var viewModel = viewModelMock.Object;
 
             // Act & Assert
             viewModel.Set(value, propertyName).ShouldBeSameAs(viewModel);
             viewModelMock.Verify(x => x.RaisePropertyChanged(propertyName), Times.Once());
-            viewModelMock.Verify(x => x.AfterSet(), Times.Once());
+            viewModelMock.Verify(x => x.AfterSet(value, propertyName), Times.Once());
         }
 
         [Fact]
@@ -2973,13 +2973,13 @@ namespace FluentMvvm.Tests
 
             var viewModelMock = new Mock<FluentViewModelBase>(false) { CallBase = true };  
             viewModelMock.SetupGet(x => x.BackingFields).Returns(backingFields);
-            viewModelMock.Setup(x => x.AfterSet());
+            viewModelMock.Setup(x => x.AfterSet(value, propertyName));
             var viewModel = viewModelMock.Object;
 
             // Act & Assert
             viewModel.Set(value, propertyName).ShouldBeSameAs(viewModel);
             viewModelMock.Verify(x => x.RaisePropertyChanged(propertyName), Times.Once());
-            viewModelMock.Verify(x => x.AfterSet(), Times.Once());
+            viewModelMock.Verify(x => x.AfterSet(value, propertyName), Times.Once());
         }
 
         [Fact]
@@ -2997,13 +2997,13 @@ namespace FluentMvvm.Tests
 
             var viewModelMock = new Mock<FluentViewModelBase>(false) { CallBase = true };  
             viewModelMock.SetupGet(x => x.BackingFields).Returns(backingFields);
-            viewModelMock.Setup(x => x.AfterSet());
+            viewModelMock.Setup(x => x.AfterSet(value, propertyName));
             var viewModel = viewModelMock.Object;
 
             // Act & Assert
             viewModel.Set(value, propertyName).ShouldBeSameAs(viewModel);
             viewModelMock.Verify(x => x.RaisePropertyChanged(propertyName), Times.Once());
-            viewModelMock.Verify(x => x.AfterSet(), Times.Once());
+            viewModelMock.Verify(x => x.AfterSet(value, propertyName), Times.Once());
         }
 
         [Fact]
@@ -3021,13 +3021,13 @@ namespace FluentMvvm.Tests
 
             var viewModelMock = new Mock<FluentViewModelBase>(false) { CallBase = true };  
             viewModelMock.SetupGet(x => x.BackingFields).Returns(backingFields);
-            viewModelMock.Setup(x => x.AfterSet());
+            viewModelMock.Setup(x => x.AfterSet(value, propertyName));
             var viewModel = viewModelMock.Object;
 
             // Act & Assert
             viewModel.Set(value, propertyName).ShouldBeSameAs(viewModel);
             viewModelMock.Verify(x => x.RaisePropertyChanged(propertyName), Times.Once());
-            viewModelMock.Verify(x => x.AfterSet(), Times.Once());
+            viewModelMock.Verify(x => x.AfterSet(value, propertyName), Times.Once());
         }
 
         [Fact]
@@ -3045,13 +3045,13 @@ namespace FluentMvvm.Tests
 
             var viewModelMock = new Mock<FluentViewModelBase>(false) { CallBase = true };  
             viewModelMock.SetupGet(x => x.BackingFields).Returns(backingFields);
-            viewModelMock.Setup(x => x.AfterSet());
+            viewModelMock.Setup(x => x.AfterSet(value, propertyName));
             var viewModel = viewModelMock.Object;
 
             // Act & Assert
             viewModel.Set(value, propertyName).ShouldBeSameAs(viewModel);
             viewModelMock.Verify(x => x.RaisePropertyChanged(propertyName), Times.Once());
-            viewModelMock.Verify(x => x.AfterSet(), Times.Once());
+            viewModelMock.Verify(x => x.AfterSet(value, propertyName), Times.Once());
         }
 
         [Fact]
@@ -3069,13 +3069,13 @@ namespace FluentMvvm.Tests
 
             var viewModelMock = new Mock<FluentViewModelBase>(false) { CallBase = true };  
             viewModelMock.SetupGet(x => x.BackingFields).Returns(backingFields);
-            viewModelMock.Setup(x => x.AfterSet());
+            viewModelMock.Setup(x => x.AfterSet(value, propertyName));
             var viewModel = viewModelMock.Object;
 
             // Act & Assert
             viewModel.Set(value, propertyName).ShouldBeSameAs(viewModel);
             viewModelMock.Verify(x => x.RaisePropertyChanged(propertyName), Times.Once());
-            viewModelMock.Verify(x => x.AfterSet(), Times.Once());
+            viewModelMock.Verify(x => x.AfterSet(value, propertyName), Times.Once());
         }
 
         [Fact]
@@ -3093,13 +3093,13 @@ namespace FluentMvvm.Tests
 
             var viewModelMock = new Mock<FluentViewModelBase>(false) { CallBase = true };  
             viewModelMock.SetupGet(x => x.BackingFields).Returns(backingFields);
-            viewModelMock.Setup(x => x.AfterSet());
+            viewModelMock.Setup(x => x.AfterSet(value, propertyName));
             var viewModel = viewModelMock.Object;
 
             // Act & Assert
             viewModel.Set(value, propertyName).ShouldBeSameAs(viewModel);
             viewModelMock.Verify(x => x.RaisePropertyChanged(propertyName), Times.Once());
-            viewModelMock.Verify(x => x.AfterSet(), Times.Once());
+            viewModelMock.Verify(x => x.AfterSet(value, propertyName), Times.Once());
         }
 
         [Fact]
@@ -3117,13 +3117,13 @@ namespace FluentMvvm.Tests
 
             var viewModelMock = new Mock<FluentViewModelBase>(false) { CallBase = true };  
             viewModelMock.SetupGet(x => x.BackingFields).Returns(backingFields);
-            viewModelMock.Setup(x => x.AfterSet());
+            viewModelMock.Setup(x => x.AfterSet(value, propertyName));
             var viewModel = viewModelMock.Object;
 
             // Act & Assert
             viewModel.Set(value, propertyName).ShouldBeSameAs(viewModel);
             viewModelMock.Verify(x => x.RaisePropertyChanged(propertyName), Times.Once());
-            viewModelMock.Verify(x => x.AfterSet(), Times.Once());
+            viewModelMock.Verify(x => x.AfterSet(value, propertyName), Times.Once());
         }
 
         [Fact]
@@ -3141,13 +3141,13 @@ namespace FluentMvvm.Tests
 
             var viewModelMock = new Mock<FluentViewModelBase>(false) { CallBase = true };  
             viewModelMock.SetupGet(x => x.BackingFields).Returns(backingFields);
-            viewModelMock.Setup(x => x.AfterSet());
+            viewModelMock.Setup(x => x.AfterSet(value, propertyName));
             var viewModel = viewModelMock.Object;
 
             // Act & Assert
             viewModel.Set(value, propertyName).ShouldBeSameAs(viewModel);
             viewModelMock.Verify(x => x.RaisePropertyChanged(propertyName), Times.Once());
-            viewModelMock.Verify(x => x.AfterSet(), Times.Once());
+            viewModelMock.Verify(x => x.AfterSet(value, propertyName), Times.Once());
         }
 
         [Fact]
@@ -3165,13 +3165,13 @@ namespace FluentMvvm.Tests
 
             var viewModelMock = new Mock<FluentViewModelBase>(false) { CallBase = true };  
             viewModelMock.SetupGet(x => x.BackingFields).Returns(backingFields);
-            viewModelMock.Setup(x => x.AfterSet());
+            viewModelMock.Setup(x => x.AfterSet(value, propertyName));
             var viewModel = viewModelMock.Object;
 
             // Act & Assert
             viewModel.Set(value, propertyName).ShouldBeSameAs(viewModel);
             viewModelMock.Verify(x => x.RaisePropertyChanged(propertyName), Times.Once());
-            viewModelMock.Verify(x => x.AfterSet(), Times.Once());
+            viewModelMock.Verify(x => x.AfterSet(value, propertyName), Times.Once());
         }
 
         [Fact]
@@ -3189,13 +3189,13 @@ namespace FluentMvvm.Tests
 
             var viewModelMock = new Mock<FluentViewModelBase>(false) { CallBase = true };  
             viewModelMock.SetupGet(x => x.BackingFields).Returns(backingFields);
-            viewModelMock.Setup(x => x.AfterSet());
+            viewModelMock.Setup(x => x.AfterSet(value, propertyName));
             var viewModel = viewModelMock.Object;
 
             // Act & Assert
             viewModel.Set(value, propertyName).ShouldBeSameAs(viewModel);
             viewModelMock.Verify(x => x.RaisePropertyChanged(propertyName), Times.Once());
-            viewModelMock.Verify(x => x.AfterSet(), Times.Once());
+            viewModelMock.Verify(x => x.AfterSet(value, propertyName), Times.Once());
         }
 
         [Fact]
@@ -3213,13 +3213,13 @@ namespace FluentMvvm.Tests
 
             var viewModelMock = new Mock<FluentViewModelBase>(false) { CallBase = true };  
             viewModelMock.SetupGet(x => x.BackingFields).Returns(backingFields);
-            viewModelMock.Setup(x => x.AfterSet());
+            viewModelMock.Setup(x => x.AfterSet(value, propertyName));
             var viewModel = viewModelMock.Object;
 
             // Act & Assert
             viewModel.Set(value, propertyName).ShouldBeSameAs(viewModel);
             viewModelMock.Verify(x => x.RaisePropertyChanged(propertyName), Times.Once());
-            viewModelMock.Verify(x => x.AfterSet(), Times.Once());
+            viewModelMock.Verify(x => x.AfterSet(value, propertyName), Times.Once());
         }
 
         [Fact]
@@ -3237,13 +3237,13 @@ namespace FluentMvvm.Tests
 
             var viewModelMock = new Mock<FluentViewModelBase>(false) { CallBase = true };  
             viewModelMock.SetupGet(x => x.BackingFields).Returns(backingFields);
-            viewModelMock.Setup(x => x.AfterSet());
+            viewModelMock.Setup(x => x.AfterSet(value, propertyName));
             var viewModel = viewModelMock.Object;
 
             // Act & Assert
             viewModel.Set(value, propertyName).ShouldBeSameAs(viewModel);
             viewModelMock.Verify(x => x.RaisePropertyChanged(propertyName), Times.Once());
-            viewModelMock.Verify(x => x.AfterSet(), Times.Once());
+            viewModelMock.Verify(x => x.AfterSet(value, propertyName), Times.Once());
         }
 
         [Fact]
@@ -3261,13 +3261,13 @@ namespace FluentMvvm.Tests
 
             var viewModelMock = new Mock<FluentViewModelBase>(false) { CallBase = true };  
             viewModelMock.SetupGet(x => x.BackingFields).Returns(backingFields);
-            viewModelMock.Setup(x => x.AfterSet());
+            viewModelMock.Setup(x => x.AfterSet(value, propertyName));
             var viewModel = viewModelMock.Object;
 
             // Act & Assert
             viewModel.Set(value, propertyName).ShouldBeSameAs(viewModel);
             viewModelMock.Verify(x => x.RaisePropertyChanged(propertyName), Times.Once());
-            viewModelMock.Verify(x => x.AfterSet(), Times.Once());
+            viewModelMock.Verify(x => x.AfterSet(value, propertyName), Times.Once());
         }
 
         [Fact]
@@ -3285,13 +3285,13 @@ namespace FluentMvvm.Tests
 
             var viewModelMock = new Mock<FluentViewModelBase>(false) { CallBase = true };  
             viewModelMock.SetupGet(x => x.BackingFields).Returns(backingFields);
-            viewModelMock.Setup(x => x.AfterSet());
+            viewModelMock.Setup(x => x.AfterSet(value, propertyName));
             var viewModel = viewModelMock.Object;
 
             // Act & Assert
             viewModel.Set(value, propertyName).ShouldBeSameAs(viewModel);
             viewModelMock.Verify(x => x.RaisePropertyChanged(propertyName), Times.Once());
-            viewModelMock.Verify(x => x.AfterSet(), Times.Once());
+            viewModelMock.Verify(x => x.AfterSet(value, propertyName), Times.Once());
         }
 
         [Fact]
@@ -3309,13 +3309,13 @@ namespace FluentMvvm.Tests
 
             var viewModelMock = new Mock<FluentViewModelBase>(false) { CallBase = true };  
             viewModelMock.SetupGet(x => x.BackingFields).Returns(backingFields);
-            viewModelMock.Setup(x => x.AfterSet());
+            viewModelMock.Setup(x => x.AfterSet(value, propertyName));
             var viewModel = viewModelMock.Object;
 
             // Act & Assert
             viewModel.Set(value, propertyName).ShouldBeSameAs(viewModel);
             viewModelMock.Verify(x => x.RaisePropertyChanged(propertyName), Times.Once());
-            viewModelMock.Verify(x => x.AfterSet(), Times.Once());
+            viewModelMock.Verify(x => x.AfterSet(value, propertyName), Times.Once());
         }
 
 
@@ -3334,13 +3334,13 @@ namespace FluentMvvm.Tests
 
             var viewModelMock = new Mock<FluentViewModelBase>(false) { CallBase = true };  
             viewModelMock.SetupGet(x => x.BackingFields).Returns(backingFields);
-            viewModelMock.Setup(x => x.AfterSet());
+            viewModelMock.Setup(x => x.AfterSet(It.IsAny<System.Object>(), It.IsAny<string>()));
             var viewModel = viewModelMock.Object;
 
             // Act & Assert
             viewModel.Set(value, propertyName).ShouldBeSameAs(EmptyFluentAction.Default);
             viewModelMock.Verify(x => x.RaisePropertyChanged(propertyName), Times.Never());
-            viewModelMock.Verify(x => x.AfterSet(), Times.Never());
+            viewModelMock.Verify(x => x.AfterSet(It.IsAny<System.Object>(), It.IsAny<string>()), Times.Never());
         }
 
         [Fact]
@@ -3358,13 +3358,13 @@ namespace FluentMvvm.Tests
 
             var viewModelMock = new Mock<FluentViewModelBase>(false) { CallBase = true };  
             viewModelMock.SetupGet(x => x.BackingFields).Returns(backingFields);
-            viewModelMock.Setup(x => x.AfterSet());
+            viewModelMock.Setup(x => x.AfterSet(It.IsAny<System.Boolean>(), It.IsAny<string>()));
             var viewModel = viewModelMock.Object;
 
             // Act & Assert
             viewModel.Set(value, propertyName).ShouldBeSameAs(EmptyFluentAction.Default);
             viewModelMock.Verify(x => x.RaisePropertyChanged(propertyName), Times.Never());
-            viewModelMock.Verify(x => x.AfterSet(), Times.Never());
+            viewModelMock.Verify(x => x.AfterSet(It.IsAny<System.Boolean>(), It.IsAny<string>()), Times.Never());
         }
 
         [Fact]
@@ -3382,13 +3382,13 @@ namespace FluentMvvm.Tests
 
             var viewModelMock = new Mock<FluentViewModelBase>(false) { CallBase = true };  
             viewModelMock.SetupGet(x => x.BackingFields).Returns(backingFields);
-            viewModelMock.Setup(x => x.AfterSet());
+            viewModelMock.Setup(x => x.AfterSet(It.IsAny<System.Byte>(), It.IsAny<string>()));
             var viewModel = viewModelMock.Object;
 
             // Act & Assert
             viewModel.Set(value, propertyName).ShouldBeSameAs(EmptyFluentAction.Default);
             viewModelMock.Verify(x => x.RaisePropertyChanged(propertyName), Times.Never());
-            viewModelMock.Verify(x => x.AfterSet(), Times.Never());
+            viewModelMock.Verify(x => x.AfterSet(It.IsAny<System.Byte>(), It.IsAny<string>()), Times.Never());
         }
 
         [Fact]
@@ -3406,13 +3406,13 @@ namespace FluentMvvm.Tests
 
             var viewModelMock = new Mock<FluentViewModelBase>(false) { CallBase = true };  
             viewModelMock.SetupGet(x => x.BackingFields).Returns(backingFields);
-            viewModelMock.Setup(x => x.AfterSet());
+            viewModelMock.Setup(x => x.AfterSet(It.IsAny<System.SByte>(), It.IsAny<string>()));
             var viewModel = viewModelMock.Object;
 
             // Act & Assert
             viewModel.Set(value, propertyName).ShouldBeSameAs(EmptyFluentAction.Default);
             viewModelMock.Verify(x => x.RaisePropertyChanged(propertyName), Times.Never());
-            viewModelMock.Verify(x => x.AfterSet(), Times.Never());
+            viewModelMock.Verify(x => x.AfterSet(It.IsAny<System.SByte>(), It.IsAny<string>()), Times.Never());
         }
 
         [Fact]
@@ -3430,13 +3430,13 @@ namespace FluentMvvm.Tests
 
             var viewModelMock = new Mock<FluentViewModelBase>(false) { CallBase = true };  
             viewModelMock.SetupGet(x => x.BackingFields).Returns(backingFields);
-            viewModelMock.Setup(x => x.AfterSet());
+            viewModelMock.Setup(x => x.AfterSet(It.IsAny<System.Char>(), It.IsAny<string>()));
             var viewModel = viewModelMock.Object;
 
             // Act & Assert
             viewModel.Set(value, propertyName).ShouldBeSameAs(EmptyFluentAction.Default);
             viewModelMock.Verify(x => x.RaisePropertyChanged(propertyName), Times.Never());
-            viewModelMock.Verify(x => x.AfterSet(), Times.Never());
+            viewModelMock.Verify(x => x.AfterSet(It.IsAny<System.Char>(), It.IsAny<string>()), Times.Never());
         }
 
         [Fact]
@@ -3454,13 +3454,13 @@ namespace FluentMvvm.Tests
 
             var viewModelMock = new Mock<FluentViewModelBase>(false) { CallBase = true };  
             viewModelMock.SetupGet(x => x.BackingFields).Returns(backingFields);
-            viewModelMock.Setup(x => x.AfterSet());
+            viewModelMock.Setup(x => x.AfterSet(It.IsAny<System.Decimal>(), It.IsAny<string>()));
             var viewModel = viewModelMock.Object;
 
             // Act & Assert
             viewModel.Set(value, propertyName).ShouldBeSameAs(EmptyFluentAction.Default);
             viewModelMock.Verify(x => x.RaisePropertyChanged(propertyName), Times.Never());
-            viewModelMock.Verify(x => x.AfterSet(), Times.Never());
+            viewModelMock.Verify(x => x.AfterSet(It.IsAny<System.Decimal>(), It.IsAny<string>()), Times.Never());
         }
 
         [Fact]
@@ -3478,13 +3478,13 @@ namespace FluentMvvm.Tests
 
             var viewModelMock = new Mock<FluentViewModelBase>(false) { CallBase = true };  
             viewModelMock.SetupGet(x => x.BackingFields).Returns(backingFields);
-            viewModelMock.Setup(x => x.AfterSet());
+            viewModelMock.Setup(x => x.AfterSet(It.IsAny<System.Double>(), It.IsAny<string>()));
             var viewModel = viewModelMock.Object;
 
             // Act & Assert
             viewModel.Set(value, propertyName).ShouldBeSameAs(EmptyFluentAction.Default);
             viewModelMock.Verify(x => x.RaisePropertyChanged(propertyName), Times.Never());
-            viewModelMock.Verify(x => x.AfterSet(), Times.Never());
+            viewModelMock.Verify(x => x.AfterSet(It.IsAny<System.Double>(), It.IsAny<string>()), Times.Never());
         }
 
         [Fact]
@@ -3502,13 +3502,13 @@ namespace FluentMvvm.Tests
 
             var viewModelMock = new Mock<FluentViewModelBase>(false) { CallBase = true };  
             viewModelMock.SetupGet(x => x.BackingFields).Returns(backingFields);
-            viewModelMock.Setup(x => x.AfterSet());
+            viewModelMock.Setup(x => x.AfterSet(It.IsAny<System.Single>(), It.IsAny<string>()));
             var viewModel = viewModelMock.Object;
 
             // Act & Assert
             viewModel.Set(value, propertyName).ShouldBeSameAs(EmptyFluentAction.Default);
             viewModelMock.Verify(x => x.RaisePropertyChanged(propertyName), Times.Never());
-            viewModelMock.Verify(x => x.AfterSet(), Times.Never());
+            viewModelMock.Verify(x => x.AfterSet(It.IsAny<System.Single>(), It.IsAny<string>()), Times.Never());
         }
 
         [Fact]
@@ -3526,13 +3526,13 @@ namespace FluentMvvm.Tests
 
             var viewModelMock = new Mock<FluentViewModelBase>(false) { CallBase = true };  
             viewModelMock.SetupGet(x => x.BackingFields).Returns(backingFields);
-            viewModelMock.Setup(x => x.AfterSet());
+            viewModelMock.Setup(x => x.AfterSet(It.IsAny<System.Int16>(), It.IsAny<string>()));
             var viewModel = viewModelMock.Object;
 
             // Act & Assert
             viewModel.Set(value, propertyName).ShouldBeSameAs(EmptyFluentAction.Default);
             viewModelMock.Verify(x => x.RaisePropertyChanged(propertyName), Times.Never());
-            viewModelMock.Verify(x => x.AfterSet(), Times.Never());
+            viewModelMock.Verify(x => x.AfterSet(It.IsAny<System.Int16>(), It.IsAny<string>()), Times.Never());
         }
 
         [Fact]
@@ -3550,13 +3550,13 @@ namespace FluentMvvm.Tests
 
             var viewModelMock = new Mock<FluentViewModelBase>(false) { CallBase = true };  
             viewModelMock.SetupGet(x => x.BackingFields).Returns(backingFields);
-            viewModelMock.Setup(x => x.AfterSet());
+            viewModelMock.Setup(x => x.AfterSet(It.IsAny<System.UInt16>(), It.IsAny<string>()));
             var viewModel = viewModelMock.Object;
 
             // Act & Assert
             viewModel.Set(value, propertyName).ShouldBeSameAs(EmptyFluentAction.Default);
             viewModelMock.Verify(x => x.RaisePropertyChanged(propertyName), Times.Never());
-            viewModelMock.Verify(x => x.AfterSet(), Times.Never());
+            viewModelMock.Verify(x => x.AfterSet(It.IsAny<System.UInt16>(), It.IsAny<string>()), Times.Never());
         }
 
         [Fact]
@@ -3574,13 +3574,13 @@ namespace FluentMvvm.Tests
 
             var viewModelMock = new Mock<FluentViewModelBase>(false) { CallBase = true };  
             viewModelMock.SetupGet(x => x.BackingFields).Returns(backingFields);
-            viewModelMock.Setup(x => x.AfterSet());
+            viewModelMock.Setup(x => x.AfterSet(It.IsAny<System.Int32>(), It.IsAny<string>()));
             var viewModel = viewModelMock.Object;
 
             // Act & Assert
             viewModel.Set(value, propertyName).ShouldBeSameAs(EmptyFluentAction.Default);
             viewModelMock.Verify(x => x.RaisePropertyChanged(propertyName), Times.Never());
-            viewModelMock.Verify(x => x.AfterSet(), Times.Never());
+            viewModelMock.Verify(x => x.AfterSet(It.IsAny<System.Int32>(), It.IsAny<string>()), Times.Never());
         }
 
         [Fact]
@@ -3598,13 +3598,13 @@ namespace FluentMvvm.Tests
 
             var viewModelMock = new Mock<FluentViewModelBase>(false) { CallBase = true };  
             viewModelMock.SetupGet(x => x.BackingFields).Returns(backingFields);
-            viewModelMock.Setup(x => x.AfterSet());
+            viewModelMock.Setup(x => x.AfterSet(It.IsAny<System.UInt32>(), It.IsAny<string>()));
             var viewModel = viewModelMock.Object;
 
             // Act & Assert
             viewModel.Set(value, propertyName).ShouldBeSameAs(EmptyFluentAction.Default);
             viewModelMock.Verify(x => x.RaisePropertyChanged(propertyName), Times.Never());
-            viewModelMock.Verify(x => x.AfterSet(), Times.Never());
+            viewModelMock.Verify(x => x.AfterSet(It.IsAny<System.UInt32>(), It.IsAny<string>()), Times.Never());
         }
 
         [Fact]
@@ -3622,13 +3622,13 @@ namespace FluentMvvm.Tests
 
             var viewModelMock = new Mock<FluentViewModelBase>(false) { CallBase = true };  
             viewModelMock.SetupGet(x => x.BackingFields).Returns(backingFields);
-            viewModelMock.Setup(x => x.AfterSet());
+            viewModelMock.Setup(x => x.AfterSet(It.IsAny<System.Int64>(), It.IsAny<string>()));
             var viewModel = viewModelMock.Object;
 
             // Act & Assert
             viewModel.Set(value, propertyName).ShouldBeSameAs(EmptyFluentAction.Default);
             viewModelMock.Verify(x => x.RaisePropertyChanged(propertyName), Times.Never());
-            viewModelMock.Verify(x => x.AfterSet(), Times.Never());
+            viewModelMock.Verify(x => x.AfterSet(It.IsAny<System.Int64>(), It.IsAny<string>()), Times.Never());
         }
 
         [Fact]
@@ -3646,13 +3646,13 @@ namespace FluentMvvm.Tests
 
             var viewModelMock = new Mock<FluentViewModelBase>(false) { CallBase = true };  
             viewModelMock.SetupGet(x => x.BackingFields).Returns(backingFields);
-            viewModelMock.Setup(x => x.AfterSet());
+            viewModelMock.Setup(x => x.AfterSet(It.IsAny<System.UInt64>(), It.IsAny<string>()));
             var viewModel = viewModelMock.Object;
 
             // Act & Assert
             viewModel.Set(value, propertyName).ShouldBeSameAs(EmptyFluentAction.Default);
             viewModelMock.Verify(x => x.RaisePropertyChanged(propertyName), Times.Never());
-            viewModelMock.Verify(x => x.AfterSet(), Times.Never());
+            viewModelMock.Verify(x => x.AfterSet(It.IsAny<System.UInt64>(), It.IsAny<string>()), Times.Never());
         }
 
         [Fact]
@@ -3670,13 +3670,13 @@ namespace FluentMvvm.Tests
 
             var viewModelMock = new Mock<FluentViewModelBase>(false) { CallBase = true };  
             viewModelMock.SetupGet(x => x.BackingFields).Returns(backingFields);
-            viewModelMock.Setup(x => x.AfterSet());
+            viewModelMock.Setup(x => x.AfterSet(It.IsAny<System.DateTime>(), It.IsAny<string>()));
             var viewModel = viewModelMock.Object;
 
             // Act & Assert
             viewModel.Set(value, propertyName).ShouldBeSameAs(EmptyFluentAction.Default);
             viewModelMock.Verify(x => x.RaisePropertyChanged(propertyName), Times.Never());
-            viewModelMock.Verify(x => x.AfterSet(), Times.Never());
+            viewModelMock.Verify(x => x.AfterSet(It.IsAny<System.DateTime>(), It.IsAny<string>()), Times.Never());
         }
 
         [Fact]
@@ -3694,13 +3694,13 @@ namespace FluentMvvm.Tests
 
             var viewModelMock = new Mock<FluentViewModelBase>(false) { CallBase = true };  
             viewModelMock.SetupGet(x => x.BackingFields).Returns(backingFields);
-            viewModelMock.Setup(x => x.AfterSet());
+            viewModelMock.Setup(x => x.AfterSet(It.IsAny<System.String>(), It.IsAny<string>()));
             var viewModel = viewModelMock.Object;
 
             // Act & Assert
             viewModel.Set(value, propertyName).ShouldBeSameAs(EmptyFluentAction.Default);
             viewModelMock.Verify(x => x.RaisePropertyChanged(propertyName), Times.Never());
-            viewModelMock.Verify(x => x.AfterSet(), Times.Never());
+            viewModelMock.Verify(x => x.AfterSet(It.IsAny<System.String>(), It.IsAny<string>()), Times.Never());
         }
 
         [Fact]
