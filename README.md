@@ -2,6 +2,8 @@
 Its [source generators](https://learn.microsoft.com/en-us/dotnet/communitytoolkit/mvvm/generators/observableproperty)
 allow to write boilerplate-free view models without any runtime penalty.**
 
+---
+
 [![NuGet Version](https://img.shields.io/nuget/v/fluentmvvm)](https://www.nuget.org/packages/fluentmvvm/)
 [![License](https://img.shields.io/github/license/flinkow/fluentmvvm)](https://github.com/flinkow/fluentmvvm/blob/master/LICENSE)
 
